@@ -3,16 +3,16 @@
   <head>
     <script src="https://code.createjs.com/easeljs-0.8.0.min.js"> </script>
     <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"> </script>
-    <script src="canvas.js"> </script>
     <title>Socket.IO chat</title>
     <style>
-      #canvas {border: solid 1px black;}
+      #canvas {border: solid 1px black;position: absolute; background-color: lightblue;}
     </style>
   </head> 
   <body>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas"></canvas><br>
     <button onClick="onMouseClick(-10)"> Левая </button>
     <button onClick="onMouseClick(10)"> Правая </button>
+    <script src="/canvas.js"> </script>
   </body>
 </html>
   
