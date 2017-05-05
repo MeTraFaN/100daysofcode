@@ -17,8 +17,8 @@
       var socket = io();
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
-          canvas.width = window.innerWidth-300;
-          canvas.height = window.innerHeight-300;
+          canvas.width = window.innerWidth-100;
+          canvas.height = window.innerHeight-100;
             var data = {
               images: ["http://savepic.ru/13767000.png"],
               frames: {width: 120, height: 120, count: 24}
@@ -39,8 +39,8 @@
             onResize();
 
             function onResize() {
-              canvas.width = window.innerWidth-300;
-              canvas.height = window.innerHeight-300;
+              canvas.width = window.innerWidth-100;
+              canvas.height = window.innerHeight-100;
               sprite.x = canvas.width/2 -60;
               sprite.y = canvas.height/2 -60;
             };
