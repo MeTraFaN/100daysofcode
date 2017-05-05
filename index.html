@@ -13,6 +13,7 @@
     <button onClick="onMouseClick(-10)"> Левая </button>
     <button onClick="onMouseClick(10)"> Правая </button>
     <script >
+      (function (){
       var socket = io();
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
@@ -53,6 +54,7 @@
           function ChangeSpritePosition(val){
             sprite.x += val; 
 };
+      })();
     </script>
   </body>
 </html>
