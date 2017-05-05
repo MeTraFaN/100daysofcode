@@ -11,14 +11,14 @@
   </head> 
   <body>
     <canvas id="canvas"></canvas>
-    <button onClick="onMouseClick(-10)"> Левая </button>
-    <button onClick="onMouseClick(10)"> Правая </button>
+    <button onClick="onMouseClick(-20)"> Левая </button>
+    <button onClick="onMouseClick(20)"> Правая </button>
     <script >
       var socket = io();
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
+          canvas.width = window.innerWidth-100;
+          canvas.height = window.innerHeight-100;
             var data = {
               images: ["http://savepic.ru/13767000.png"],
               frames: {width: 120, height: 120, count: 24}
