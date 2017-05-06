@@ -21,6 +21,9 @@ app.get('/day21', function(req, res){
 
 io.on('connection', function(client) {
   client.emit('user connected', client.id);
+  client.on('user done', function(coordx, coordy){
+    client.broadcast.emit('user done', coordx, coordy, client.id)
+  });
   client.on('button clicked', function(value){
     client.emit('button clicked', client.id, value);
   });
