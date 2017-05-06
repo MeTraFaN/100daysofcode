@@ -29,7 +29,7 @@
                 frames: {width: 120, height: 120, count: 24},
                 animations: {stand: 3}});
           var name = 'U' + UserId.toString().substr(1, 4);
-          var window[UserId] = new createjs.Sprite(spriteSheet, 1);
+          window[UserId] = new createjs.Sprite(spriteSheet, 1);
         console.log(UserId);
           stage.addChild(window[UserId]);
           //if (vertical < canvas.height-140){
