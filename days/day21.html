@@ -31,10 +31,7 @@
       animations: {sit: (Math.random() * (24 - 1) + 1)}});
       socket.on('user connected', function(UserName, UserId){
         console.log(UserName);
-        user = {
-          name: UserName,
-          id: UserId
-        };             
+        //user = UserName;            
           window[UserName] = new createjs.Sprite(spriteSheet, 1);
           stage.addChild(window[UserName]);
           if (vertical < canvas.height-140){
@@ -55,7 +52,7 @@
       });
        
       function onMouseClick(val){
-        socket.emit('button clicked', user.UserName, val)
+        socket.emit('button clicked', val)
       };
       socket.on('button clicked', function(UserName, value){
           window["UserName"].x += value;        
