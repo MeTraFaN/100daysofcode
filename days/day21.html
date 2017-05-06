@@ -27,7 +27,7 @@
       var spriteSheet = new createjs.SpriteSheet({
       images: ["http://savepic.ru/13767000.png"],
       frames: {width: 120, height: 120, count: 24},
-      animations: {sit: 3}});
+      animations: {stand: 3}});
       socket.on('user connected', function(UserId){ 
           var name = 'U' + UserId.toString().substr(1, 4);
           window["UserId"] = new createjs.Sprite(spriteSheet, 1);
@@ -35,7 +35,6 @@
           if (vertical < canvas.height-140){
             window["UserId"].x = horizontal;
             window["UserId"].y = vertical;
-            console.log(window["UserId"].x);
           }
           else {
             vertical = 20;
