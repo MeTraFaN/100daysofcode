@@ -64,9 +64,6 @@
         }
       socket.on('user base', function(users){
           for(user in users){
-            console.log(user);
-            console.log(users[user].x);
-            console.log(users[user].y);
               CreateSprite(user, users[user].x, users[user].y);
           }       
       });
