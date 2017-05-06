@@ -32,7 +32,7 @@ io.on('connection', function(client) {
   client.on('button clicked', function(value){
     client.broadcast.emit('sprite change coord', client.id, value);
     client.emit('button clicked', client.id, value);
-    users[client.id][x] += value;
+//     users[client.id][x] += value;
   });
 });
 
