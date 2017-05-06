@@ -17,17 +17,40 @@
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-            var data = {
+      var vertical = 20;
+      var horizontal = 20;      
+      socket.on('user connected', function(UserName){
+        var Userdata = {
               images: ["http://savepic.ru/13767000.png"],
-              frames: {width: 120, height: 120, count: 24}
-            };
-          var spriteSheet = new createjs.SpriteSheet(data);
-          var sprite = new createjs.Sprite(spriteSheet, 1);
-          stage.addChild(sprite);
-            sprite.x = canvas.width/2 -60;
-            sprite.y = canvas.height/2 -60;
-            createjs.Ticker.addEventListener("tick", onTickHandler);
-          function onTickHandler(evt) {   
+              frames: {width: 120, height: 120, count: 24},
+              animations: {sit: (Math.random() * (24 - 1) + 1)}
+        };
+        var user = {
+          name: UserName,
+          id: socket.id,
+          data: Userdata
+        };             
+        var spriteSheet = new createjs.SpriteSheet(user.data);
+        var sprite = new createjs.Sprite(spriteSheet, 1);
+        stage.addChild(sprite);
+        if (vertical < canvas.height-140){
+          sprite.x = horizontal;
+          sprite.y = vartical;
+        }
+        else {
+          vertical = 20;
+          horizontal += 120;
+        }
+        if (horizontal >= canvas.width-139){
+          sprite.x = horizontal;
+          sprite.y = vartical;
+        }
+        vertical += 120;
+        createjs.Ticker.addEventListener("tick", onTickHandler);
+      });
+          
+      
+        function onTickHandler(evt) {   
             stage.update();
           };
           window.addEventListener('resize', onResize, false);
@@ -35,8 +58,6 @@
             function onResize() {
               canvas.width = window.innerWidth-50;
               canvas.height = window.innerHeight-50;
-              sprite.x = canvas.width/2 -60;
-              sprite.y = canvas.height/2 -60;
             };
           socket.on('button clicked', function(value){
             sprite.x += value;        
