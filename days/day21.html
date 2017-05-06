@@ -30,7 +30,7 @@
       frames: {width: 120, height: 120, count: 24},
       animations: {sit: (Math.random() * (24 - 1) + 1)}});
       socket.on('user connected', function(UserName, UserId){
-        console.log(UserName);
+        console.log(window["UserName"]);
         //user = UserName;            
           window["UserName"] = new createjs.Sprite(spriteSheet, 1);
           stage.addChild(window["UserName"]);
