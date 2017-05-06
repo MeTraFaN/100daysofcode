@@ -24,12 +24,13 @@
       var vertical = 20;
       var horizontal = 20;
       var counter = 0;
+      var user = {};
       var spriteSheet = new createjs.SpriteSheet({
       images: ["http://savepic.ru/13767000.png"],
       frames: {width: 120, height: 120, count: 24},
       animations: {sit: (Math.random() * (24 - 1) + 1)}});
       socket.on('user connected', function(UserName, UserId){
-        var user = {
+        user = {
           name: UserName,
           id: UserId
         };             
