@@ -18,8 +18,8 @@ app.get('/out', function(req, res){
 app.get('/day21', function(req, res){
   res.sendFile(__dirname + '/days/day21.html');
 });
- 
-io.on('connection', function(socket){
+
+io.sockets.on('connection', function (socket) {
   var name = 'U' + (socket.id).toString().substr(1,4);
   socket.emit('user connected', name);
   socket.on('button clicked', function(value){
