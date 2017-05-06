@@ -31,7 +31,7 @@
       socket.on('user connected', function(UserId){ 
           var name = 'U' + UserId.toString().substr(1, 4);
           window[UserId] = new createjs.Sprite(spriteSheet, 1);
-        console.log(window[UserId]);
+        console.log(UserId);
           stage.addChild(window[UserId]);
           if (vertical < canvas.height-140){
             window[UserId].x = horizontal;
