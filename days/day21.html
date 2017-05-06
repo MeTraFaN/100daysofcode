@@ -54,11 +54,14 @@
       };
                                              
       function onMouseClick(val){
-        socket.emit('button clicked', val)
+        socket.emit('button clicked', val);
       };
       socket.on('button clicked', function(UserId, value){
           window[UserId].x += value;        
-        });
+      });
+      socket.on('sprite change coord', function(UserId, value){
+          window[UserId].x += value;  
+      });
         function onTickHandler(evt) {   
             stage.update();
           };
