@@ -18,10 +18,15 @@ app.get('/out', function(req, res){
 app.get('/day21', function(req, res){
   res.sendFile(__dirname + '/days/day21.html');
 });
-
+var users = {};
 io.on('connection', function(client) {
+  client.emit('users base', users)
   client.emit('user connected', client.id);
   client.on('user done', function(coordx, coordy){
+    users[client.id] = {
+      x: coordx,
+      y: coordy
+    }
     client.broadcast.emit('user done', coordx, coordy, client.id)
   });
   client.on('button clicked', function(value){
