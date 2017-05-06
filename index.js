@@ -1,6 +1,6 @@
 var app = require('express')();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var io = require('socket.io').listen(8080);
 var port = process.env.PORT || 3000;
 
 app.get('/', function(req, res){
@@ -19,7 +19,8 @@ app.get('/day21', function(req, res){
   res.sendFile(__dirname + '/days/day21.html');
 });
 
-io.sockets.on('connection', function (client) {
+io.sockets.on('connection', function (socket) {
+  socket.
   client.emit('user connected', client.id);
   client.on('button clicked', function(value){
     client.emit('button clicked', client.id, value);
