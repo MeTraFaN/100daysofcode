@@ -19,7 +19,7 @@ app.get('/day21', function(req, res){
   res.sendFile(__dirname + '/days/day21.html');
 });
 
-io.sockets.on('connection', function (client) {
+io.on('connection', function(client) {
   client.emit('user connected', client.id);
   client.on('button clicked', function(value){
     client.emit('button clicked', client.id, value);
