@@ -56,7 +56,7 @@
         socket.emit('button clicked', val)
       };
       socket.on('button clicked', function(UserName, value){
-          window["UserName"].x += value;        
+          window[UserName].x += value;        
         });
         function onTickHandler(evt) {   
             stage.update();
