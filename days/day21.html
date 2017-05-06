@@ -39,7 +39,7 @@
        
       socket.on('user done', function(coordx,coordy, userid){
          CreateSprite(userid,coordx,coordy);
-      };
+      });
       
       function CreateSprite(Id,X,Y){
         var spriteSheet = new createjs.SpriteSheet({
