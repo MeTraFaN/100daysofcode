@@ -40,19 +40,7 @@
       socket.on('user done', function(coordx,coordy, userid){
          CreateSprite(userid,coordx,coordy);
       });
-      
-      function CreateSprite(Id,X,Y){
-        var spriteSheet = new createjs.SpriteSheet({
-            images: ["http://savepic.ru/13767000.png"],
-            frames: {width: 120, height: 120, count: 24},
-            animations: {stand: 3}});
-        window[Id] = new createjs.Sprite(spriteSheet, 1);
-        stage.addChild(window[Id]);
-        window[Id].x = X;
-        window[Id].y = Y;
-        createjs.Ticker.addEventListener("tick", onTickHandler);
-      };
-                                             
+                                          
       function onMouseClick(val){
         socket.emit('button clicked', val);
       };
@@ -74,7 +62,22 @@
         function RandomNumb(min, max){
           return Math.random() * (max - min) + min;
         }
-
+      socket.on('user base', function(users){
+          for(key in Object.keys(users)){
+              CreateSprite(key, users[key].x, users[key].y);
+          }       
+      });
+       function CreateSprite(Id,X,Y){
+        var spriteSheet = new createjs.SpriteSheet({
+            images: ["http://savepic.ru/13767000.png"],
+            frames: {width: 120, height: 120, count: 24},
+            animations: {stand: 3}});
+        window[Id] = new createjs.Sprite(spriteSheet, 1);
+        stage.addChild(window[Id]);
+        window[Id].x = X;
+        window[Id].y = Y;
+        createjs.Ticker.addEventListener("tick", onTickHandler);
+      };        
     </script>
   </body>
 </html>
