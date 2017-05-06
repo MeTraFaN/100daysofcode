@@ -24,28 +24,28 @@
       var vertical = 20;
       var horizontal = 20;
       var counter = 0;
-      var user = {};
       var spriteSheet = new createjs.SpriteSheet({
       images: ["http://savepic.ru/13767000.png"],
       frames: {width: 120, height: 120, count: 24},
-      animations: {sit: (Math.random() * (24 - 1) + 1)}});
-      socket.on('user connected', function(UserName, UserId){           
-          window["UserName"] = new createjs.Sprite(spriteSheet, 1);
-          stage.addChild(window["UserName"]);
+      animations: {sit: 3}});
+      socket.on('user connected', function(UserId){ 
+          var name = 'U' + UserId.toString().substr(1, 4);
+          window["UserId"] = new createjs.Sprite(spriteSheet, 1);
+          stage.addChild(window["UserId"]);
           if (vertical < canvas.height-140){
-            window["UserName"].x = horizontal;
-            window["UserName"].y = vertical;
-            console.log(window["UserName"].x);
+            window["UserId"].x = horizontal;
+            window["UserId"].y = vertical;
+            console.log(window["UserId"].x);
           }
           else {
             vertical = 20;
             horizontal += 120;
           }
           if (horizontal >= canvas.width-139){
-            window["UserName"].x = horizontal;
-            window["UserName"].y = vertical;
+            window["UserId"].x = horizontal;
+            window["UserId"].y = vertical;
           }
-          ctx.fillText(UserName, window["UserName"].x+40, window["UserName"].y-12);
+          ctx.fillText(name, window["UserId"].x+40, window["UserId"].y-12);
           vertical += 120;
           createjs.Ticker.addEventListener("tick", onTickHandler);
       });
@@ -53,8 +53,8 @@
       function onMouseClick(val){
         socket.emit('button clicked', val)
       };
-      socket.on('button clicked', function(UserName, value){
-          window["UserName"].x += value;        
+      socket.on('button clicked', function(UserId, value){
+          window["UserId"].x += value;        
         });
         function onTickHandler(evt) {   
             stage.update();
