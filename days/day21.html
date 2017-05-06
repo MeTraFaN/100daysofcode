@@ -63,8 +63,8 @@
           return Math.random() * (max - min) + min;
         }
       socket.on('user base', function(users){
-          for(key in Object.keys(users)){
-              CreateSprite(key, users[key].x, users[key].y);
+          for(user in users){
+              CreateSprite(user, users[user].x, users[user].y);
           }       
       });
        function CreateSprite(Id,X,Y){
