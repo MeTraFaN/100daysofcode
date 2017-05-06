@@ -53,7 +53,6 @@
         socket.emit('button clicked', val)
       };
       socket.on('button clicked', function(UserId, value){
-            console.log(UserId);
           window[UserId].x += value;        
         });
         function onTickHandler(evt) {   
