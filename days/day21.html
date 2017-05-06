@@ -15,11 +15,13 @@
       var socket = io();
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
+          ctx = canvas.getContext('2d');
+          ctx.font = "bold 10px sans-serif";
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
       var vertical = 20;
-      var horizontal = 20;      
-      socket.on('user connected', function(UserName){
+      var horizontal = 20;
+      socket.on('user connected', function(UserName, UserId){
         var Userdata = {
               images: ["http://savepic.ru/13767000.png"],
               frames: {width: 120, height: 120, count: 24},
@@ -27,7 +29,7 @@
         };
         var user = {
           name: UserName,
-          id: socket.id,
+          id: UserId,
           data: Userdata
         };             
         var spriteSheet = new createjs.SpriteSheet(user.data);
@@ -45,6 +47,7 @@
           sprite.x = horizontal;
           sprite.y = vartical;
         }
+        ctx.fillText(name.UserName, sprite.x+50, sprite.y-12);
         vertical += 120;
         createjs.Ticker.addEventListener("tick", onTickHandler);
       });
