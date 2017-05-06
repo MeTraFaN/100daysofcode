@@ -37,7 +37,7 @@
           stage.addChild(window[UserName]);
           if (vertical < canvas.height-140){
             window[UserName].x = horizontal;
-            window[UserName].y = vartical;
+            window[UserName].y = vertical;
           }
           else {
             vertical = 20;
@@ -45,7 +45,7 @@
           }
           if (horizontal >= canvas.width-139){
             window[UserName].x = horizontal;
-            window[UserName].y = vartical;
+            window[UserName].y = vertical;
           }
           ctx.fillText(name.UserName, window[UserName].x+50, window[UserName].y-12);
           vertical += 120;
