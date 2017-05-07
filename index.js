@@ -20,7 +20,6 @@ app.get('/day21', function(req, res){
 });
 var users = {};
 io.on('connection', function(client) {
- 
   client.emit('users base', users);
   client.emit('user connected', client.id);
   client.on('user done', function(coordx, coordy){
@@ -38,6 +37,9 @@ io.on('connection', function(client) {
   client.on('disconnect', function(){
     client.broadcast.emit('user disconnected', client.id);
     delete users[client.id];
+  });
+  client.on('20day', function(value){
+     client.emit('20day',  value);
   });
 });
 
