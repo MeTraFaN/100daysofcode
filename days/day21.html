@@ -17,8 +17,6 @@
       var socket = io();
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
-          ctx = canvas.getContext('2d');
-          ctx.font = "bold 10px sans-serif";
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
       socket.on('user connected', function(UserId){ 
@@ -32,7 +30,8 @@
         stage.addChild(window[UserId]);
         window[UserId].x = RandomNumb(20,canvas.width-140);
         window[UserId].y = RandomNumb(20,canvas.height-140);
-        ctx.fillText(name, window[UserId].x+40, window[UserId].y-12);
+        text = new createjs.Text(name, "10px Arial", "#FFF");
+		    text.set({x: window[UserId].x+40, y: window[UserId].y-12});
         createjs.Ticker.addEventListener("tick", onTickHandler);
         socket.emit('user done',  window[UserId].x,  window[UserId].y)
       });
