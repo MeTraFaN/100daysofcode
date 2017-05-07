@@ -30,9 +30,6 @@
         stage.addChild(window[UserId]);
         window[UserId].x = RandomNumb(20,canvas.width-140);
         window[UserId].y = RandomNumb(20,canvas.height-140);
-        text = new createjs.Text(name, "10px Arial", "#FFF");
-	text.set({x: window[UserId].x+40, y: window[UserId].y-12});
-	stage.addChild(text);
         createjs.Ticker.addEventListener("tick", onTickHandler);
         socket.emit('user done',  window[UserId].x,  window[UserId].y)
       });
