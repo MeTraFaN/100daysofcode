@@ -33,6 +33,10 @@ io.on('connection', function(client) {
     client.broadcast.emit('sprite change coord', client.id, value);
     client.emit('button clicked', client.id, value);
   });
+  client.on('disconnect', function(){
+    client.emit('user disconnected', client.id);
+  
+  });
 });
 
 http.listen(port, function(){
