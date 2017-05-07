@@ -28,7 +28,7 @@
           sprite.y = canvas.height/2 -60;
           createjs.Ticker.addEventListener("tick", onTickHandler);
           console.log('wtf');
-          socket.on('soloanim', function(value){
+          socket.on('button clicked', function(value){
             alert(value);
             console.log(value);
             sprite.x += value;        
