@@ -29,6 +29,7 @@
           createjs.Ticker.addEventListener("tick", onTickHandler);
           
           socket.on('day20', function(value){
+            console.log(value);
             sprite.x += value;        
           });
       
