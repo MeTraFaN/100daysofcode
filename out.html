@@ -24,12 +24,14 @@
           var spriteSheet = new createjs.SpriteSheet(data);
           var sprite = new createjs.Sprite(spriteSheet, 1);
           stage.addChild(sprite);
-            sprite.x = canvas.width/2 -60;
-            sprite.y = canvas.height/2 -60;
-            createjs.Ticker.addEventListener("tick", onTickHandler);
-          function onTickHandler(evt) {   
-            stage.update();
-          };
+          sprite.x = canvas.width/2 -60;
+          sprite.y = canvas.height/2 -60;
+          createjs.Ticker.addEventListener("tick", onTickHandler);
+          
+          socket.on('20day', function(value){
+            sprite.x += value;        
+          });
+      
           window.addEventListener('resize', onResize, false);
             onResize();
             function onResize() {
@@ -38,9 +40,10 @@
               sprite.x = canvas.width/2 -60;
               sprite.y = canvas.height/2 -60;
             };
-          socket.on('20day', function(value){
-            sprite.x += value;        
-          });
+         
+      function onTickHandler(evt) {   
+            stage.update();
+          };
     </script>
   </body>
 </html>
