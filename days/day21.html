@@ -63,9 +63,10 @@
           return Math.random() * (max - min) + min;
         }
       socket.on('user base', function(users){
-          for(user in users){
-              CreateSprite(user, users[user].x, users[user].y);
-          }       
+        console.log(users);
+          //for(user in users){
+             // CreateSprite(user, users[user].x, users[user].y);
+         // }       
       });
        function CreateSprite(Id,X,Y){
         var spriteSheet = new createjs.SpriteSheet({
