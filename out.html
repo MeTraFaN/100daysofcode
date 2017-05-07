@@ -28,7 +28,7 @@
           sprite.y = canvas.height/2 -60;
           createjs.Ticker.addEventListener("tick", onTickHandler);
           
-          socket.on('20day', function(value){
+          socket.on('day20', function(value){
             sprite.x += value;        
           });
       
