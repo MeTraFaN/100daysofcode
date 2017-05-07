@@ -20,8 +20,8 @@ app.get('/day21', function(req, res){
 });
 var users = {};
 io.on('connection', function(client) {
-  client.on('20day', function(value){
-     client.emit('20day',  value);
+  client.on('day20', function(value){
+     client.emit('day20',  value);
   });
   client.emit('users base', users);
   client.emit('user connected', client.id);
