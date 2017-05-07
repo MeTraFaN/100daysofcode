@@ -35,7 +35,7 @@ io.on('connection', function(client) {
   });
   client.on('disconnect', function(){
     client.emit('user disconnected', client.id);
-  
+    delete users[client.id];
   });
 });
 
