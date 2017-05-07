@@ -7,14 +7,6 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/in', function(req, res){
-  res.sendFile(__dirname + '/in.html');
-});
-
-app.get('/out', function(req, res){
-  res.sendFile(__dirname + '/out.html');
-});
-
 app.get('/day21', function(req, res){
   res.sendFile(__dirname + '/days/day21.html');
 });
