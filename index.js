@@ -22,10 +22,11 @@ io.on('connection', function(client) {
     }
     client.broadcast.emit('user done', coordx, coordy, client.id)
   });
-  client.on('button clicked', function(value){
-    client.broadcast.emit('sprite change coord', client.id, value);
-    client.emit('button clicked', client.id, value);
-    users[client.id].x = +users[client.id].x + value
+  client.on('move done', function(x,y){
+    client.broadcast.emit('sprite change coord', client.id, x, y);
+    client.emit('button clicked', client.id, x, y);
+    users[client.id].x = +users[client.id].x + x;
+    users[client.id].y = +users[client.id].y + y;
   });
   client.on('disconnect', function(){
     client.broadcast.emit('user disconnected', client.id);
