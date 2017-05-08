@@ -18,8 +18,10 @@
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
       var balloon = new createjs.Shape();
+      var ID;
       balloon.graphics.beginFill("Crimson").drawRoundRectComplex(0, 0, 40, 65, 20,20,35,35);     
-      socket.on('user done', function(X,Y, UserID){     
+      socket.on('user done', function(X,Y, UserID){ 
+        ID = UserID;
         stage.addChild(balloon);
         balloon.x = X;
         balloon.y = Y;
@@ -32,7 +34,7 @@
       });
       balloon.on("pressup", function() {
         console.log(balloon.x, balloon.y);
-        socket.emit('move done', {x: balloon.x, y: balloon.y});
+        socket.emit('move done', {x: balloon.x, y: balloon.y}, ID);
       });
            
       socket.on('user disconnected', function(UserId){
