@@ -13,6 +13,7 @@ app.get('/day22-controler', function(req, res){
 
 var users = {};
 io.on('connection', function(client) {
+  //client.on('Loaded, 
   client.emit('users base', users);
   client.emit('user connected', client.id);
   client.on('user done', function(coordx, coordy){
