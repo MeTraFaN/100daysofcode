@@ -28,7 +28,7 @@
         window[UserId].y = RandomNumb(20,canvas.height-140);
         createjs.Ticker.addEventListener("tick", onTickHandler);
         socket.emit('user done',  window[UserId].x,  window[UserId].y);
-        socket.emit('coords for contoler',  window[UserId]);
+        socket.emit('coords for contoler', UserId, window[UserId].x,  window[UserId].y);
       });
        
       socket.on('user done', function(coordx,coordy, userid){
