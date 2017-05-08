@@ -22,7 +22,7 @@
       socket.on('user connected', function(UserId){ 
         ID = UserId;
         window[UserId] = new createjs.Shape();
-        window[Id].graphics.beginFill(rgb(RandomNumb(0, 255), RandomNumb(0, 255), RandomNumb(0, 255))).drawCircle(0, 0, RandomNumb(0, 30));       
+        window[UserId].graphics.beginFill(rgb(RandomNumb(0, 255), RandomNumb(0, 255), RandomNumb(0, 255))).drawCircle(0, 0, RandomNumb(0, 30));       
         window[UserId].x = 60;
         window[UserId].y = 60;
         stage.addChild(window[UserId]);
