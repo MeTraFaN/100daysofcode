@@ -19,7 +19,7 @@
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-      socket.on('user done', function(X, Y, id){ 
+      socket.on('coords for contoler', function(X, Y){ 
         console.log('yes');
         //ID = UserId;
         var spriteSheet = new createjs.SpriteSheet({
