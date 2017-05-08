@@ -19,6 +19,7 @@
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
           socket.on('user done',  function(x,  y, ID, color, size){
+            console.log(ID);
             CreateSprite(ID,x,y, color, size);
             createjs.Ticker.addEventListener("tick", onTickHandler);
           });
@@ -57,6 +58,11 @@
       }
     
      function CreateSprite(Id,X,Y, color, size){
+       console.log(Id);
+       console.log(X);
+       console.log(Y);
+       console.log(color);
+       console.log(size);
         window[Id] = new createjs.Shape();
         window[Id].graphics.beginFill(color).drawCircle(0, 0, size);     
         stage.addChild(window[Id]);
