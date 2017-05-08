@@ -35,7 +35,7 @@ io.on('connection', function(client) {
       y: coordy,
       Id: color
     }
-    io.sockets.emit('user done', coordx, coordy, color)
+    io.sockets.emit('user done23', coordx, coordy, color)
   });
   client.on('move done', function(obj, ID){
     client.broadcast.emit('sprite change coord',  ID,  obj);
