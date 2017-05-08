@@ -34,8 +34,8 @@ io.on('connection', function(client) {
   client.on('move done', function(obj, ID){
     client.broadcast.emit('sprite change coord',  ID,  obj);
     client.emit('move done', ID, obj);
-    users[client.id].x = +users[client.id].x + obj.x;
-    users[client.id].y = +users[client.id].y + obj.y;
+    users[client.id].x =  obj.x;
+    users[client.id].y =  obj.y;
   });
   client.on('disconnect', function(){
     client.broadcast.emit('user disconnected', client.id);
