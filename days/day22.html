@@ -18,25 +18,16 @@
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-      socket.on('user connected', function(UserId){ 
-        window[UserId] = new createjs.Shape();
-        window[UserId].graphics.beginFill("Crimson").drawRoundRectComplex(0, 0, 40, 65, 20,20,35,35);     
-        stage.addChild(window[UserId]);
-        window[UserId].x = RandomNumb(20,canvas.width-140);
-        window[UserId].y = RandomNumb(20,canvas.height-140);
-        createjs.Ticker.addEventListener("tick", onTickHandler);
-        socket.emit('user done',  window[UserId].x,  window[UserId].y)
-      });
-       
-      socket.on('user done', function(coordx,coordy, userid){
-         CreateSprite(userid,coordx,coordy);
-      });
+          socket.on('user done',  function(x,  y, ID){
+            CreateSprite(ID,x,y);
+            
+          });
       
       socket.on('move done', function(UserId, obj){
         createjs.Tween.get(window[UserId], {loop: false}).to({x: obj.x,y: obj.y}, 1500, createjs.Ease.linear(1)) 
       });
       
-      socket.on('sprite change coord', function(UserId, obj, users){
+      socket.on('sprite change coord', function(UserId, obj){
         createjs.Tween.get(window[UserId], {loop: false}).to({x: obj.x,y: obj.y}, 1500, createjs.Ease.linear(1))  
       }); 
       
@@ -64,14 +55,11 @@
       }
     
      function CreateSprite(Id,X,Y){
-      var spriteSheet = new createjs.SpriteSheet({
-          images: ["http://savepic.ru/13767000.png"],
-          frames: {width: 120, height: 120, count: 24},
-          animations: {stand: 3}});
-      window[Id] = new createjs.Sprite(spriteSheet, 1);
-      stage.addChild(window[Id]);
-      window[Id].x = X;
-      window[Id].y = Y;
+        window[Id] = new createjs.Shape();
+        window[Id].graphics.beginFill("Crimson").drawRoundRectComplex(0, 0, 40, 65, 20,20,35,35);     
+        stage.addChild(window[Id]);
+        window[Id].x = X;
+        window[Id].y = Y;
       createjs.Ticker.addEventListener("tick", onTickHandler);
       };        
     </script>
