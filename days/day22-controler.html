@@ -32,21 +32,10 @@
         evt.target.y = evt.stageY;
         socket.emit('move done', balloon.x, balloon.y);
       });
-       
-      
-      
-      
-      
-      //socket.on('sprite change coord', function(UserId, value){
-         // window[UserId].x += value;  
-     // }); 
-      
-     
-      
+           
       socket.on('user disconnected', function(UserId){
         stage.removeChild(sprite);
       });
-      
     
       function onTickHandler(evt) {   
           stage.update();
@@ -57,19 +46,7 @@
         canvas.width = window.innerWidth-50;
         canvas.height = window.innerHeight-50;
       };
-      
-    
-    /* function CreateSprite(Id,X,Y){
-      var spriteSheet = new createjs.SpriteSheet({
-          images: ["http://savepic.ru/13767000.png"],
-          frames: {width: 120, height: 120, count: 24},
-          animations: {stand: 3}});
-      window[Id] = new createjs.Sprite(spriteSheet, 1);
-      stage.addChild(window[Id]);
-      window[Id].x = X;
-      window[Id].y = Y;
-      createjs.Ticker.addEventListener("tick", onTickHandler);
-      };  */      
+     
     </script>
   </body>
 </html>
