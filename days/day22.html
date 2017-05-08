@@ -10,9 +10,11 @@
     </style>
   </head> 
   <body>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas"></canvas><br>
+    <button onClick="onMouseClick(-20)"> Левая </button>
+    <button onClick="onMouseClick(20)"> Правая </button>
     <script >
-      var socket = io(location.origin);
+      var socket = io();
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
@@ -22,22 +24,23 @@
             images: ["http://savepic.ru/13767000.png"],
             frames: {width: 120, height: 120, count: 24},
             animations: {stand: 3}});
+        var name = 'U' + UserId.toString().substr(1, 4);
         window[UserId] = new createjs.Sprite(spriteSheet, 1);
+        console.log(UserId);
         stage.addChild(window[UserId]);
         window[UserId].x = RandomNumb(20,canvas.width-140);
         window[UserId].y = RandomNumb(20,canvas.height-140);
         createjs.Ticker.addEventListener("tick", onTickHandler);
-        socket.emit('user done',  window[UserId].x,  window[UserId].y);
-        socket.emit('coords for contoler', UserId, window[UserId].x,  window[UserId].y);
+        socket.emit('user done',  window[UserId].x,  window[UserId].y)
       });
        
       socket.on('user done', function(coordx,coordy, userid){
          CreateSprite(userid,coordx,coordy);
       });
       
-      //socket.on('button clicked', function(UserId, value){
-        //  window[UserId].x += value;        
-      //});
+      socket.on('button clicked', function(UserId, value){
+          window[UserId].x += value;        
+      });
       
       socket.on('sprite change coord', function(UserId, value){
           window[UserId].x += value;  
@@ -53,9 +56,9 @@
         stage.removeChild(window[UserId]);
       });
       
-      //function onMouseClick(val){
-      //  socket.emit('button clicked', val);
-      //};
+      function onMouseClick(val){
+        socket.emit('button clicked', val);
+      };
       function onTickHandler(evt) {   
           stage.update();
         };
