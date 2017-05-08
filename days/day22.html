@@ -18,7 +18,7 @@
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
       socket.on('user connected', function(UserId){ 
-        var window[UserId] = new createjs.Shape();
+        window[UserId] = new createjs.Shape();
         window[UserId].graphics.beginFill("Crimson").drawRoundRectComplex(0, 0, 40, 65, 20,20,35,35);     
         stage.addChild(window[UserId]);
         window[UserId].x = RandomNumb(20,canvas.width-140);
