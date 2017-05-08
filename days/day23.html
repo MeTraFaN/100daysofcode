@@ -25,14 +25,12 @@
            
       socket.on('move done', function(UserId, obj){
         window[UserId].x = obj.x;
-        window[UserId].y = obj.y;
-        //createjs.Tween.get(window[UserId], {loop: false}).to({x: obj.x,y: obj.y}, 1500, createjs.Ease.linear(1)) 
+        window[UserId].y = obj.y; 
       });
       
       socket.on('sprite change coord', function(UserId, obj){
         window[UserId].x = obj.x;
         window[UserId].y = obj.y;
-        //createjs.Tween.get(window[UserId], {loop: false}).to({x: obj.x,y: obj.y}, 1500, createjs.Ease.linear(1))  
       }); 
       
       socket.on('users base', function(users){
