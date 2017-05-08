@@ -31,16 +31,16 @@
          CreateSprite(userid,coordx,coordy);
       });
       
-      socket.on('move done', function(UserId, x, y){
+      socket.on('move done', function(UserId, obj){
         //createjs.Tween.get(window[UserId], {loop: false}).to({x: x,y: y}, 500, createjs.Ease.linear(1))
-          window[UserId].x += x; 
-          window[UserId].y += x;
+          window[UserId].x += obj.x; 
+          window[UserId].y += obj.y;
       });
       
-      socket.on('sprite change coord', function(UserId, x, y){
+      socket.on('sprite change coord', function(UserId, obj){
        // createjs.Tween.get(window[UserId], {loop: false}).to({x: x,y: y}, 500, createjs.Ease.linear(1))  
-          window[UserId].x += x; 
-          window[UserId].y += x;
+          window[UserId].x += obj.x; 
+          window[UserId].y += obj.y;
       }); 
       
       socket.on('users base', function(users){
