@@ -23,9 +23,9 @@
         ID = UserId;
         window[UserId] = new createjs.Shape();
         window[UserId].graphics.beginFill("Crimson").drawRoundRectComplex(0, 0, 40, 65, 20,20,35,35);     
-        stage.addChild(window[UserId]);
         window[UserId].x = 60;
         window[UserId].y = 60;
+        stage.addChild(window[UserId]);
         //createjs.Ticker.addEventListener("tick", onTickHandler);
         socket.emit('user done',  window[UserId].x,  window[UserId].y, ID);
         window[UserId].on("pressmove", function(evt) {
