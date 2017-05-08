@@ -18,28 +18,29 @@
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-      var balloon = new createjs.Shape();
       var ID;
-      balloon.graphics.beginFill("Crimson").drawRoundRectComplex(0, 0, 40, 65, 20,20,35,35);     
-      socket.on('user done', function(X,Y, UserID){ 
-        ID = UserID;
-        stage.addChild(balloon);
-        balloon.x = X;
-        balloon.y = Y;
+      socket.on('user connected', function(UserId){ 
+        ID = UserId;
+        stage.on("stagemousedown", function(evt) {
+        window[UserId] = new createjs.Shape();
+        window[UserId].graphics.beginFill("Crimson").drawRoundRectComplex(0, 0, 40, 65, 20,20,35,35);     
+        stage.addChild(window[UserId]);
+        window[UserId].x = evt.stageX+60;
+        window[UserId].y = evt.stageY+60;
+        //createjs.Ticker.addEventListener("tick", onTickHandler);
+        socket.emit('user done',  window[UserId].x,  window[UserId].y);
+        });
+        window[UserId].on("pressmove", function(evt) {
+          evt.target.x = evt.stageX;
+          evt.target.y = evt.stageY;   
+        });
+        window[UserId].on("pressup", function() {
+        socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
+        });
       });
-      createjs.Ticker.addEventListener("tick", onTickHandler);
-      balloon.on("pressmove", function(evt) {
-        evt.target.x = evt.stageX;
-        evt.target.y = evt.stageY;
         
-      });
-      balloon.on("pressup", function() {
-        console.log(balloon.x, balloon.y);
-        socket.emit('move done', {x: balloon.x, y: balloon.y}, ID);
-      });
-           
       socket.on('user disconnected', function(UserId){
-        stage.removeChild(balloon);
+        stage.removeChild(window[UserId]);
       });
     
       function onTickHandler(evt) {   
