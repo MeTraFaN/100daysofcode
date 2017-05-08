@@ -34,19 +34,11 @@
       
       socket.on('move done', function(UserId, obj){
         console.log(obj);
-        //createjs.Tween.get(window[UserId], {loop: false}).to({x: x,y: y}, 500, createjs.Ease.linear(1))
-          window[UserId].x = obj.x; 
-          window[UserId].y = obj.y;
+        createjs.Tween.get(window[UserId], {loop: false}).to({x: obj.x,y: obj.y}, 500, createjs.Ease.linear(1)) 
       });
       
       socket.on('sprite change coord', function(UserId, obj, users){
-        console.log(users);
-        console.log(obj);
-        console.log(window[UserId]);
-        console.log(UserId);
-       // createjs.Tween.get(window[UserId], {loop: false}).to({x: x,y: y}, 500, createjs.Ease.linear(1))  
-          window[UserId].x = obj.x; 
-          window[UserId].y = obj.y;
+        createjs.Tween.get(window[UserId], {loop: false}).to({x: obj.x,y: obj.y}, 500, createjs.Ease.linear(1))  
       }); 
       
       socket.on('users base', function(users){
