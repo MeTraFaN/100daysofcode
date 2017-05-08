@@ -31,9 +31,7 @@
         window[UserId].on("pressmove", function(evt) {
           evt.target.x = evt.stageX;
           evt.target.y = evt.stageY;   
-        });
-        window[UserId].on("pressup", function() {
-        socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
+          socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
         });
       });
         
