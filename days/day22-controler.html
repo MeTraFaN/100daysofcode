@@ -14,6 +14,7 @@
     <script >
       var socket = io(location.origin);
       var ID;
+      var sprite;
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
@@ -25,15 +26,15 @@
             images: ["http://savepic.ru/13767000.png"],
             frames: {width: 120, height: 120, count: 24},
             animations: {stand: 3}});
-        window[UserID] = new createjs.Sprite(spriteSheet, 1);
-        stage.addChild(window[UserID]);
-        window[UserID].x = X;
-        window[UserID].y = Y;
+        sprite = new createjs.Sprite(spriteSheet, 1);
+        stage.addChild(sprite);
+        sprite.x = X;
+        sprite.y = Y;
         createjs.Ticker.addEventListener("tick", onTickHandler);
         //socket.emit('user controler done',  window[UserId].x,  window[UserId].y)
       });
-      window[UserID].on("stagemousedown", function(evt){
-            sprite.getBounds();
+      sprite.on("stagemousedown", function(evt){
+             sprite.getBounds();
       });
        
       
@@ -47,7 +48,7 @@
      
       
       socket.on('user disconnected', function(UserId){
-        stage.removeChild(window[UserId]);
+        stage.removeChild(sprite);
       });
       
     
