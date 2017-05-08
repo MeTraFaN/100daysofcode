@@ -19,18 +19,15 @@
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-      var spriteSheet = new createjs.SpriteSheet({
-            images: ["http://savepic.ru/13767000.png"],
-            frames: {width: 120, height: 120, count: 24},
-            animations: {stand: 3}});
-      sprite = new createjs.Sprite(spriteSheet, 1);       
+      var balloon = new createjs.Shape();
+      balloon.graphics.beginFill("Crimson").drawRoundRectComplex(0, 0, 40, 65, 20,20,35,35);     
       socket.on('user done', function(X,Y, UserID){     
-        stage.addChild(sprite);
-        sprite.x = X;
-        sprite.y = Y;
+        stage.addChild(balloon);
+        balloon.x = X;
+        balloon.y = Y;
       });
       createjs.Ticker.addEventListener("tick", onTickHandler);
-      sprite.on("pressmove", function(evt) {
+      balloon.on("pressmove", function(evt) {
         evt.target.x = evt.stageX;
         evt.target.y = evt.stageY;
       });
