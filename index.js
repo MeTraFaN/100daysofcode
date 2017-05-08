@@ -10,12 +10,7 @@ app.get('/', function(req, res){
 app.get('/day21', function(req, res){
   res.sendFile(__dirname + '/days/day21.html');
 });
-app.get('/day22', function(req, res){
-  res.sendFile(__dirname + '/days/day22.html');
-});
-app.get('/day22-controler', function(req, res){
-  res.sendFile(__dirname + '/days/day22-controler.html');
-});
+
 
 var users = {};
 io.on('connection', function(client) {
