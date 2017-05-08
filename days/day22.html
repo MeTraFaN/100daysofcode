@@ -22,14 +22,13 @@
             images: ["http://savepic.ru/13767000.png"],
             frames: {width: 120, height: 120, count: 24},
             animations: {stand: 3}});
-        var name = 'U' + UserId.toString().substr(1, 4);
         window[UserId] = new createjs.Sprite(spriteSheet, 1);
         stage.addChild(window[UserId]);
         window[UserId].x = RandomNumb(20,canvas.width-140);
         window[UserId].y = RandomNumb(20,canvas.height-140);
         createjs.Ticker.addEventListener("tick", onTickHandler);
-        socket.emit('user done',  window[UserId].x,  window[UserId].y)
-        socket.emit('coords for contoler',  window[UserId].x,  window[UserId].y)
+        socket.emit('user done',  window[UserId].x,  window[UserId].y);
+        socket.emit('coords for contoler',  window[UserId]);
       });
        
       socket.on('user done', function(coordx,coordy, userid){
