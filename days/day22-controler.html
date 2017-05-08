@@ -12,14 +12,14 @@
   <body>
     <canvas id="canvas"></canvas>
     <script >
-      var socket = io(location.origin);
+      var sock = io(location.origin);
       var ID;
       var sprite;
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-      socket.on('coords for contoler', function(X, Y){ 
+      sock.on('coords for contoler', function(X, Y){ 
         console.log('yes');
         //ID = UserId;
         var spriteSheet = new createjs.SpriteSheet({
