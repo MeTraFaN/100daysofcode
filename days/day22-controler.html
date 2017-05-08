@@ -28,7 +28,7 @@
         window[UserId].x = evt.stageX+60;
         window[UserId].y = evt.stageY+60;
         //createjs.Ticker.addEventListener("tick", onTickHandler);
-        socket.emit('user done',  window[UserId].x,  window[UserId].y);
+        socket.emit('user done',  window[UserId].x,  window[UserId].y, ID);
         });
         window[UserId].on("pressmove", function(evt) {
           evt.target.x = evt.stageX;
