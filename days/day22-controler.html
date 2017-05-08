@@ -22,20 +22,21 @@
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-      socket.on('user done', function(X,Y, ID){ 
+      socket.on('user done', function(X,Y, UserID){
+        ID = UserID;
         console.log('yes');
         var spriteSheet = new createjs.SpriteSheet({
             images: ["http://savepic.ru/13767000.png"],
             frames: {width: 120, height: 120, count: 24},
             animations: {stand: 3}});
-        sprite = new createjs.Sprite(spriteSheet, 1);
-        stage.addChild(sprite);
-        sprite.x = X;
-        sprite.y = Y;
+        window[ID] = new createjs.Sprite(spriteSheet, 1);
+        stage.addChild(window[ID]);
+        window[ID].x = X;
+        window[ID].y = Y;
         createjs.Ticker.addEventListener("tick", onTickHandler);
         //socket.emit('user controler done',  window[UserId].x,  window[UserId].y)
       });
-      //sprite.on("stagemousedown", function(evt){
+      ID.on("stagemousedown", function(evt){
       //       sprite.getBounds();
       //});
        
