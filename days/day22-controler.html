@@ -13,13 +13,16 @@
     <canvas id="canvas"></canvas>
     <script >
       var socket = io(location.origin);
+      //function Init(){
+        //socket.emit('Loaded',"loaded");
+     // }
       var ID;
       var sprite;
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-      socket.on('coords for contoler', function(ID, X, Y){ 
+      socket.on('user done', function(X,Y, ID){ 
         console.log('yes');
         var spriteSheet = new createjs.SpriteSheet({
             images: ["http://savepic.ru/13767000.png"],
@@ -40,9 +43,9 @@
       
       
       
-      socket.on('sprite change coord', function(UserId, value){
-          window[UserId].x += value;  
-      }); 
+      //socket.on('sprite change coord', function(UserId, value){
+         // window[UserId].x += value;  
+     // }); 
       
      
       
