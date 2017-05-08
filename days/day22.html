@@ -11,8 +11,6 @@
   </head> 
   <body>
     <canvas id="canvas"></canvas><br>
-    <button onClick="onMouseClick(-20)"> Левая </button>
-    <button onClick="onMouseClick(20)"> Правая </button>
     <script >
       var socket = io();
           stage = new createjs.Stage("canvas");
@@ -38,9 +36,9 @@
          CreateSprite(userid,coordx,coordy);
       });
       
-      socket.on('button clicked', function(UserId, value){
-          window[UserId].x += value;        
-      });
+      //socket.on('button clicked', function(UserId, value){
+        //  window[UserId].x += value;        
+      //});
       
       socket.on('sprite change coord', function(UserId, value){
           window[UserId].x += value;  
@@ -56,9 +54,9 @@
         stage.removeChild(window[UserId]);
       });
       
-      function onMouseClick(val){
-        socket.emit('button clicked', val);
-      };
+      //function onMouseClick(val){
+      //  socket.emit('button clicked', val);
+      //};
       function onTickHandler(evt) {   
           stage.update();
         };
