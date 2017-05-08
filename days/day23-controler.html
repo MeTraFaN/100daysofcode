@@ -37,9 +37,6 @@
           evt.target.y = evt.stageY;   
           socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
         });
-        window[UserId].on("pressup", function() {
-        socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
-        });
       });
         
       socket.on('user disconnected', function(UserId){
