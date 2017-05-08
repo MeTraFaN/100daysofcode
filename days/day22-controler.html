@@ -32,7 +32,7 @@
       });
       balloon.on("mouseup", function(evt) {
       socket.emit('move done', {x: balloon.x, y: balloon.y});
-      };
+      });
            
       socket.on('user disconnected', function(UserId){
         stage.removeChild(sprite);
