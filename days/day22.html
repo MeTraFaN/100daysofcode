@@ -11,8 +11,6 @@
   </head> 
   <body>
     <canvas id="canvas"></canvas><br>
-    <button onClick="onMouseClick(-20)"> Левая </button>
-    <button onClick="onMouseClick(20)"> Правая </button>
     <script >
       var socket = io();
           stage = new createjs.Stage("canvas");
@@ -24,7 +22,6 @@
             images: ["http://savepic.ru/13767000.png"],
             frames: {width: 120, height: 120, count: 24},
             animations: {stand: 3}});
-        var name = 'U' + UserId.toString().substr(1, 4);
         window[UserId] = new createjs.Sprite(spriteSheet, 1);
         console.log(UserId);
         stage.addChild(window[UserId]);
@@ -56,9 +53,6 @@
         stage.removeChild(window[UserId]);
       });
       
-      function onMouseClick(val){
-        socket.emit('button clicked', val);
-      };
       function onTickHandler(evt) {   
           stage.update();
         };
