@@ -13,25 +13,26 @@
     <canvas id="canvas"></canvas>
     <script >
       var socket = io(location.origin);
-      var sprite;
+      var ID;
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-      socket.on('coords for contoler', function(X, Y){ 
+      socket.on('user done', function(X, Y, UserId){ 
+        ID = UserId;
         var spriteSheet = new createjs.SpriteSheet({
             images: ["http://savepic.ru/13767000.png"],
             frames: {width: 120, height: 120, count: 24},
             animations: {stand: 3}});
-        sprite = new createjs.Sprite(spriteSheet, 1);
-        stage.addChild(sprite);
-        sprite.x = X;
-        sprite.y = Y;
+        window[ID] = new createjs.Sprite(spriteSheet, 1);
+        stage.addChild(window[ID]);
+        window[ID].x = X;
+        window[ID].y = Y;
         createjs.Ticker.addEventListener("tick", onTickHandler);
         //socket.emit('user controler done',  window[UserId].x,  window[UserId].y)
       });
-      sprite.addEventListener("click", function(evt){
-              sprite.getBounds();
+      window[ID].addEventListener("click", function(evt){
+              window[ID].getBounds();
       });
        
       
