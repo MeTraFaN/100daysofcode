@@ -22,8 +22,8 @@ var users = {};
 io.on('connection', function(client) {
   client.emit('users base', users);
   client.emit('user connected', client.id);
-  client.on('coords for contoler', function(sprite){
-    client.broadcast.emit('coords for contoler', sprite);
+  client.on('coords for contoler', function(ID, X, Y){
+    client.broadcast.emit('coords for contoler', ID, X, Y);
   });
   client.on('user done', function(coordx, coordy){
     users[client.id] = {
@@ -32,6 +32,7 @@ io.on('connection', function(client) {
     }
     client.broadcast.emit('user done', coordx, coordy, client.id);    
   });
+
 
    
   //client.on('button clicked', function(value){
