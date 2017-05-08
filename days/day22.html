@@ -21,9 +21,6 @@
           socket.on('user done',  function(x,  y, ID){
             CreateSprite(ID,x,y);    
           });
-      client.on('users base', function(users){
-      
-      });
            
       socket.on('move done', function(UserId, obj){
         createjs.Tween.get(window[UserId], {loop: false}).to({x: obj.x,y: obj.y}, 1500, createjs.Ease.linear(1)) 
