@@ -22,15 +22,16 @@ var users = {};
 io.on('connection', function(client) {
   client.emit('users base', users);
   client.emit('user connected', client.id);
-  client.on('coords for contoler', function(coordx, coordy){
-    client.broadcast.emit('coords for contoler', users[client.id].x, users[client.id].x);
-  });
+  //client.on('coords for contoler', function(coordx, coordy){
+    
+ // });
   client.on('user done', function(coordx, coordy){
     users[client.id] = {
       x: coordx,
       y: coordy
     }
     client.broadcast.emit('user done', coordx, coordy, client.id);
+    client.broadcast.emit('coords for contoler', users[client.id].x, users[client.id].y);
   });
 
    
