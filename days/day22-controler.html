@@ -30,8 +30,8 @@
         evt.target.y = evt.stageY;
         
       });
-      balloon.on("mouseup", function(evt) {
-      socket.emit('move done', {x: balloon.x, y: balloon.y});
+      balloon.on("pressup", function(evt) {
+      socket.emit('move done', balloon.x, balloon.y);
       });
            
       socket.on('user disconnected', function(UserId){
