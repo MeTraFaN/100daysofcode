@@ -18,7 +18,6 @@
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
       socket.on('user connected', function(UserId){ 
-        console.log(UserId);
         window[UserId] = new createjs.Shape();
         window[UserId].graphics.beginFill("Crimson").drawRoundRectComplex(0, 0, 40, 65, 20,20,35,35);     
         stage.addChild(window[UserId]);
@@ -33,7 +32,6 @@
       });
       
       socket.on('move done', function(UserId, obj){
-        console.log(obj);
         createjs.Tween.get(window[UserId], {loop: false}).to({x: obj.x,y: obj.y}, 1500, createjs.Ease.linear(1)) 
       });
       
