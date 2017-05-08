@@ -32,13 +32,13 @@
       });
       
       socket.on('move done', function(UserId, x, y){
-        createjs.Tween.get(window[UserId], {loop: false}).to({x: x,y: y}, 500, createjs.Ease.linear(1))
+        //createjs.Tween.get(window[UserId], {loop: false}).to({x: x,y: y}, 500, createjs.Ease.linear(1))
           //window[UserId].x += x; 
           //window[UserId].x += x;
       });
       
       socket.on('sprite change coord', function(UserId, x, y){
-        createjs.Tween.get(window[UserId], {loop: false}).to({x: x,y: y}, 500, createjs.Ease.linear(1))  
+       // createjs.Tween.get(window[UserId], {loop: false}).to({x: x,y: y}, 500, createjs.Ease.linear(1))  
       }); 
       
       socket.on('users base', function(users){
