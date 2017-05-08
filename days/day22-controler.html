@@ -21,15 +21,13 @@
       var ID;
       socket.on('user connected', function(UserId){ 
         ID = UserId;
-        stage.on("stagemousedown", function(evt) {
         window[UserId] = new createjs.Shape();
         window[UserId].graphics.beginFill("Crimson").drawRoundRectComplex(0, 0, 40, 65, 20,20,35,35);     
         stage.addChild(window[UserId]);
-        window[UserId].x = evt.stageX+60;
-        window[UserId].y = evt.stageY+60;
+        window[UserId].x = 60;
+        window[UserId].y = 60;
         //createjs.Ticker.addEventListener("tick", onTickHandler);
         socket.emit('user done',  window[UserId].x,  window[UserId].y, ID);
-        });
         window[UserId].on("pressmove", function(evt) {
           evt.target.x = evt.stageX;
           evt.target.y = evt.stageY;   
