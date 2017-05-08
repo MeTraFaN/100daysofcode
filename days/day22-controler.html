@@ -19,18 +19,18 @@
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-      socket.on('coords for contoler', function(X, Y){ 
+      socket.on('coords for contoler', function(UserSprite){ 
         console.log('yes');
-        //ID = UserId;
         var spriteSheet = new createjs.SpriteSheet({
             images: ["http://savepic.ru/13767000.png"],
             frames: {width: 120, height: 120, count: 24},
             animations: {stand: 3}});
-        sprite = new createjs.Sprite(spriteSheet, 1);
+        sprite = UserSprite;
+        /*sprite = new createjs.Sprite(spriteSheet, 1);
         stage.addChild(sprite);
         sprite.x = X;
         sprite.y = Y;
-        createjs.Ticker.addEventListener("tick", onTickHandler);
+        createjs.Ticker.addEventListener("tick", onTickHandler);*/
         //socket.emit('user controler done',  window[UserId].x,  window[UserId].y)
       });
       sprite.on("stagemousedown", function(evt){
