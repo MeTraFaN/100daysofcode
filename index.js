@@ -23,10 +23,10 @@ io.on('connection', function(client) {
     client.broadcast.emit('user done', coordx, coordy, client.id)
   });
   client.on('move done', function(obj){
-    client.broadcast.emit('sprite change coord', client.id,  obj.x,  obj.y);
-    client.emit('move done', client.id, obj.x, obj.y);
-    users[client.id].x = +users[client.id].x + obj.x;
-    users[client.id].y = +users[client.id].y + obj.y;
+    client.broadcast.emit('sprite change coord', client.id,  obj);
+    client.emit('move done', client.id, obj);
+    //users[client.id].x = +users[client.id].x + obj.x;
+    //users[client.id].y = +users[client.id].y + obj.y;
   });
   client.on('disconnect', function(){
     client.broadcast.emit('user disconnected', client.id);
