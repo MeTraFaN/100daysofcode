@@ -27,10 +27,10 @@ io.on('connection', function(client) {
       x: coordx,
       y: coordy
     }
-    client.broadcast.emit('user done', coordx, coordy, client.id)
+    client.broadcast.emit('user done', coordx, coordy, client.id);
+    client.emit('user controler', client.id, coordx, coordy);
   });
-  client.emit('user controler', client.id, users[client.id].x, users[client.id].y);
-  
+   
   client.on('button clicked', function(value){
     client.broadcast.emit('sprite change coord', client.id, value);
     client.emit('button clicked', client.id, value);
