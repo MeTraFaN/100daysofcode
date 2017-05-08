@@ -13,12 +13,13 @@
     <canvas id="canvas"></canvas>
     <script >
       var socket = io();
+      var ID;
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
       socket.on('user controler', function(UserId, X, Y){ 
-        var ID = UserId;
+        ID = UserId;
         var spriteSheet = new createjs.SpriteSheet({
             images: ["http://savepic.ru/13767000.png"],
             frames: {width: 120, height: 120, count: 24},
