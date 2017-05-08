@@ -18,8 +18,8 @@
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-          socket.on('user done',  function(x,  y, ID){
-            CreateSprite(ID,x,y);
+          socket.on('user done',  function(x,  y, ID, color, size){
+            CreateSprite(ID,x,y, color, size);
             createjs.Ticker.addEventListener("tick", onTickHandler);
           });
            
@@ -33,7 +33,7 @@
       
       socket.on('users base', function(users){
           for(user in users){
-              CreateSprite(user, users[user].x, users[user].y);
+              CreateSprite(user, users[user].x, users[user].y, users[user].color, users[user].size);
           }       
       });
       
@@ -54,9 +54,9 @@
         return Math.random() * (max - min) + min;
       }
     
-     function CreateSprite(Id,X,Y){
+     function CreateSprite(Id,X,Y, color, size){
         window[Id] = new createjs.Shape();
-        window[Id].graphics.beginFill(rgb(RandomNumb(0, 255), RandomNumb(0, 255), RandomNumb(0, 255))).drawCircle(0, 0, RandomNumb(0, 30));     
+        window[Id].graphics.beginFill(color).drawCircle(0, 0, size);     
         stage.addChild(window[Id]);
         window[Id].x = X;
         window[Id].y = Y;
