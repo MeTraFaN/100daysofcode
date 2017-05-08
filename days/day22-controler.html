@@ -30,7 +30,8 @@
       balloon.on("pressmove", function(evt) {
         evt.target.x = evt.stageX;
         evt.target.y = evt.stageY;
-        socket.emit('move done', balloon.x, balloon.y);
+        socket.emit('move done', evt.target.x,  evt.target.y);
+        console.log(balloon.x, balloon.y);
       });
            
       socket.on('user disconnected', function(UserId){
