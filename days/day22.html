@@ -19,10 +19,12 @@
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
           socket.on('user done',  function(x,  y, ID){
-            CreateSprite(ID,x,y);
-            
+            CreateSprite(ID,x,y);    
           });
+      client.on('users base', function(users){
       
+      });
+           
       socket.on('move done', function(UserId, obj){
         createjs.Tween.get(window[UserId], {loop: false}).to({x: obj.x,y: obj.y}, 1500, createjs.Ease.linear(1)) 
       });
@@ -33,6 +35,9 @@
       
       socket.on('users base', function(users){
           for(user in users){
+            console.log(user);
+            console.log(users[user].x);
+            console.log(users[user].y);
               CreateSprite(user, users[user].x, users[user].y);
           }       
       });
