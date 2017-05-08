@@ -33,7 +33,7 @@
         createjs.Ticker.addEventListener("tick", onTickHandler);
         //socket.emit('user controler done',  window[UserId].x,  window[UserId].y)
       });
-      sprite.on("stagemousedown", function(evt){
+      sprite.mousedown(function(evt){
              sprite.getBounds();
       });
        
