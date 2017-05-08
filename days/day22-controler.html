@@ -19,23 +19,23 @@
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-      socket.on('user done', function(X,Y, UserID){
-        //ID = UserID;
-        console.log('yes');
-        var spriteSheet = new createjs.SpriteSheet({
+      var spriteSheet = new createjs.SpriteSheet({
             images: ["http://savepic.ru/13767000.png"],
             frames: {width: 120, height: 120, count: 24},
             animations: {stand: 3}});
         sprite = new createjs.Sprite(spriteSheet, 1);
         stage.addChild(sprite);
+      createjs.Ticker.addEventListener("tick", onTickHandler);
+      socket.on('user done', function(X,Y, UserID){        
         sprite.x = X;
         sprite.y = Y;
-        createjs.Ticker.addEventListener("tick", onTickHandler);
-        //socket.emit('user controler done',  window[UserId].x,  window[UserId].y)
       });
-      stage.addEventListener("stagemousedown", function(evt){
-             sprite.getBounds();
-      });
+      sprite.on("pressmove", function(evt) {
+        evt.target.x = evt.stageX;
+        evt.target.y = evt.stageY;
+
+        stage.update();
+      }
        
       
       
