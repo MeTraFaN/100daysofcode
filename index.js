@@ -29,7 +29,7 @@ io.on('connection', function(client) {
     }
     client.broadcast.emit('user done', coordx, coordy, client.id);
   });
-  client.on('coords for contoler' function(coordx, coordy){
+  client.on('coords for contoler', function(coordx, coordy){
       client.broadcast.emit('coords for contoler', coordx, coordy);
   });
    
