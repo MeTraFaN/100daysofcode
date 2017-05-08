@@ -24,7 +24,7 @@
       socket.on('user connected', function(UserId){ 
         ID = UserId;
         color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
-        size = RandomNumb(5,30);
+        size = RandomNumb(10,30);
         window[UserId] = new createjs.Shape();
         window[UserId].graphics.beginFill(color).drawCircle(0, 0, size);       
         window[UserId].x = 60;
@@ -35,6 +35,7 @@
         window[UserId].on("pressmove", function(evt) {
           evt.target.x = evt.stageX;
           evt.target.y = evt.stageY;   
+          socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
         });
         window[UserId].on("pressup", function() {
         socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
