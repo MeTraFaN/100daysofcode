@@ -19,7 +19,8 @@
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
           socket.on('user done',  function(x,  y, ID){
-            CreateSprite(ID,x,y);    
+            CreateSprite(ID,x,y);
+            createjs.Ticker.addEventListener("tick", onTickHandler);
           });
            
       socket.on('move done', function(UserId, obj){
