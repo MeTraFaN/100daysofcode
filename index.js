@@ -21,21 +21,14 @@ var users = {};
 io.on('connection', function(client) {
   client.emit('users base', users);
   client.emit('user connected', client.id);
-  client.on('user done', function(coordx, coordy, ID){
+  client.on('user done', function(coordx, coordy, ID, color){
     users[client.id] = {
       x: coordx,
       y: coordy,
-      Id: ID
+      Id: ID,
+      color: color;
     }
-    io.sockets.emit('user done', coordx, coordy, ID)
-  });
-  client.on('user done23', function(coordx, coordy, color){
-    users[client.id] = {
-      x: coordx,
-      y: coordy,
-      Id: color
-    }
-    io.sockets.emit('user done23', coordx, coordy, color)
+    io.sockets.emit('user done', coordx, coordy, ID, color)
   });
   client.on('move done', function(obj, ID){
     client.broadcast.emit('sprite change coord',  ID,  obj);
