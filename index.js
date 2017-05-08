@@ -22,9 +22,9 @@ io.on('connection', function(client) {
     }
     client.broadcast.emit('user done', coordx, coordy, client.id)
   });
-  client.on('move done', function(obj){
-    client.broadcast.emit('sprite change coord',  client.id,  obj, users);
-    client.emit('move done', client.id, obj);
+  client.on('move done', function(obj, ID){
+    client.broadcast.emit('sprite change coord',  ID,  obj, users);
+    client.emit('move done', ID, obj);
     //users[client.id].x = +users[client.id].x + obj.x;
     //users[client.id].y = +users[client.id].y + obj.y;
   });
