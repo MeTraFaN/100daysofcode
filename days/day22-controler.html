@@ -30,7 +30,7 @@
         evt.target.y = evt.stageY;
         
       });
-      balloon.on("pressup", function(evt) {
+      balloon.on("pressup", function() {
         console.log(balloon.x, balloon.y);
         socket.emit('move done', {x: balloon.x, y: balloon.y});
       });
