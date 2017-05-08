@@ -30,6 +30,7 @@
       balloon.on("pressmove", function(evt) {
         evt.target.x = evt.stageX;
         evt.target.y = evt.stageY;
+        socket.emit('move done', balloon.x, balloon.y);
       });
        
       
