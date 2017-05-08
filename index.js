@@ -4,13 +4,6 @@ var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
-});
-
-app.get('/day21', function(req, res){
-  res.sendFile(__dirname + '/days/day21.html');
-});
-app.get('/day22', function(req, res){
   res.sendFile(__dirname + '/days/day22.html');
 });
 app.get('/day22-controler', function(req, res){
