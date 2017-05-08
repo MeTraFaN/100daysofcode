@@ -48,7 +48,8 @@
      
       
       socket.on('user disconnected', function(UserId){
-        stage.removeChild(window[UserId]);
+        ID = UserId;
+        stage.removeChild(window[ID]);
       });
       
     
