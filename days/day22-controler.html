@@ -33,7 +33,7 @@
         console.log(balloon.x, balloon.y);
       });
       console.log(balloon.x, balloon.y);
-      socket.emit('move done', balloon.x,  balloon.y);
+      //socket.emit('move done', balloon.x,  balloon.y);
            
       socket.on('user disconnected', function(UserId){
         stage.removeChild(sprite);
