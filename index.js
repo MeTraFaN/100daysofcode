@@ -17,29 +17,22 @@ app.get('/day22-controler', function(req, res){
   res.sendFile(__dirname + '/days/day22-controler.html');
 });
 
-
 var users = {};
 io.on('connection', function(client) {
   client.emit('users base', users);
   client.emit('user connected', client.id);
-  client.on('coords for contoler', function(ID, X, Y){
-    client.broadcast.emit('coords for contoler', ID, X, Y);
-  });
   client.on('user done', function(coordx, coordy){
     users[client.id] = {
       x: coordx,
       y: coordy
     }
-    client.broadcast.emit('user done', coordx, coordy, client.id);    
+    client.broadcast.emit('user done', coordx, coordy, client.id)
   });
-
-
-   
-  //client.on('button clicked', function(value){
-    //client.broadcast.emit('sprite change coord', client.id, value);
-   // client.emit('button clicked', client.id, value);
-  //  users[client.id].x = +users[client.id].x + value
- // });
+  client.on('button clicked', function(value){
+    client.broadcast.emit('sprite change coord', client.id, value);
+    client.emit('button clicked', client.id, value);
+    users[client.id].x = +users[client.id].x + value
+  });
   client.on('disconnect', function(){
     client.broadcast.emit('user disconnected', client.id);
     delete users[client.id];
