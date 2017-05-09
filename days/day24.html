@@ -25,8 +25,8 @@
             size = RandomNumb(10,30);
             window[UserId] = new createjs.Shape();
             window[UserId].graphics.beginFill(color).drawCircle(0, 0, size);       
-            window[UserId].x = 60;
-            window[UserId].y = 60;
+            window[UserId].x = RandomNumb(20,canvas.width-140);
+            window[UserId].y = RandomNumb(20,canvas.height-140);
             stage.addChild(window[UserId]);
             createjs.Ticker.addEventListener("tick", onTickHandler);
             socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size); 
