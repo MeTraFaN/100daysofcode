@@ -11,7 +11,6 @@
   </head> 
   <body>
     <canvas id="canvas"></canvas>
-    <a href="/day23-controler" target="_blank"> Интерфейс управления </a>
     <script >
       var socket = io();
       var color;
@@ -37,7 +36,10 @@
               socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
             });
           });
-           
+      socket.on('user done', function(X, Y, ID, color, size){
+        CreateSprite(ID,X,Y, color, size);
+      });
+      
       socket.on('move done', function(UserId, obj){
         window[UserId].x = obj.x;
         window[UserId].y = obj.y; 
