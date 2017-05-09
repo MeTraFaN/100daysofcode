@@ -70,7 +70,7 @@
         canvas.height = window.innerHeight-50;
       };
       function RandomNumb(min, max){
-        return Math.random() * (max - min) + min;
+        return Math.floor(Math.random() * (max - min) + min);
       }
     
      function CreateSprite(Id,X,Y, color, size){
