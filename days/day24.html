@@ -48,6 +48,7 @@
       });
       
       socket.on('sprite change coord', function(UserId, obj){
+        console.log('yes');
         window[UserId].x = obj.x;
         window[UserId].y = obj.y;
       }); 
