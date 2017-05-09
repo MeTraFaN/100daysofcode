@@ -29,13 +29,14 @@
             window[UserId].y = 60;
             stage.addChild(window[UserId]);
             createjs.Ticker.addEventListener("tick", onTickHandler);
-            socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size);
-            window[UserId].on("pressmove", function(evt) {
+            socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size);            
+          });
+      window[UserId].on("pressmove", function(evt) {
               evt.target.x = evt.stageX;
               evt.target.y = evt.stageY;   
               socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
-            });
-          });
+      });
+      
       socket.on('user done', function(X, Y, ID, color, size){
         CreateSprite(ID,X,Y, color, size);
       });
