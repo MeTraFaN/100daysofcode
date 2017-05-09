@@ -42,10 +42,10 @@
         CreateSprite(ID,X,Y, color, size);
       });
       
-      socket.on('move done', function(UserId, obj){
-        window[UserId].x = obj.x;
-        window[UserId].y = obj.y; 
-      });
+      //socket.on('move done', function(UserId, obj){
+       // window[UserId].x = obj.x;
+       // window[UserId].y = obj.y; 
+      //});
       
       socket.on('sprite change coord', function(UserId, obj){
         console.log('yes');
