@@ -51,7 +51,7 @@
 	    	evt.target.x = evt.stageX;
               	evt.target.y = evt.stageY; 
 	    	for (var i = 0; i < circleCount; i++) {
-                	var ref = tweens[i].ref;
+                	//var ref = tweens[i].ref;
                 	var tween = tweens[i].tween;
                 	createjs.Tween.get(ref, {override: true}).to({x: stage.mouseX, y: stage.mouseY}, (0.5 + i * 0.04) * 1000, createjs.Ease.linear).call(tweenComplete);
                 	activeCount = circleCount;
