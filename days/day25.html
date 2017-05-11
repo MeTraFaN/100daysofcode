@@ -39,7 +39,7 @@
               circle.graphics.beginFill(color).drawCircle(0, 0, size-(i*2)); 
               circle.x = randomx;
 	      circle.y = randomy;
-              var tween = createjs.Tween.get(circle).to({x: 275, y: 200}, (0.5 + i * 0.04) * 1500, createjs.Ease.linear).call(tweenComplete);
+              var tween = createjs.Tween.get(circle).to({x: randomx, y: randomy}, (0.5 + i * 0.04) * 1500, createjs.Ease.linear).call(tweenComplete);
 		          tweens.push({tween: tween, ref: circle});
 		          stage.addChild(circle);
             };
