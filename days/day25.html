@@ -18,13 +18,14 @@
 	    var randomx = RandomNumb(20,canvas.width-140);
 	    var randomy = RandomNumb(20,canvas.height-140);
 	    var activeCount;
+	    var tweens = [];
+            var circleCount = 5;
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
           socket.on('user connected', function(UserId){
-            var tweens = [];
-            var circleCount = 5;
+            
             ID = UserId;
             color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
             size = RandomNumb(10,30);
