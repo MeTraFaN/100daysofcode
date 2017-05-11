@@ -15,6 +15,8 @@
       var socket = io();
       var color;
       var size;
+	    var randomx = RandomNumb(20,canvas.width-140);
+	    var randomy = RandomNumb(20,canvas.height-140);
 	    var activeCount;
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
@@ -29,8 +31,8 @@
             for (var i = 0; i <  circleCount; i++) {
               var circle = new createjs.Shape();
               circle.graphics.beginFill(color).drawCircle(0, 0, size-(i*2)); 
-              circle.x = RandomNumb(20,canvas.width-140);
-		          circle.y = RandomNumb(20,canvas.height-140);
+              circle.x = randomx;
+	      circle.y = randomy;
               var tween = createjs.Tween.get(circle).to({x: 275, y: 200}, (0.5 + i * 0.04) * 1500, createjs.Ease.linear).call(tweenComplete);
 		          tweens.push({tween: tween, ref: circle});
 		          stage.addChild(circle);
