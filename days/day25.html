@@ -55,8 +55,8 @@
               //evt.target.x = evt.stageX;
               //evt.target.y = evt.stageY;
                 activeCount = circleCount;
-              socket.emit('move done', {x: circle.x, y: circle, ID});
               };
+		socket.emit('move done', {x: circle.x, y: circle, ID});
             }
             function tweenComplete() {
 	            activeCount--;
