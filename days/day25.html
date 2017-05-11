@@ -94,14 +94,15 @@
 				stage.addChild(circle);
         circle.x = X;
         circle.y = Y;
+        circle.alpha = 0.75;
 				createjs.Tween.get(circle)
-					.to({scaleX: 0.8, scaleY: 0.8, alpha:0.75}, 300)
+					.to({scaleX: 0.8, scaleY: 0.8, alpha:0.50}, 200)
 					
-					.to({scaleX: 0.75, scaleY: 0.75, alpha:0.5}, 300)
+					.to({scaleX: 0.75, scaleY: 0.75, alpha:0.33}, 200)
 					
-					.to({scaleX: 0.66667, scaleY: 0.66667, alpha:0.25}, 300)
+					.to({scaleX: 0.66667, scaleY: 0.66667, alpha:0.25}, 200)
 					
-					.to({scaleX: 0.5, scaleY: 0.5, alpha:0}, 300);
+					.to({scaleX: 0.5, scaleY: 0.5, alpha:0}, 200);
 				createjs.Ticker.addEventListener("tick", onTickHandler);
 			}
     </script>
