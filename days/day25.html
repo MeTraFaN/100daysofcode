@@ -15,8 +15,6 @@
       var socket = io();
       var color;
       var size;
-      var currentx;
-      var currenty;
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
@@ -35,11 +33,7 @@
             createjs.Ticker.addEventListener("tick", onTickHandler);
             socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size); 
             window[UserId].on("pressmove", function(evt) {
-            //if ( ((evt.stageX + evt.stageY - currentx - currenty) % 3) == 0) {
               CreateTail(evt.stageX, evt.stageY, color, size); 
-              //currentx = evt.stageX;
-              //currenty = evt.stageY;
-            //} 
               evt.target.x = evt.stageX;
               evt.target.y = evt.stageY;   
               socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
