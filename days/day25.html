@@ -46,6 +46,7 @@
 		          stage.addChild(circle);
             };
             socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size); 
+	  });
             activeCount = circleCount;
             stage.addEventListener("pressmove",  function(evt){
 	    	evt.target.x = evt.stageX;
@@ -62,7 +63,7 @@
             function tweenComplete() {
 	            activeCount--;
             }               
-          });
+
       
       
       socket.on('user done24', function(X, Y, ID, color, size){
