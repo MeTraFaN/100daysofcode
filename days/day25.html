@@ -15,6 +15,7 @@
       var socket = io();
       var color;
       var size;
+	    var activeCount;
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
@@ -35,7 +36,7 @@
 		          stage.addChild(circle);
             };
             socket.emit('user done',  circle.x, circle.y, ID, color, size); 
-            var activeCount = circleCount;
+            activeCount = circleCount;
             stage.addEventListener("pressmove", handleMouseUp);
 		  createjs.Ticker.addEventListener("tick", tick);
             //window[UserId] = new createjs.Shape();
