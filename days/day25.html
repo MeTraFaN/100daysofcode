@@ -29,26 +29,31 @@
             window[UserId].graphics.beginFill(color).drawCircle(0, 0, size);       
             window[UserId].x = RandomNumb(20,canvas.width-140);
             window[UserId].y = RandomNumb(20,canvas.height-140);
-						currentx = window[UserId].x;
-						currenty = window[UserId].y;
+            currentx = window[UserId].x;
+            currenty = window[UserId].y;
             stage.addChild(window[UserId]);
             createjs.Ticker.addEventListener("tick", onTickHandler);
             socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size); 
             window[UserId].on("pressmove", function(evt) {
             if ( ((evt.stageX + evt.stageY - currentx - currenty) % 3) == 0) {
-              CreateTail(evt.stageX, evt.stageY, color, size); 						
+              CreateTail(evt.stageX, evt.stageY, color, size); 
+              currentx = evt.stageX;
+              currenty = evt.stageY;
             } 
               evt.target.x = evt.stageX;
               evt.target.y = evt.stageY;   
               socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
             });
           });
-       
-      
+
       socket.on('user done24', function(X, Y, ID, color, size){
         CreateSprite(X,Y, color, size, ID);
       });
       
+      socket.on('sprite change coord25', function(obj, color, size){ 
+        CreateTail(obj.x, obj.y, color, size);    
+      });
+
       socket.on('sprite change coord', function(UserId, obj){
         window[UserId].x = obj.x;
         window[UserId].y = obj.y;
