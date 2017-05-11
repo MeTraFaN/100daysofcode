@@ -28,7 +28,13 @@
             ID = UserId;
             color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
             size = RandomNumb(10,30);
-            for (var i = 0; i <  circleCount; i++) {
+	    window[UserId] = new createjs.Shape();
+            window[UserId].graphics.beginFill(color).drawCircle(0, 0, size);       
+            window[UserId].x = randomx;
+            window[UserId].y = randomy; 
+	    stage.addChild(window[UserId]);
+	    createjs.Ticker.addEventListener("tick", tick);
+            for (var i = 1; i <  circleCount; i++) {
               var circle = new createjs.Shape();
               circle.graphics.beginFill(color).drawCircle(0, 0, size-(i*2)); 
               circle.x = randomx;
@@ -37,29 +43,20 @@
 		          tweens.push({tween: tween, ref: circle});
 		          stage.addChild(circle);
             };
-            socket.emit('user done',  circle.x, circle.y, ID, color, size); 
+            socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size); 
             activeCount = circleCount;
-            stage.addEventListener("pressmove", handleMouseUp);
-		  createjs.Ticker.addEventListener("tick", tick);
-            //window[UserId] = new createjs.Shape();
-            //window[UserId].graphics.beginFill(color).drawCircle(0, 0, size);       
-            //window[UserId].x = RandomNumb(20,canvas.width-140);
-            //window[UserId].y = RandomNumb(20,canvas.height-140);
-            //stage.addChild(window[UserId]);
-            //createjs.Ticker.addEventListener("tick", onTickHandler);
-            //socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size); 
-            //window[UserId].on("pressmove", function(evt) {
-            function handleMouseUp(event) {
-              for (var i = 0; i < circleCount; i++) {
-                var ref = tweens[i].ref;
-                var tween = tweens[i].tween;
-                createjs.Tween.get(ref, {override: true}).to({x: stage.mouseX, y: stage.mouseY}, (0.5 + i * 0.04) * 1500, createjs.Ease.linear).call(tweenComplete);
-              //evt.target.x = evt.stageX;
-              //evt.target.y = evt.stageY;
-                activeCount = circleCount;
-              };
-		socket.emit('move done', {x: circle.x, y: circle, ID});
-            }
+            stage.addEventListener("pressmove",  function(evt){
+	    	evt.target.x = evt.stageX;
+              	evt.target.y = evt.stageY; 
+	    	for (var i = 0; i < circleCount; i++) {
+                	var ref = tweens[i].ref;
+                	var tween = tweens[i].tween;
+                	createjs.Tween.get(ref, {override: true}).to({x: stage.mouseX, y: stage.mouseY}, (0.5 + i * 0.04) * 1500, createjs.Ease.linear).call(tweenComplete);
+                	activeCount = circleCount;
+			createjs.Ticker.addEventListener("tick", tick);
+              	};
+		socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
+	    });		
             function tweenComplete() {
 	            activeCount--;
             }               
