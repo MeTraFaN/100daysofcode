@@ -18,6 +18,9 @@ app.get('/day23-controler', function(req, res){
 app.get('/day24', function(req, res){
   res.sendFile(__dirname + '/days/day24.html');
 });
+app.get('/day25', function(req, res){
+  res.sendFile(__dirname + '/days/day25.html');
+});
 
 var users = {};
 io.on('connection', function(client) {
