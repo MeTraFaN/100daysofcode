@@ -46,8 +46,7 @@
 		          stage.addChild(circle);
             };
             socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size); 
-	  });
-            activeCount = circleCount;
+	    activeCount = circleCount;
              window[ID].on("pressmove",  function(evt){
 	    	evt.target.x = evt.stageX;
               	evt.target.y = evt.stageY; 
@@ -62,7 +61,9 @@
 	    });		
             function tweenComplete() {
 	            activeCount--;
-            }               
+            }
+	  });
+                           
 
       
       
