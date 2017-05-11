@@ -15,10 +15,8 @@
       var socket = io();
       var color;
       var size;
-			var currentx;
-			var currenty;
-			//var newx;
-			//var newy;
+      var currentx;
+      var currenty;
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
@@ -37,9 +35,9 @@
             createjs.Ticker.addEventListener("tick", onTickHandler);
             socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size); 
             window[UserId].on("pressmove", function(evt) {
-							if ( ((evt.stageX + evt.stageY - currentx - currenty) % 5) == 0) {
-								CreateTail(evt.stageX, evt.stageY, color, size); 						
-							} 
+            if ( ((evt.stageX + evt.stageY - currentx - currenty) % 3) == 0) {
+              CreateTail(evt.stageX, evt.stageY, color, size); 						
+            } 
               evt.target.x = evt.stageX;
               evt.target.y = evt.stageY;   
               socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
@@ -88,23 +86,20 @@
       createjs.Ticker.addEventListener("tick", onTickHandler);
       };
 			
-			function CreateTail(X,Y, color, size){
-				circle = new createjs.Shape();
-				circle.graphics.beginFill(color).drawCircle(0, 0, size-2);
-				stage.addChild(circle);
+      function CreateTail(X,Y, color, size){
+        circle = new createjs.Shape();
+        circle.graphics.beginFill(color).drawCircle(0, 0, size-2);
+        stage.addChild(circle);
         circle.x = X;
         circle.y = Y;
         circle.alpha = 0.75;
-				createjs.Tween.get(circle)
-					.to({scaleX: 0.8, scaleY: 0.8, alpha:0.50}, 200)
-					
-					.to({scaleX: 0.75, scaleY: 0.75, alpha:0.33}, 200)
-					
-					.to({scaleX: 0.66667, scaleY: 0.66667, alpha:0.25}, 200)
-					
-					.to({scaleX: 0.5, scaleY: 0.5, alpha:0}, 200);
-				createjs.Ticker.addEventListener("tick", onTickHandler);
-			}
+        createjs.Tween.get(circle)
+        .to({scaleX: 0.8, scaleY: 0.8, alpha:0.50}, 150)        
+        .to({scaleX: 0.75, scaleY: 0.75, alpha:0.33}, 150)        
+        .to({scaleX: 0.66667, scaleY: 0.66667, alpha:0.25}, 150)
+        .to({scaleX: 0.5, scaleY: 0.5, alpha:0}, 150);
+        createjs.Ticker.addEventListener("tick", onTickHandler);
+      }
     </script>
   </body>
 </html>
