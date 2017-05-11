@@ -15,8 +15,7 @@
       var socket = io();
       var color;
       var size;
-	    var randomx = RandomNumb(20,canvas.width-140);
-	    var randomy = RandomNumb(20,canvas.height-140);
+	    
 	    var activeCount;
 	    var tweens = [];
             var circleCount = 5;
@@ -24,6 +23,8 @@
           canvas = document.querySelector('canvas');
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
+	    var randomx = RandomNumb(20,canvas.width-140);
+	    var randomy = RandomNumb(20,canvas.height-140);
           socket.on('user connected', function(UserId){
             
             ID = UserId;
