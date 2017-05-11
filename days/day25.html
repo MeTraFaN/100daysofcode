@@ -48,7 +48,7 @@
             socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size); 
 	  });
             activeCount = circleCount;
-             window[UserId].on("pressmove",  function(evt){
+             window[ID].on("pressmove",  function(evt){
 	    	evt.target.x = evt.stageX;
               	evt.target.y = evt.stageY; 
 	    	for (var i = 0; i < circleCount; i++) {
