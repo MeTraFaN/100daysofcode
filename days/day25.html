@@ -51,7 +51,7 @@
             stage.addEventListener("pressmove",  function(evt){
 	    	evt.target.x = evt.stageX;
               	evt.target.y = evt.stageY; 
-	    	for (var i = 1; i < circleCount; i++) {
+	    	for (var i = 0; i < circleCount; i++) {
                 	var ref = tweens[i].ref;
                 	var tween = tweens[i].tween;
                 	createjs.Tween.get(ref, {override: true}).to({x: stage.mouseX, y: stage.mouseY}, (0.5 + i * 0.04) * 1500, createjs.Ease.linear).call(tweenComplete);
