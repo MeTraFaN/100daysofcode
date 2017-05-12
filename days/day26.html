@@ -64,8 +64,11 @@
           }       
       });
       socket.on('user disconnected', function(UserId){
+        console.log(UserId);
         test = UserId+"";
-        stage.removeChild(document.getElementByClassName(test)[0]);
+	      console.log(test);
+        ThisCircle = document.getElementByClassName(test)[0];
+        stage.removeChild(ThisCircle);
       });
             /*
 						
