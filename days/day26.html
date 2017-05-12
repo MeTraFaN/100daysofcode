@@ -38,7 +38,8 @@
             socket.emit('user done26',  circle.style);
             //MainCircle = document.getElementByClassName[UserId][0];
 	  }); 
-      socket.on('user done26', function(X, Y, color, size, ID){
+      socket.on('user done26', function(X, Y, color, size, ID, users26){
+	      console.log(users26);
         CreateSprite(X,Y, color, size, ID);
       });
       function RandomNumb(min, max){
