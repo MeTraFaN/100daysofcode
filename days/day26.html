@@ -43,9 +43,9 @@
               MainCircle.style.left = evt.clientX - size/2 + "px";
               MainCircle.style.top= evt.clientY - size/2 + "px";              
               //socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
-	      });
+	      },false);
               MainCircle.addEventListener("mouseup", function(){
-                stage.removeEventListener("mousemove");
+                stage.removeEventListener("mousemove", function(),false);
               });
             });
 	  }); 
