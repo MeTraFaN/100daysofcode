@@ -34,6 +34,7 @@
             circle.style.top = RandomNumb(20,600) + "px";
             circle.className = "circle";
             circle.classList.add(UserId);
+            console.log(circle);
             socket.emit('user done26',  circle);
 	  }); 
       function RandomNumb(min, max){
