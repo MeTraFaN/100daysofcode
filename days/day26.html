@@ -84,9 +84,9 @@
         stage.removeChild(ThisCircle);
       });
 	    
-      function CreateTail(X,Y, color, size, parent){
+      function CreateTail(X,Y, color, size){
         circle = document.createElement('div');
-        parent.appendChild(circle);
+        stage.appendChild(circle);
         circle.style.backgroundColor = color;
         circle.style.width = size + "px"; 
         circle.style.height = size + "px";
