@@ -93,6 +93,11 @@
         circle.style.left = X;
         circle.style.top =  Y;
         circle.className = "circle";
+        setTimeout(function (){
+          circle.style.opacity = 0;
+          circle.style.width = 0;
+          circle.style.height = 0;
+	},150);
       }
             /*
 						
