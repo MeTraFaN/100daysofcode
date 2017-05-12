@@ -39,6 +39,7 @@
             socket.emit('user done26',  color, size, circle.style["left"], circle.style["top"]);
             MainCircle = document.getElementsByClassName(ID)[0];
             MainCircle.addEventListener("mousedown", function() {
+		    console.log(MainCircle);
               isMouseDown = true;
 	    });
             stage.addEventListener("mousemove", function(evt){
