@@ -23,7 +23,7 @@
       var ID;
       stage = document.getElementById('wrapper');
           socket.on('user connected', function(UserId){ 
-            //ID = UserId;
+            ID = UserId + "";
             color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
             size = RandomNumb(20,60);
             circle = document.createElement('div');
@@ -36,7 +36,7 @@
             circle.className = "circle";
             circle.classList.add(UserId);
             socket.emit('user done26',  color, size, circle.style["left"], circle.style["top"]);
-            MainCircle = document.getElementsByClassName[UserId][0];
+            MainCircle = document.getElementsByClassName[ID][0];
             MainCircle.addEventListener("mousedown", function(evt) {
 		    console.log(evt);
               CreateTail(evt.stageX, evt.stageY, color, size); 
