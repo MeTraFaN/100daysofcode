@@ -10,12 +10,13 @@
       #canvas {border: solid 1px black; background-color: lightblue;}
     </style>
   </head> 
-  <body>
+  <body onLoad="init();">
     <div id="wrapper">
 	    
 	    
     </div>
     <script >
+    function init(){
       var socket = io();
       var color;
       var size;
@@ -140,6 +141,7 @@
         .to({scaleX: 0.5, scaleY: 0.5, alpha:0}, 150);
         createjs.Ticker.addEventListener("tick", onTickHandler);
       }*/
+    }
     </script>
   </body>
 </html>
