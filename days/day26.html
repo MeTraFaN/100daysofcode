@@ -101,7 +101,9 @@
         circle.style.height = size + "px";
         circle.style.left = X;
         circle.style.top =  Y;
-
+        setTimeout(function(){
+		parent.removeChild(circle);
+	},1000);
 	
       }
             /*
