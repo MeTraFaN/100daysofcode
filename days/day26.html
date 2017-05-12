@@ -42,14 +42,14 @@
               isMouseDown = true;
 	    });
             stage.addEventListener("mousemove", function(evt){
-              myFunction(evt)
+              myFunction(evt);
 	    });
             MainCircle.addEventListener("mouseup", function(){
                isMouseDown = false;
             });
 	  }); 
       
-      myFunction(evt){
+      function myFunction(evt){
         if (isMouseDown){   
           MainCircle.style.left = evt.clientX - size/2 + "px";
           MainCircle.style.top= evt.clientY - size/2 + "px";
