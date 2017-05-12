@@ -24,7 +24,7 @@
           socket.on('user connected', function(UserId){ 
             ID = UserId;
             color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
-            size = RandomNumb(10,30);
+            size = RandomNumb(20,60);
             circle = document.createElement('div');
             stage.appendChild(circle);
             circle.style.backgroundColor = color;
