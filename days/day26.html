@@ -23,8 +23,8 @@
       var ID;
       var isMouseDown = false;
       stage = document.getElementById('wrapper');
-	    stage.style.width =  window.innerWidth;
-	    stage.style.height = window.innerHeight;
+	    stage.style.width =  window.innerWidth + "px";
+	    stage.style.height = window.innerHeight + "px";
           socket.on('user connected', function(UserId){ 
             ID = UserId + "";
             color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
