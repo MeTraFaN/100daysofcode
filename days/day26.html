@@ -42,10 +42,10 @@
               isMouseDown = true;
 	    });
             stage.addEventListener("mousemove", function(evt){
-              if (isMouseDown){
-              //CreateTail(evt.stageX, evt.stageY, color, size); 
+              if (isMouseDown){   
               MainCircle.style.left = evt.clientX - size/2 + "px";
-              MainCircle.style.top= evt.clientY - size/2 + "px";              
+              MainCircle.style.top= evt.clientY - size/2 + "px";
+              CreateTail( MainCircle.style.left,  MainCircle.style.top, color, size, MainCircle);
               //socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
 	      };
 	    });
@@ -83,6 +83,16 @@
         ThisCircle = document.getElementsByClassName(test)[0];
         stage.removeChild(ThisCircle);
       });
+	    
+      function CreateTail(X,Y, color, size, parent){
+        circle = document.createElement('div');
+        parent.appendChild(circle);
+        circle.style.backgroundColor = color;
+        circle.style.width = size + "px"; 
+        circle.style.height = size + "px";
+        circle.style.left = X;
+        circle.style.top = Y;      
+      }
             /*
 						
 						
@@ -139,20 +149,7 @@
     
      
 			
-      function CreateTail(X,Y, color, size){
-        circle = new createjs.Shape();
-        circle.graphics.beginFill(color).drawCircle(0, 0, size-2);
-        stage.addChild(circle);
-        circle.x = X;
-        circle.y = Y;
-        circle.alpha = 0.75;
-        createjs.Tween.get(circle)
-        .to({scaleX: 0.8, scaleY: 0.8, alpha:0.50}, 150)        
-        .to({scaleX: 0.75, scaleY: 0.75, alpha:0.33}, 150)        
-        .to({scaleX: 0.66667, scaleY: 0.66667, alpha:0.25}, 150)
-        .to({scaleX: 0.5, scaleY: 0.5, alpha:0}, 150);
-        createjs.Ticker.addEventListener("tick", onTickHandler);
-      }*/
+      */
     }
     </script>
   </body>
