@@ -36,7 +36,15 @@
             circle.className = "circle";
             circle.classList.add(UserId);
             socket.emit('user done26',  color, size, circle.style["left"], circle.style["top"]);
-            //MainCircle = document.getElementByClassName[UserId][0];
+            MainCircle = document.getElementsByClassName[UserId][0];
+            MainCircle.addEventListener("mousedown", function(evt) {
+		    console.log(evt);
+              CreateTail(evt.stageX, evt.stageY, color, size); 
+              MainCircle.style.left = evt.stageX + "px";
+              MainCircle.style.top= evt.stageY + "px";   
+              socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
+            });
+          });
 	  }); 
       socket.on('user done26', function(X, Y, color, size, ID, users26){
         CreateSprite(X,Y, color, size, ID);
