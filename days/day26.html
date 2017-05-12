@@ -95,9 +95,9 @@
         circle.className = "circle";
         setInterval(function (){
           if (circle.style.opacity != 0 &&  circle.style.width !=0) {
-            circle.style.opacity = 0;
-            circle.style.width = 0;
-            circle.style.height = 0;
+            circle.style.opacity -= 0.1;
+            circle.style.width -= 2;
+            circle.style.height -= 2;
 	  }
 	},150);
       }
