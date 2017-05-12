@@ -33,8 +33,8 @@
             circle.style.left = RandomNumb(20,950) + "px";
             circle.style.top = RandomNumb(20,650) + "px";
             circle.className = "circle";
-            circle.classList.add(window[UserId]);
-
+            circle.classList.add(window[ID]);
+            socket.emit('user done26',  circle);
 	  }); 
       function RandomNumb(min, max){
         return Math.floor(Math.random() * (max - min) + min);
