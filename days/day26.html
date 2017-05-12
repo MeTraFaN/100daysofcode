@@ -39,14 +39,12 @@
             //MainCircle = document.getElementByClassName[UserId][0];
 	  }); 
       socket.on('user done26', function(X, Y, color, size, ID, users26){
-        console.log(color);
         CreateSprite(X,Y, color, size, ID);
       });
       function RandomNumb(min, max){
         return Math.floor(Math.random() * (max - min) + min);
       }
       function CreateSprite(X,Y, color, size, Id){
-	      console.log(color);
         AnotherСircle = document.createElement('div');
         stage.appendChild(AnotherСircle);
         AnotherСircle.style.backgroundColor = color;
