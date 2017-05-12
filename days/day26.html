@@ -96,8 +96,8 @@
         circle.style.height = size + "px";
         circle.style.left = X;
         circle.style.top =  Y;
-        parent = document.getElementsByClassName(ID)[0];
-        parent.appendChild(circle);
+        //parent = document.getElementsByClassName(ID)[0];
+        stage.appendChild(circle);
 	setTimeout(function(circle){
 		parent.removeChild(circle);
 	},1000);
