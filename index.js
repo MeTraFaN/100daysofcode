@@ -21,6 +21,12 @@ app.get('/day24', function(req, res){
 app.get('/day25', function(req, res){
   res.sendFile(__dirname + '/days/day25.html');
 });
+app.get('/day26', function(req, res){
+  res.sendFile(__dirname + '/days/day26.html');
+});
+app.get('/main.css', function(req, res){
+  res.sendFile(__dirname + '/public/stylesheets/main.css');
+});
 
 var users = {};
 io.on('connection', function(client) {
