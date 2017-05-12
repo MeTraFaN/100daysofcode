@@ -1,4 +1,4 @@
 * {margin:0px ; padding:0px}
-#wrapper {background-color: lightblue; width: 1300px; height: 600px;}
+#wrapper {background-color: lightblue; width: 1300px; height: 600px; overflow:hidden}
 .circle{position: absolute;border-radius:50%;}
 .circle .circle {position:fixed;}
