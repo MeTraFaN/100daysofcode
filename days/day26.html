@@ -24,7 +24,8 @@
             ID = UserId;
             color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
             size = RandomNumb(10,30);
-            circle = document.createElement('div');	
+            circle = document.createElement('div');
+            stage.appendChild(circle);
             circle.style.backgroundColor = color;
             circle.style.width = size + "";
             circle.style.height = size + "";
@@ -32,7 +33,7 @@
             circle.style.top = RandomNumb(20,650) + "";
             circle.className = "circle";
             circle.classList.add(window[UserId]);
-            stage.appendChild(circle);
+
 	  }); 
       function RandomNumb(min, max){
         return Math.floor(Math.random() * (max - min) + min);
