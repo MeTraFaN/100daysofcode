@@ -22,7 +22,7 @@
       var ID;
       stage = document.getElementById('wrapper');
           socket.on('user connected', function(UserId){ 
-            ID = UserId;
+            //ID = UserId;
             color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
             size = RandomNumb(20,60);
             circle = document.createElement('div');
@@ -33,7 +33,7 @@
             circle.style.left = RandomNumb(20,950) + "px";
             circle.style.top = RandomNumb(20,600) + "px";
             circle.className = "circle";
-            circle.classList.add(window[ID]);
+            circle.classList.add(UserId);
             socket.emit('user done26',  circle);
 	  }); 
       function RandomNumb(min, max){
