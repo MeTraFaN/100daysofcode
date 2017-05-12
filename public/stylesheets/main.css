@@ -6,7 +6,7 @@
     animation: mymove 1s;
     animation-fill-mode: forwards;
  }
-
+ 
 @keyframes mymove {
     0%   {opacity: 1;
     visibility: visible;}
