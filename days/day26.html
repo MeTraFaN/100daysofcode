@@ -58,7 +58,7 @@
 	}
       }
 	    
-      socket.on('user done26', function(X, Y, color, size, ID, users26){
+      socket.on('user done26', function(X, Y, color, size, ID){
         CreateSprite(X,Y, color, size, ID);
       });
       function RandomNumb(min, max){
@@ -87,7 +87,7 @@
         stage.removeChild(ThisCircle);
       });
 	    
-      socket.on('sprite change coord26', function(obj, color, size){ 
+      socket.on('sprite change coord26', function(obj, color, size, ID){ 
         CreateTail(obj.x, obj.y, color, size, ID);    
       }); 
 	    
