@@ -54,7 +54,7 @@
           MainCircle.style.left = evt.clientX - size/2 + "px";
           MainCircle.style.top= evt.clientY - size/2 + "px";
           CreateTail( MainCircle.style.left,  MainCircle.style.top, color, size, ID);
-          //socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
+          socket.emit('move done', {x: MainCircle.style.left, y:MainCircle.style.top}, ID);
 	}
       }
 	    
@@ -74,7 +74,6 @@
         AnotherСircle.style.top = Y;
         AnotherСircle.className = "circle";
         AnotherСircle.classList.add(Id);	      
-      //createjs.Ticker.addEventListener("tick", onTickHandler);
       };
 
       socket.on('users base', function(users, users26){
@@ -87,6 +86,10 @@
         ThisCircle = document.getElementsByClassName(test)[0];
         stage.removeChild(ThisCircle);
       });
+	    
+      socket.on('sprite change coord26', function(obj, color, size){ 
+        CreateTail(obj.x, obj.y, color, size, ID);    
+      }); 
 	    
       function CreateTail(X,Y, color, size, ID){
         circle = document.createElement('div');
