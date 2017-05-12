@@ -57,6 +57,12 @@
         AnotherСircle.classList.add(Id);	      
       //createjs.Ticker.addEventListener("tick", onTickHandler);
       };
+
+      socket.on('users base', function(users, users26){
+          for(user in users26){
+              CreateSprite(users26[user].x, users26[user].y, users26[user].color, users26[user].size, user);
+          }       
+      });
             /*
 						
 						
