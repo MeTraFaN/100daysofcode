@@ -65,7 +65,7 @@
       socket.on('user disconnected', function(UserId){
         test = UserId+"";
 	      console.log(document);
-        ThisCircle = document.getElementByClassName(window[UserId]);
+        ThisCircle = document.getElementsByClassName(window[UserId])[0];
         stage.removeChild(ThisCircle);
       });
             /*
