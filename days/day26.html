@@ -36,7 +36,7 @@
             circle.classList.add(UserId);
             console.log(circle.style[0]);
             socket.emit('user done26',  circle.style);
-            MainCircle = document.getElementByClassName[UserId][0];
+            //MainCircle = document.getElementByClassName[UserId][0];
 	  }); 
       socket.on('user done26', function(X, Y, color, size, ID){
         CreateSprite(X,Y, color, size, ID);
