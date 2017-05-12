@@ -31,7 +31,7 @@ app.get('/main.css', function(req, res){
 var users = {};
 var users26 = {};
 io.on('connection', function(client) {
-  client.emit('users base', users);
+  client.emit('users base', users, users26);
   client.emit('user connected', client.id);
   client.on('user done26', function(color, size, x, y){
     users26[client.id] = {
