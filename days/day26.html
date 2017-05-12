@@ -90,22 +90,14 @@
 	    
       function CreateTail(X,Y, color, size,parent){
         circle = document.createElement('div');
-        parent.appendChild(circle);
-        circle.className = "circle"; 
-        setTimeout(function(){
-	   circle.classList.add("opacityT");
-	   
-	},1);
-        circle.style.backgroundColor = color;
+        circle.className = "circle opacityT"; 
+        circle.style.backgroundColor = 'red';
         circle.style.width = size + "px"; 
         circle.style.height = size + "px";
         circle.style.left = X;
         circle.style.top =  Y;
-        setTimeout(function(){
-		console.log(circle);
-		stage.removeChild(circle);
-	},5000);
-	
+        
+        parent.appendChild(circle);
       }
             /*
 						
