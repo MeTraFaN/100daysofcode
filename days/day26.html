@@ -37,25 +37,26 @@
             circle.className = "circle";
             circle.classList.add(UserId);
             socket.emit('user done26',  color, size, circle.style["left"], circle.style["top"]);
-                  MainCircle = document.getElementsByClassName(ID)[0];
+            MainCircle = document.getElementsByClassName(ID)[0];
             MainCircle.addEventListener("mousedown", function() {
-		    console.log(MainCircle);
               isMouseDown = true;
 	    });
             stage.addEventListener("mousemove", function(evt){
-              if (isMouseDown){   
-              MainCircle.style.left = evt.clientX - size/2 + "px";
-              MainCircle.style.top= evt.clientY - size/2 + "px";
-              CreateTail( MainCircle.style.left,  MainCircle.style.top, color, size, MainCircle);
-              //socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
-	      };
+              myFunction(evt)
 	    });
             MainCircle.addEventListener("mouseup", function(){
                isMouseDown = false;
             });
 	  }); 
       
-
+      myFunction(evt){
+        if (isMouseDown){   
+          MainCircle.style.left = evt.clientX - size/2 + "px";
+          MainCircle.style.top= evt.clientY - size/2 + "px";
+          CreateTail( MainCircle.style.left,  MainCircle.style.top, color, size, MainCircle);
+          //socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
+	}
+      }
 	    
       socket.on('user done26', function(X, Y, color, size, ID, users26){
         CreateSprite(X,Y, color, size, ID);
