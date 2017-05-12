@@ -36,10 +36,26 @@
             circle.classList.add(UserId);
             console.log(circle.style[0]);
             socket.emit('user done26',  circle.style);
+            MainCircle = document.getElementByClassName[UserId][0];
 	  }); 
+      socket.on('user done26', function(X, Y, color, size, ID){
+        CreateSprite(X,Y, color, size, ID);
+      });
       function RandomNumb(min, max){
         return Math.floor(Math.random() * (max - min) + min);
       }
+      function CreateSprite(X,Y, color, size, Id){
+        AnotherСircle = document.createElement('div');
+        stage.appendChild(AnotherСircle);
+        AnotherСircle.style.backgroundColor = color;
+        AnotherСircle.style.width = size; 
+        AnotherСircle.style.height = size;
+        AnotherСircle.style.left = X;
+        AnotherСircle.style.top = Y;
+        AnotherСircle.className = "circle";
+        AnotherСircle.classList.add(Id);	      
+      //createjs.Ticker.addEventListener("tick", onTickHandler);
+      };
             /*
 						
 						
@@ -63,9 +79,7 @@
             });
           });
  
-      socket.on('user done24', function(X, Y, ID, color, size){
-        CreateSprite(X,Y, color, size, ID);
-      });
+     
       
       socket.on('sprite change coord25', function(obj, color, size){ 
         CreateTail(obj.x, obj.y, color, size);    
@@ -96,14 +110,7 @@
       };
 
     
-     function CreateSprite(X,Y, color, size, Id){
-        window[Id] = new createjs.Shape();
-        window[Id].graphics.beginFill(color).drawCircle(0, 0, size);     
-        stage.addChild(window[Id]);
-        window[Id].x = X;
-        window[Id].y = Y;
-      createjs.Ticker.addEventListener("tick", onTickHandler);
-      };
+     
 			
       function CreateTail(X,Y, color, size){
         circle = new createjs.Shape();
