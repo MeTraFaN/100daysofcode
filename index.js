@@ -40,7 +40,7 @@ io.on('connection', function(client) {
       x: x,
       y: y
     }
-   client.broadcast.emit('user done26', x, y, color, size, client.id, users26)
+   client.broadcast.emit('user done26', x, y, color, size, client.id)
   });
   client.on('user done', function(coordx, coordy, ID, color, size){
     users[client.id] = {
