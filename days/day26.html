@@ -63,6 +63,10 @@
               CreateSprite(users26[user].x, users26[user].y, users26[user].color, users26[user].size, user);
           }       
       });
+      socket.on('user disconnected', function(UserId){
+        ThisCircle = document.getElementByClassName(UserId)[0];
+        stage.removeChild();
+      });
             /*
 						
 						
