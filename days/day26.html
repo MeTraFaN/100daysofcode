@@ -10,20 +10,38 @@
     </style>
   </head> 
   <body>
-    <canvas id="canvas"></canvas>
+    <div class="wrapper">
+	    
+	    
+    </div>
     <script >
       var socket = io();
       var color;
       var size;
-          stage = new createjs.Stage("canvas");
-          canvas = document.querySelector('canvas');
-          canvas.width = window.innerWidth-50;
-          canvas.height = window.innerHeight-50;
+			var ID;
+					stage = document.getElementById('wrapper');
+          stage.style.width = window.innerWidth-50;
+          stage.style.height = window.innerHeight-50;
           socket.on('user connected', function(UserId){ 
             ID = UserId;
             color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
             size = RandomNumb(10,30);
-            window[UserId] = new createjs.Shape();
+						circle = document.createElement('div');	
+						circle.style.backgroundColor = color;
+						circle.style.width = size;
+						circle.style.hieght = size;
+						circle.style.left = RandomNumb(20,stage.style.width-50);
+						circle.style.top = RandomNumb(20,stage.style.height-50);
+						circle.classList.add("circle");
+						circle.classList.add(windows[UserId]);
+						stage.addChild(circle);
+            /*
+						
+						
+						
+						
+						
+						window[UserId] = new createjs.Shape();
             window[UserId].graphics.beginFill(color).drawCircle(0, 0, size);       
             window[UserId].x = RandomNumb(20,canvas.width-140);
             window[UserId].y = RandomNumb(20,canvas.height-140);
@@ -97,7 +115,7 @@
         .to({scaleX: 0.66667, scaleY: 0.66667, alpha:0.25}, 150)
         .to({scaleX: 0.5, scaleY: 0.5, alpha:0}, 150);
         createjs.Ticker.addEventListener("tick", onTickHandler);
-      }
+      }*/
     </script>
   </body>
 </html>
