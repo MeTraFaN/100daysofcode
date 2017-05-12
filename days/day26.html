@@ -44,7 +44,6 @@
               MainCircle.style.top= evt.stageY + "px";   
               socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
             });
-          });
 	  }); 
       socket.on('user done26', function(X, Y, color, size, ID, users26){
         CreateSprite(X,Y, color, size, ID);
