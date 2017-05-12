@@ -54,6 +54,9 @@
           MainCircle.style.left = evt.clientX - size/2 + "px";
           MainCircle.style.top= evt.clientY - size/2 + "px";
           CreateTail( MainCircle.style.left,  MainCircle.style.top, color, size, ID);
+		alert(MainCircle.style.left);
+		alert(MainCircle.style.top);
+		alert(ID);
           socket.emit('move done', {x: MainCircle.style.left, y:MainCircle.style.top}, ID);
 	}
       }
