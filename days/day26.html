@@ -21,6 +21,7 @@
       var color;
       var size;
       var ID;
+      var isMouseDown = false;
       stage = document.getElementById('wrapper');
           socket.on('user connected', function(UserId){ 
             ID = UserId + "";
@@ -38,17 +39,21 @@
             socket.emit('user done26',  color, size, circle.style["left"], circle.style["top"]);
             MainCircle = document.getElementsByClassName(ID)[0];
             MainCircle.addEventListener("mousedown", function() {
-              stage.addEventListener("mousemove", function(evt){
+              isMouseDown = true;
+	    });
+            stage.addEventListener("mousemove", function(evt){
+              if (isMouseDown){
               //CreateTail(evt.stageX, evt.stageY, color, size); 
               MainCircle.style.left = evt.clientX - size/2 + "px";
               MainCircle.style.top= evt.clientY - size/2 + "px";              
               //socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
-	      });
-              MainCircle.addEventListener("mouseup", function(){
-                stage.removeEventListener("mousemove", function(){});
-              });
+	      };
+	    });
+            MainCircle.addEventListener("mouseup", function(){
+               isMouseDown = false;
             });
 	  }); 
+	    
       socket.on('user done26', function(X, Y, color, size, ID, users26){
         CreateSprite(X,Y, color, size, ID);
       });
