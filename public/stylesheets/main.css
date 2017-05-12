@@ -2,4 +2,4 @@
 #wrapper {background-color: lightblue; width: 1300px; height: 600px;}
 .circle{position: absolute;border-radius:50%;}
 .circle .circle {position:fixed; opacity: 1; transition: opacity 1s; }
-.circle .opacityT {opacity:0 }
+.circle .circle.opacityT {opacity:0 }
