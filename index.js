@@ -55,11 +55,13 @@ io.on('connection', function(client) {
   });
   client.on('move done', function(obj, ID){
     client.broadcast.emit('sprite change coord25', obj, users[ID].color, users[ID].size);
-    client.broadcast.emit('sprite change coord26', obj, users[ID].color, users[ID].size, ID);
+    client.broadcast.emit('sprite change coord26', obj, users26[ID].color, users26[ID].size, ID);
     client.broadcast.emit('sprite change coord',  ID,  obj);
     client.emit('move done', ID, obj);
     users[client.id].x =  obj.x;
     users[client.id].y =  obj.y;
+    users26[client.id].x =  obj.x;
+    users26[client.id].y =  obj.y;
   });
   client.on('disconnect', function(){
     client.broadcast.emit('user disconnected', client.id);
