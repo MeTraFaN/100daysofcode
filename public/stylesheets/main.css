@@ -1,3 +1,3 @@
 * {margin:0,padding:0}
-.wrapper {width: 1000; height: 700;}
+#wrapper {width: 1000; height: 700;}
 .circle{position: absolute;border-radius:50%;}
