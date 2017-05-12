@@ -42,18 +42,18 @@
               isMouseDown = true;
 	    });
             stage.addEventListener("mousemove", function(evt){
-              myFunction(evt);
+              myFunction(evt, ID);
 	    });
             MainCircle.addEventListener("mouseup", function(){
                isMouseDown = false;
             });
 	  }); 
       
-      function myFunction(evt){
+      function myFunction(evt, ID){
         if (isMouseDown){   
           MainCircle.style.left = evt.clientX - size/2 + "px";
           MainCircle.style.top= evt.clientY - size/2 + "px";
-          CreateTail( MainCircle.style.left,  MainCircle.style.top, color, size, MainCircle);
+          CreateTail( MainCircle.style.left,  MainCircle.style.top, color, size, ID);
           //socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
 	}
       }
@@ -88,7 +88,7 @@
         stage.removeChild(ThisCircle);
       });
 	    
-      function CreateTail(X,Y, color, size,parent){
+      function CreateTail(X,Y, color, size, ID){
         circle = document.createElement('div');
         circle.className = "circle opacityT"; 
         circle.style.backgroundColor = color;
@@ -96,7 +96,7 @@
         circle.style.height = size + "px";
         circle.style.left = X;
         circle.style.top =  Y;
-        
+        parent = document.getElementsByClassName(ID)[0];
         parent.appendChild(circle);
 	setTimeout(function(circle){
 		parent.removeChild(circle);
