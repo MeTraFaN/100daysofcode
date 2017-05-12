@@ -20,8 +20,6 @@
       var size;
       var ID;
       stage = document.getElementById('wrapper');
-          stage.style.width = window.innerWidth-50;
-          stage.style.height = window.innerHeight-50;
           socket.on('user connected', function(UserId){ 
             ID = UserId;
             color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
@@ -30,8 +28,8 @@
             circle.style.backgroundColor = color;
             circle.style.width = size;
             circle.style.hieght = size;
-            circle.style.left = RandomNumb(20,stage.style.width-50);
-            circle.style.top = RandomNumb(20,stage.style.height-50);
+            circle.style.left = RandomNumb(20,950);
+            circle.style.top = RandomNumb(20,650);
             circle.classList.add("circle");
             circle.classList.add(windows[UserId]);
             stage.addChild(circle);
