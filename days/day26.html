@@ -30,9 +30,9 @@
             circle.style.hieght = size;
             circle.style.left = RandomNumb(20,950);
             circle.style.top = RandomNumb(20,650);
-            circle.classList.add("circle");
+            circle.className("circle");
             circle.classList.add(window[UserId]);
-            stage.addChild(circle);
+            stage.appendChild(circle);
 	  }); 
       function RandomNumb(min, max){
         return Math.floor(Math.random() * (max - min) + min);
