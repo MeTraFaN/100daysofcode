@@ -1,8 +1,8 @@
 * {margin:0px ; padding:0px}
 #wrapper {background-color: lightblue; width: 1300px; height: 600px;}
 .circle{position: absolute;border-radius:50%;}
-.circle .circle {position:fixed; opacity: 1; transition: opacity 1s; }
-.circle .circle.opacityT {
+.circle {position:fixed; opacity: 1; transition: opacity 1s; }
+.circle.opacityT {
     animation: mymove 1s;
     animation-fill-mode: forwards;
  }
