@@ -96,7 +96,9 @@
         circle.style.left = X;
         circle.style.top =  Y;
         circle.className = "circle";
-        circle.classList.add("opacityT");
+	setTimeout(function(){
+	   circle.classList.add("opacityT");
+	},500);
 	
       }
             /*
