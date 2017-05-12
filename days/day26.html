@@ -26,10 +26,10 @@
             size = RandomNumb(10,30);
             circle = document.createElement('div');	
             circle.style.backgroundColor = color;
-            circle.style.width = size;
-            circle.style.hieght = size;
-            circle.style.left = RandomNumb(20,950);
-            circle.style.top = RandomNumb(20,650);
+            circle.style.width = size + "";
+            circle.style.hieght = size + "";
+            circle.style.left = RandomNumb(20,950) + "";
+            circle.style.top = RandomNumb(20,650) + "";
             circle.className = "circle";
             circle.classList.add(window[UserId]);
             stage.appendChild(circle);
