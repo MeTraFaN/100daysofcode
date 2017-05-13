@@ -64,7 +64,7 @@ io.on('connection', function(client) {
   });
   client.on('disconnect', function(){
     client.broadcast.emit('user disconnected', client.id);
-    //if( users26.length != 0) {delete users26[client.id];}
+    delete users26[client.id];
     delete users[client.id];
   });
 });
