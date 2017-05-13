@@ -59,13 +59,13 @@ io.on('connection', function(client) {
     client.emit('move done', ID, obj);
     users[client.id].x =  obj.x;
     users[client.id].y =  obj.y;
-    users26[client.id].x =  obj.x;
-    users26[client.id].y =  obj.y;
+    if( users26.length != 0) {users26[client.id].x =  obj.x;
+    users26[client.id].y =  obj.y;}
   });
   client.on('disconnect', function(){
     client.broadcast.emit('user disconnected', client.id);
     delete users26[client.id];
-    delete users[client.id];
+    if( users26.length != 0) {delete users[client.id];}
   });
 });
 
