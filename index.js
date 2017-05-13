@@ -33,15 +33,15 @@ var users26 = {};
 io.on('connection', function(client) {
   client.emit('users base', users, users26);
   client.emit('user connected', client.id);
-  //client.on('user done26', function(color, size, x, y){
-    //users26[client.id] = {
-     // color: color,
-     // size: size,
-     // x: x,
-     // y: y
-   // }
-   //client.broadcast.emit('user done26', x, y, color, size, client.id)
- // });
+  client.on('user done26', function(color, size, x, y){
+    users26[client.id] = {
+      color: color,
+      size: size,
+      x: x,
+      y: y
+    }
+   client.broadcast.emit('user done26', x, y, color, size, client.id)
+  });
   client.on('user done', function(coordx, coordy, ID, color, size){
     users[client.id] = {
       x: coordx,
