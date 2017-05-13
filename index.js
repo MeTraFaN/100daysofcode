@@ -33,15 +33,15 @@ var users26 = {};
 io.on('connection', function(client) {
   client.emit('users base', users, users26);
   client.emit('user connected', client.id);
-  client.on('user done26', function(color, size, x, y){
-    users26[client.id] = {
-      color: color,
-      size: size,
-      x: x,
-      y: y
-    }
-   client.broadcast.emit('user done26', x, y, color, size, client.id)
-  });
+  //client.on('user done26', function(color, size, x, y){
+    //users26[client.id] = {
+     // color: color,
+     // size: size,
+     // x: x,
+     // y: y
+   // }
+   //client.broadcast.emit('user done26', x, y, color, size, client.id)
+ // });
   client.on('user done', function(coordx, coordy, ID, color, size){
     users[client.id] = {
       x: coordx,
@@ -59,12 +59,12 @@ io.on('connection', function(client) {
     client.emit('move done', ID, obj);
     users[client.id].x =  obj.x;
     users[client.id].y =  obj.y;
-    if( users26.length != 0) {users26[client.id].x =  obj.x;
-    users26[client.id].y =  obj.y;}
+    //if( users26.length != 0) {users26[client.id].x =  obj.x;
+    //users26[client.id].y =  obj.y;}
   });
   client.on('disconnect', function(){
     client.broadcast.emit('user disconnected', client.id);
-    if( users26.length != 0) {delete users26[client.id];}
+    //if( users26.length != 0) {delete users26[client.id];}
     delete users[client.id];
   });
 });
