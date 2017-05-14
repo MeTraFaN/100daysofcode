@@ -24,6 +24,9 @@ app.get('/day25', function(req, res){
 app.get('/day26', function(req, res){
   res.sendFile(__dirname + '/days/day26.html');
 });
+app.get('/day28', function(req, res){
+  res.sendFile(__dirname + '/days/day28.html');
+});
 app.get('/main.css', function(req, res){
   res.sendFile(__dirname + '/public/stylesheets/main.css');
 });
