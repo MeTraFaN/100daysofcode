@@ -24,6 +24,7 @@
       var isMouseDown = false;
       body = document.getElementsByTagName('body')[0];
       stage = document.getElementById('wrapper');
+	    createjs.Touch.enable(stage);
 	    body.style.width =  window.innerWidth + "px";
 	    body.style.height = window.innerHeight + "px";
 	    stage.style.width =  window.innerWidth + "px";
@@ -46,12 +47,16 @@
             MainCircle.addEventListener("mousedown", function() {
               isMouseDown = true;
 	    });
-            stage.addEventListener("mousemove", function(evt){
-              myFunction(evt, ID);
-	    });
-            stage.addEventListener("mouseup", function(){
-               isMouseDown = false;
-            });
+            //stage.addEventListener("mousemove", function(evt){
+            //  myFunction(evt, ID);
+	   // });
+            //stage.addEventListener("mouseup", function(){
+            //   isMouseDown = false;
+            //});
+		stage.on("pressmove", function(evt) {			
+          MainCircle.style.left = evt.clientX - size/2 + "px";
+          MainCircle.style.top= evt.clientY - size/2 + "px";
+          CreateTail( MainCircle.style.left,  MainCircle.style.top, color, size, ID);
 	  }); 
       
       function myFunction(evt, ID){
