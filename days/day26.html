@@ -54,6 +54,7 @@
               isMouseDown = false;
             });
             MainCircle.addEventListener("touchmove", function(evt){
+	      evt.preventDefault();
               var touch = evt.targetTouches[0];
 	      MainCircle.style.left = touch.pageX  + "px";
               MainCircle.style.top= touch.pageY  + "px";
