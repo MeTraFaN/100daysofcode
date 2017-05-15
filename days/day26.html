@@ -39,8 +39,8 @@
             circle.style.backgroundColor = color;
             circle.style.width = size + "px"; 
             circle.style.height = size + "px";
-            circle.style.left = RandomNumb(20,950) + "px";
-            circle.style.top = RandomNumb(20,550) + "px";
+            circle.style.left = RandomNumb(20,window.innerWidth-20) + "px";
+            circle.style.top = RandomNumb(20,window.innerHeight-20) + "px";
             circle.className = "circle";
             circle.classList.add(UserId);
             socket.emit('user done26',  color, size, circle.style["left"], circle.style["top"]);
