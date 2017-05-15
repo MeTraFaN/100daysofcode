@@ -22,7 +22,10 @@
       var size;
       var ID;
       var isMouseDown = false;
+      body = document.getElementsByTagName('body')[0];
       stage = document.getElementById('wrapper');
+	    body.style.width =  window.innerWidth + "px";
+	    body.style.height = window.innerHeight + "px";
 	    stage.style.width =  window.innerWidth + "px";
 	    stage.style.height = window.innerHeight + "px";
           socket.on('user connected', function(UserId){ 
