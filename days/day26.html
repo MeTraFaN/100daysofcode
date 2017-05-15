@@ -44,21 +44,21 @@
             circle.classList.add(UserId);
             socket.emit('user done26',  color, size, circle.style["left"], circle.style["top"]);
             MainCircle = document.getElementsByClassName(ID)[0];
-           // MainCircle.addEventListener("mousedown", function() {
-              //isMouseDown = true;
-		    stage.on("pressmove", function(evt) {			
-                       MainCircle.style.left = evt.clientX - size/2 + "px";
-                       MainCircle.style.top= evt.clientY - size/2 + "px";
-                       CreateTail( MainCircle.style.left,  MainCircle.style.top, color, size, ID);
-	            }); 
+            MainCircle.addEventListener("mousedown", function() {
+              isMouseDown = true;
 	    });
-            //stage.addEventListener("mousemove", function(evt){
-            //  myFunction(evt, ID);
-	   // });
-            //stage.addEventListener("mouseup", function(){
-            //   isMouseDown = false;
-            //});
-		
+            stage.addEventListener("mousemove", function(evt){
+              myFunction(evt, ID);
+	    });
+            stage.addEventListener("mouseup", function(){
+              isMouseDown = false;
+            });
+            MainCircle.addEventListener("touchmove", function(evt){
+              var touch = evt.targetTouches[0];
+	      MainCircle.style.left = touch.pageX  + "px";
+              MainCircle.style.top= touch.pageY  + "px";
+              CreateTail( MainCircle.style.left,  MainCircle.style.top, color, size, ID);
+	    });
       
       function myFunction(evt, ID){
         if (isMouseDown){   
