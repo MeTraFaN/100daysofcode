@@ -80,7 +80,8 @@
         parent.appendChild(SubmitDiv);
       };
 	
-      socket.on('user connected30', function(UserId, boardname, board30){
+      socket.on('user connected30', function(UserId, boardname, board30, client){
+	      console.log(client);
 	      console.log(board30);
 	  Body = document.querySelector('body');
 	  DialogWindow = document.getElementsByClassName('DialogWindow')[0];
@@ -102,7 +103,7 @@
             currenty = window[UserId].y;
             stage.addChild(window[UserId]);
             createjs.Ticker.addEventListener("tick", onTickHandler);
-            socket.emit('user done30',  window[UserId].x,  window[UserId].y, color, size, boardname); 
+            //socket.emit('user done30',  window[UserId].x,  window[UserId].y, color, size, boardname); 
             window[UserId].on("pressmove", function(evt) {
               CreateTail(evt.stageX, evt.stageY, color, size); 
               evt.target.x = evt.stageX;
