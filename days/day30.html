@@ -9,6 +9,7 @@
     <title>Disappearing Tail</title>
   </head> 
   <body>
+    <canvas id="canvas" style="visibility:hidden"></canvas>
     <div class="DialogWindow"> 
       <div id="parent">
       	<div class="firstbutton navigate">
@@ -26,6 +27,8 @@
       var parent = document.getElementById('parent');
       var InputDiv;
       var SubmitDiv;
+      var color;
+      var size;
       create.addEventListener("mousedown", function(){
         ChangeParent("create")
       });
@@ -68,23 +71,17 @@
 	parent.appendChild(InputDiv);
         parent.appendChild(SubmitDiv);
       };
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	/*    
-      var color;
-      var size;
+	
+      socket.on('user connected30', function(UserId, boardname){
+	  Body = document.getElementByTagName('body')[0];
+	  Window = document.getElementById('DialogWindow');
+	  Body.removeChild(Window);
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
+	  canvas.style.visibility = "visible";
           createjs.Touch.enable(stage);
           canvas.width = window.innerWidth-50;
           canvas.height = window.innerHeight-50;
-          socket.on('user connected', function(UserId){ 
             ID = UserId;
             color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
             size = RandomNumb(10,30);
@@ -104,7 +101,7 @@
               socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
             });
           });
- 
+ /*
       socket.on('user done24', function(X, Y, ID, color, size){
         CreateSprite(X,Y, color, size, ID);
       });
