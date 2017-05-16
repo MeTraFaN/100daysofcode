@@ -113,6 +113,8 @@
         CreateSprite(X,Y, color, size, ID);
       });
 
+	socket.on('test', function(qwe){console.log(qwe);});    
+	    
       socket.on('board errore', function(boardname){
         ShowErrore(boardname, " не создана");
       }); 
