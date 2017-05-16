@@ -23,8 +23,8 @@
       var socket = io();
       var create = document.getElementById('create');
       var join = document.getElementById('join');
-      create.addEventListener("mouseup", ChangeParent(this));
-      join.addEventListener("mouseup", ChangeParent(this));
+      create.addEventListener("mousedown", ChangeParent("create"));
+      join.addEventListener("mousedown", ChangeParent("join"));
       function ChangeParent(value){
         console.log(value);
         RoomInput = document.createElement('input');
