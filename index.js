@@ -36,8 +36,21 @@ app.get('/main.css', function(req, res){
 
 var users = {};
 var users26 = {};
+var board30 = {};
 io.on('connection', function(client) {
   client.emit('users base', users, users26);
+  client.on('board create', function(boardname){
+    board30[boardname].Id = client.id;
+    client.emit('user connected30', client.id, boardname); 
+  });
+  client.on('board join', function(boardname){
+      if (boardname in board30){
+        socket.emit('user connected30', client.id, boardname);
+      }
+      else {
+        socket.emit('board errore', boardname)
+      }      
+  });
   client.emit('user connected', client.id);
   client.on('user done26', function(color, size, x, y){
     users26[client.id] = {
