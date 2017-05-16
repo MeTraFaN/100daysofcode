@@ -34,3 +34,4 @@ body {overflow: hidden;}
 .inputdiv {width:119px}
 .submitdiv {width:119px}
 .navigate > * { margin: 7px 0px;}
+#canvas {border: solid 1px black; background-color: lightblue;}
