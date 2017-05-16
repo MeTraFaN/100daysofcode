@@ -108,8 +108,9 @@
               //socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
             });
           });
-      socket.on('test', function(board30){
-	      console.log(board30);
+      socket.on('user done30', function(X, Y, ID, color, size, board30){
+        console.log(board30);
+        CreateSprite(X,Y, color, size, ID);
       });
 
       socket.on('board errore', function(boardname){
@@ -127,9 +128,6 @@
         setTimeout(function(){ Body.removeChild(Element)},5000);
       };
 	    /*
-      socket.on('user done24', function(X, Y, ID, color, size){
-        CreateSprite(X,Y, color, size, ID);
-      });
       
       socket.on('sprite change coord25', function(obj, color, size){ 
         CreateTail(obj.x, obj.y, color, size);    
@@ -160,7 +158,7 @@
       };
       function RandomNumb(min, max){
         return Math.floor(Math.random() * (max - min) + min);
-      }/*
+      }
     
      function CreateSprite(X,Y, color, size, Id){
         window[Id] = new createjs.Shape();
@@ -170,7 +168,6 @@
         window[Id].y = Y;
       createjs.Ticker.addEventListener("tick", onTickHandler);
       };
-	*/
 	    
       function CreateTail(X,Y, color, size){
         circle = new createjs.Shape();
