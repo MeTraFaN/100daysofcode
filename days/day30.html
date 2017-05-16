@@ -41,7 +41,6 @@
 	  SubmitButton.id = "SubmitCreate";
           SubmitButton.innerText = "Создать";
           SubmitButton.addEventListener("mousedown", function(evt){
-             console.log('for create');
              socket.emit("board create", RoomInput.value);
 	  });
 	}
@@ -50,7 +49,6 @@
 	  SubmitButton.id = "SubmitJoin";
           SubmitButton.innerText = "Присоединиться";
           SubmitButton.addEventListener("mousedown", function(evt){
-             console.log('for join');
              socket.emit("board join", RoomInput.value);
 	  });
 	}
