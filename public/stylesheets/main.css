@@ -7,12 +7,29 @@ body {overflow: hidden;}
     animation: mymove 1s;
     animation-fill-mode: forwards;
  }
-.DialogWindow {position:absolute; left:35%; top:35%; width:30%; height:30%; background-color: lightblue}
-#parent {padding: 33.3%;  background-color: yellow;}
-#create, #join {float:left;}
 @keyframes mymove {
     0%   {opacity: 1;
     visibility: visible;}
     100% {opacity: 0;
     visibility: hidden;}
 }
+
+
+.DialogWindow {
+    position: absolute;
+    width: 290px;
+    height: 200px;
+    left: 50%;
+    top: 50%;
+    margin-left: -156px;
+    margin-top: -100px;
+    background: #fc0; 
+    border: solid 1px black; 
+    padding: 10px; 
+    overflow: auto; 
+    background-color: lightblue}
+#parent {margin: 30px;  background-color: yellow; height: 70%;}
+.navigate {	height: 20%;  margin: auto;}
+.firstbutton {width: 110px;}
+.secondbutton{width: 168px;}
+#create, #join { margin: 3.5px 0px;}
