@@ -31,4 +31,6 @@ body {overflow: hidden;}
 .navigate {	height: 25%;  margin: auto;}
 .firstbutton {width: 110px;}
 .secondbutton{width: 168px;}
+.inputdiv {width:120px}
+.submitdiv {width:83px}
 .navigate > * { margin: 7px 0px;}
