@@ -80,9 +80,8 @@
         parent.appendChild(SubmitDiv);
       };
 	
-      socket.on('user connected30', function(UserId, boardname, board30, client){
-	      console.log(client);
-	      console.log(board30);
+      socket.on('user connected30', function(UserId, boardname, board30){
+	  console.log(board30);
 	  Body = document.querySelector('body');
 	  DialogWindow = document.getElementsByClassName('DialogWindow')[0];
 	  Body.removeChild(DialogWindow);
