@@ -35,3 +35,13 @@ body {overflow: hidden;}
 .submitdiv {width:119px}
 .navigate > * { margin: 7px 0px;}
 #canvas {border: solid 1px black; background-color: lightblue;}
+.ErroreWindow  {position: absolute;
+    width: 170px;
+    left: 50%;
+    top: 10%;
+    margin-left: -95px;
+    margin-top: -25px;
+    border: solid 1px black;
+    padding: 10px;
+    background-color: #FA8072;
+}
