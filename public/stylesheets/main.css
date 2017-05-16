@@ -7,7 +7,8 @@ body {overflow: hidden;}
     animation: mymove 1s;
     animation-fill-mode: forwards;
  }
- 
+.DialogWindow {position:absolute; left:35%; top:35%; width:30%; height:30%; background-color: lightblue}
+#parent {padding: 33.3%;  background-color: yellow;}
 @keyframes mymove {
     0%   {opacity: 1;
     visibility: visible;}
