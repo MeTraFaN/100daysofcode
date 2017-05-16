@@ -40,8 +40,8 @@ var board30 = {};
 io.on('connection', function(client) {
   client.emit('users base', users, users26);
   client.on('board create', function(boardname){
-    //board30[boardname] = {Clients: client.id};
-    client.emit('user connected30', client.id, boardname, board30, client); 
+    board30[boardname] = {Clients: client.id};
+    client.emit('user connected30', client.id, boardname, board30); 
   });
   client.on('board join', function(boardname){
       if (boardname in board30){
