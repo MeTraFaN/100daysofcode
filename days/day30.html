@@ -102,12 +102,12 @@
             currenty = window[UserId].y;
             stage.addChild(window[UserId]);
             createjs.Ticker.addEventListener("tick", onTickHandler);
-            socket.emit('user done',  window[UserId].x,  window[UserId].y, ID, color, size); 
+            socket.emit('user done30',  window[UserId].x,  window[UserId].y, color, size, boardname); 
             window[UserId].on("pressmove", function(evt) {
               CreateTail(evt.stageX, evt.stageY, color, size); 
               evt.target.x = evt.stageX;
               evt.target.y = evt.stageY;   
-              socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
+              //socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
             });
           });
  /*
@@ -154,7 +154,8 @@
         window[Id].y = Y;
       createjs.Ticker.addEventListener("tick", onTickHandler);
       };
-			
+	*/
+	    
       function CreateTail(X,Y, color, size){
         circle = new createjs.Shape();
         circle.graphics.beginFill(color).drawCircle(0, 0, size-2);
@@ -168,7 +169,7 @@
         .to({scaleX: 0.66667, scaleY: 0.66667, alpha:0.25}, 150)
         .to({scaleX: 0.5, scaleY: 0.5, alpha:0}, 150);
         createjs.Ticker.addEventListener("tick", onTickHandler);
-      }*/
+      }
     </script>
   </body>
 </html>
