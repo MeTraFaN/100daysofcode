@@ -60,7 +60,7 @@ io.on('connection', function(client) {
     }   
   });
   client.on('user done30', function (x, y, color, size, boardname){
-    board30[boardname].Clients = {
+    board30[boardname] = {
       [client.id]: {
                     x: x, 
                     y: y,
