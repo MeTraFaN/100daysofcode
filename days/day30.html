@@ -103,7 +103,7 @@
             currenty = window[UserId].y;
             stage.addChild(window[UserId]);
             createjs.Ticker.addEventListener("tick", onTickHandler);
-            //socket.emit('user done30',  window[UserId].x,  window[UserId].y, color, size, boardname); 
+            socket.emit('user done30',  window[UserId].x,  window[UserId].y, color, size, boardname); 
             window[UserId].on("pressmove", function(evt) {
               CreateTail(evt.stageX, evt.stageY, color, size); 
               evt.target.x = evt.stageX;
