@@ -39,6 +39,7 @@
 	if (value == "create") {
 	  RoomInput.id = "InputCreate";
 	  SubmitButton.id = "SubmitCreate";
+          SubmitButton.innerText = "Создать";
           SubmitButton.addEventListener("submit", function(evt){
              evt.preventDefault();
              console.log('for create');
@@ -48,16 +49,15 @@
         else {
 	  RoomInput.id = "InputJoin";
 	  SubmitButton.id = "SubmitJoin";
+          SubmitButton.innerText = "Присоединиться";
           SubmitButton.addEventListener("submit", function(evt){
              evt.preventDefault();
              console.log('for join');
              socket.emit("board join", RoomInput.value);
 	  });
 	}
-	      
         RoomInput.style.width = "115px";
-        SubmitButton.style.width = "83px";
-        SubmitButton.innerText = "Отправить";
+	SubmitButton.style.width = "119px";     
         if (InputDiv != null){
           parent.removeChild(InputDiv);
           parent.removeChild(SubmitDiv);
