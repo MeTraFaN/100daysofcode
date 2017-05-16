@@ -33,7 +33,6 @@
         ChangeParent("join")
       });
       function ChangeParent(value){
-        console.log(value);
         var RoomInput = document.createElement('input');
 	RoomInput.placeholder = "Enter room number";
         var SubmitButton = document.createElement('button');
@@ -42,6 +41,7 @@
 	  SubmitButton.id = "SubmitCreate";
           SubmitButton.addEventListener("submit", function(evt){
              evt.preventDefault();
+             console.log('for create');
              socket.emit("board create", RoomInput.value);
 	  });
 	}
@@ -50,6 +50,7 @@
 	  SubmitButton.id = "SubmitJoin";
           SubmitButton.addEventListener("submit", function(evt){
              evt.preventDefault();
+             console.log('for join');
              socket.emit("board join", RoomInput.value);
 	  });
 	}
