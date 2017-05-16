@@ -41,7 +41,8 @@ io.on('connection', function(client) {
   client.emit('users base', users, users26);
   client.on('board create', function(boardname){
     client.join(boardname);
-    board30 = {[boardname]: client.id};
+    board30[boardname] = {Clients: client.id};
+    //board30 = {[boardname]: client.id};
     client.emit('user connected30', client.id, boardname); 
   });
   client.on('board join', function(boardname){
@@ -49,8 +50,8 @@ io.on('connection', function(client) {
     if (boardname in board30){
         counter +=1;
         client.join(boardname);
-        board30 = {[boardname]: client.id};
-        //board30[boardname] = {Clients: client.id};
+        //board30 = {[boardname]: client.id};
+        board30[boardname] = {Clients: client.id};
         client.emit('user connected30', client.id, boardname);
       }
     if (counter == 0){
