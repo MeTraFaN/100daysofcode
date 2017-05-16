@@ -32,9 +32,9 @@
       });
       function ChangeParent(value){
         console.log(value);
-        RoomInput = document.createElement('input');
+        var RoomInput = document.createElement('input');
 	RoomInput.placeholder = "Enter room number";
-        SubmitButton = document.createElement('button');
+        var SubmitButton = document.createElement('button');
 	if (value == "create") {
 	  RoomInput.Id = "InputCreate";
 	  SubmitButton.Id = "SubmitCreate";
