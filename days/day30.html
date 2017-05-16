@@ -24,6 +24,7 @@
       var socket = io();
       var create = document.getElementById('create');
       var join = document.getElementById('join');
+      var Body = document.querySelector('body');
       var parent = document.getElementById('parent');
       var InputDiv;
       var SubmitDiv;
@@ -46,7 +47,7 @@
           SubmitButton.addEventListener("mousedown", function(evt){
              if (RoomInput.value == "")
 		     console.log('clear');
-	       // ShowErrore("Введите название доски");
+	        ShowErrore("Введите название доски");
              else 
              socket.emit("board create", RoomInput.value);
 	  });
@@ -58,7 +59,7 @@
           SubmitButton.addEventListener("mousedown", function(evt){
              if (RoomInput.value == "")
 		      console.log('clear');
-	       // ShowErrore("Введите название доски");
+	        ShowErrore("Введите название доски");
              else 
 		socket.emit("board join", RoomInput.value);
 	  });
@@ -82,7 +83,6 @@
 	
       socket.on('user connected30', function(UserId, boardname, board30){
 	  console.log(board30[boardname].Clients);
-	  Body = document.querySelector('body');
 	  DialogWindow = document.getElementsByClassName('DialogWindow')[0];
 	  Body.removeChild(DialogWindow);
           stage = new createjs.Stage("canvas");
@@ -113,7 +113,18 @@
       socket.on('test', function(board30){
 	      console.log(board30);
       });
- /*
+
+      socket.on('board errore', function(boardname){
+        ShowErrore(boardname, " не создана");
+      }); 
+	    
+      function ShowErrore(first, second){
+        ErroreWindow = document.createElement('div');
+	ErroreWindow.ClassName = "ErroreWindow";
+        Body.addChild(ErroreWindow);
+	setTimeout(function(){ Body.removeChild(ErroreWindow)},5000);
+      }
+	    /*
       socket.on('user done24', function(X, Y, ID, color, size){
         CreateSprite(X,Y, color, size, ID);
       });
