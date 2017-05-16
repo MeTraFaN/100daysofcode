@@ -53,7 +53,7 @@ io.on('connection', function(client) {
         //board30[boardname] = {Clients: client.id};
         client.emit('user connected30', client.id, boardname, board30);
       }
-    if (counter = 0){
+    if (counter == 0){
         client.emit('test', "yes, errore");
         client.emit('board errore', boardname) 
     }   
