@@ -45,7 +45,8 @@ io.on('connection', function(client) {
   });
   client.on('board join', function(boardname){
       if (boardname in board30){
-        socket.emit('user connected30', client.id, boardname);
+        board30[boardname] = {Id: client.id};
+        socket.emit('user connected30', client.id, boardname, board30);
       }
       else {
         socket.emit('board errore', boardname)
