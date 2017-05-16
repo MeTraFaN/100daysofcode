@@ -52,15 +52,17 @@ io.on('connection', function(client) {
         socket.emit('board errore', boardname)
       }      
   });
- /* client.on('user done30', function (x, y, color, size, boardname){
-    board30[boardname].Clients[client.id] = {
-      x: x,
-      y: y,
-      color: color,
-      size: size
+  client.on('user done30', function (x, y, color, size, boardname){
+    board30[boardname].Clients = {
+      [client.id]: {
+                    x: x,
+                    y: y,
+                    color: color,
+                    size: size
+      }
     };
     
-  });*/
+  });
             
             
   client.emit('user connected', client.id);
