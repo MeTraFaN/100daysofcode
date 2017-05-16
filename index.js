@@ -43,36 +43,32 @@ io.on('connection', function(client) {
     client.join(boardname);
     //board30[boardname] = {Clients: client.id};
     //board30[boardname] = {[client.id]:  ""};
-    //board30[boardname] =  { [client.id]: {x:"", y:"", color:"",size:""}};
-    window[boardname] = {[client.id]: {x:"", y:"", color:"",size:""}};
-    client.emit('user connected30', client.id, boardname, window[boardname]); 
+    board30[boardname] =  { [client.id]: {x:"", y:"", color:"",size:""}};
+    client.emit('user connected30', client.id, boardname, board30); 
   });
   client.on('board join', function(boardname){
     counter = 0;
-    if (window[boardname] != null){
-    //if (boardname in board30){
+    if (boardname in board30){
         counter +=1;
         client.join(boardname);
-        window[boardname]= {[client.id]: {x:"", y:"", color:"",size:""}};
-        //board30[boardname] = {[client.id]: ""};
-        client.emit('user connected30', client.id, boardname,  window[boardname]);
+
+        board30[boardname] = {[client.id]: ""};
+        client.emit('user connected30', client.id, boardname,  board30);
       }
     if (counter == 0){
         client.emit('board errore', boardname) 
     }   
   });
   client.on('user done30', function (x, y, color, size, boardname){
-    window[boardname] = {[client.id]: {x:x, y:y, color:color,size:size}};
-    
-    /*board30[boardname] = {
+    board30[boardname] = {
       [client.id]: {
                     x: x, 
                     y: y,
                     color: color,
                     size: size
       }
-    };*/
-    client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size, window[boardname]);
+    };
+    client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size, board30);
   });
             
             
