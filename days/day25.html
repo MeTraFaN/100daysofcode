@@ -55,6 +55,7 @@
       }); 
       
       socket.on('users base', function(users){
+	      console.log(users);
           for(user in users){
               CreateSprite(users[user].x, users[user].y, users[user].color, users[user].size, user);
           }       
