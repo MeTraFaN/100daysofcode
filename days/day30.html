@@ -30,7 +30,21 @@
         RoomInput = document.createElement('input');
 	RoomInput.placeholder = "Enter room number";
         SubmitButton = document.createElement('button');
-	
+	if (value == "create") {
+	  RoomInput.Id = "InputCreate";
+	  SubmitButton.Id = "SubmitCreate";
+          SubmitButton.addEventListener("submit", function(evt){
+             evt.preventDefault();
+             socket.emit("board create", RoomInput.value);
+	  });
+	}
+        else {
+	  RoomInput.Id = "InputJoin";
+	  SubmitButton.Id = "SubmitJoin";
+          SubmitButton.addEventListener("submit", function(evt){
+             evt.preventDefault();
+             socket.emit("board create", RoomInput.value);
+	}
       };
 	    
 	    
