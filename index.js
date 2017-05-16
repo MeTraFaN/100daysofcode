@@ -43,7 +43,7 @@ io.on('connection', function(client) {
     client.join(boardname);
     //board30[boardname] = {Clients: client.id};
     //board30[boardname] = {[client.id]:  ""};
-    board30[boardname].Clients[client.id] =  {"": ""};
+    board30[boardname].Clients[client.id] =  client.id;
     client.emit('user connected30', client.id, boardname, board30); 
   });
   client.on('board join', function(boardname){
