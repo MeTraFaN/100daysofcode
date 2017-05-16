@@ -53,6 +53,7 @@ io.on('connection', function(client) {
         client.join(boardname);
         board30[boardname] = {[client.id]: ""};
         client.emit('user connected30', client.id, boardname, board30);
+        client.broadcast.emit('test', board30);
       }
     if (counter == 0){
         client.emit('board errore', boardname) 
@@ -67,7 +68,6 @@ io.on('connection', function(client) {
                     size: size
       }
     };
-    client.emit('test',board30);
     client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size, board30);
   });
             
