@@ -81,7 +81,7 @@
       };
 	
       socket.on('user connected30', function(UserId, boardname, board30){
-	  console.log(board30);
+	  console.log(board30[boardname].Clients);
 	  Body = document.querySelector('body');
 	  DialogWindow = document.getElementsByClassName('DialogWindow')[0];
 	  Body.removeChild(DialogWindow);
