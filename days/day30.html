@@ -110,6 +110,9 @@
               //socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
             });
           });
+      socket.on('test', function(board30){
+	      console.log(board30);
+      });
  /*
       socket.on('user done24', function(X, Y, ID, color, size){
         CreateSprite(X,Y, color, size, ID);
