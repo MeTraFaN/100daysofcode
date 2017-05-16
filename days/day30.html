@@ -113,7 +113,6 @@
       });
 
       socket.on('board errore', function(boardname){
-	      alert('errore');
         ShowErrore(boardname, " не создана");
       }); 
 	    
@@ -121,7 +120,6 @@
         ErroreWindow = document.createElement('div');
 	ErroreWindow.className = "ErroreWindow";
 	ErroreWindow.innerHTML = first + second;
-	      console.log(Body);
         Body.appendChild(ErroreWindow);
 	setTimeout(function(){ Body.removeChild(ErroreWindow)},5000);
       }
