@@ -68,7 +68,7 @@ io.on('connection', function(client) {
       }
     };
     client.emit('test',board30);
-    client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size, boardname);
+    client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size, board30);
   });
             
             
