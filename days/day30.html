@@ -121,8 +121,11 @@
 	ErroreWindow.className = "ErroreWindow";
 	ErroreWindow.innerHTML = first + second;
         Body.appendChild(ErroreWindow);
-	setTimeout(function(){ Body.removeChild(ErroreWindow)},5000);
+	deleteElement(ErroreWindow);
       }
+      function deleteElement(Element){
+        setTimeout(function(){ Body.removeChild(Element)},5000);
+      };
 	    /*
       socket.on('user done24', function(X, Y, ID, color, size){
         CreateSprite(X,Y, color, size, ID);
