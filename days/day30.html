@@ -83,8 +83,8 @@
       socket.on('user connected30', function(UserId, boardname, board30){
 	      console.log(board30);
 	  Body = document.querySelector('body');
-	  Window = document.getElementById('DialogWindow');
-	  Body.removeChild(Window);
+	  DialogWindow = document.getElementsByClassName('DialogWindow')[0];
+	  Body.removeChild(DialogWindow);
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
 	  canvas.style.visibility = "visible";
