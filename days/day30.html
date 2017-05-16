@@ -118,8 +118,8 @@
 	    
       function ShowErrore(first, second){
         ErroreWindow = document.createElement('div');
+	ErroreWindow.className = "ErroreWindow";
 	ErroreWindow.innerHTML = first + second;
-	ErroreWindow.сlassName = "ErroreWindow";
 	      console.log(Body);
         Body.appendChild(ErroreWindow);
 	setTimeout(function(){ Body.removeChild(ErroreWindow)},5000);
