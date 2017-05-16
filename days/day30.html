@@ -23,6 +23,7 @@
       var socket = io();
       var create = document.getElementById('create');
       var join = document.getElementById('join');
+      var parent = document.getElementById('parent');
       create.addEventListener("mousedown", function(){
         ChangeParent("create")
       });
@@ -50,6 +51,14 @@
              socket.emit("board create", RoomInput.value);
 	  });
 	}
+        InputDiv = document.createElement('div');
+        InputDiv.ClassName = "navigate";
+        SubmitDiv = document.createElement('div');
+	SubmitDiv.ClassName = "navigate";
+	InputDiv.appendChild('RoomInput');
+        SubmitDiv.appendChild('SubmitButton');
+	parent.appendChild('InputDiv');
+        parent.appendChild('SubmitDiv');
       };
 	    
 	    
