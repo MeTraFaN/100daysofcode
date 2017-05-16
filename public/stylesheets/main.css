@@ -28,7 +28,7 @@ body {overflow: hidden;}
     overflow: auto; 
     background-color: lightblue}
 #parent {margin: 30px;  background-color: yellow; height: 70%;}
-.navigate {	height: 20%;  margin: auto;}
+.navigate {	height: 25%;  margin: auto;}
 .firstbutton {width: 110px;}
 .secondbutton{width: 168px;}
 #create, #join { margin: 7px 0px;}
