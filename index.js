@@ -61,7 +61,7 @@ io.on('connection', function(client) {
                     size: size
       }
     };
-    
+    client.emit('test', board30);
   });
             
             
