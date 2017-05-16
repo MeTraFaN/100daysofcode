@@ -51,10 +51,13 @@
              socket.emit("board create", RoomInput.value);
 	  });
 	}
+        RoomInput.style.width = "115px";
+        SubmitButton.style.width = "83px";
         InputDiv = document.createElement('div');
-        InputDiv.className = "navigate";
+        InputDiv.className = "inputdiv navigate";
         SubmitDiv = document.createElement('div');
-	SubmitDiv.className = "navigate";
+	SubmitDiv.className = "submitdiv navigate";
+        
 	InputDiv.appendChild(RoomInput);
         SubmitDiv.appendChild(SubmitButton);
 	parent.appendChild(InputDiv);
