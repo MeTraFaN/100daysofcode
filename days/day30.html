@@ -132,7 +132,7 @@
       socket.on('user disconnected', function(UserId){
         stage.removeChild(window[UserId]);
       });
-      
+      */
       function onTickHandler(evt) {   
           stage.update();
         };
@@ -141,7 +141,7 @@
       function onResize() {
         canvas.width = window.innerWidth-50;
         canvas.height = window.innerHeight-50;
-      };*/
+      };
       function RandomNumb(min, max){
         return Math.floor(Math.random() * (max - min) + min);
       }/*
