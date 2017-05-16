@@ -51,10 +51,11 @@ io.on('connection', function(client) {
         client.join(boardname);
         client.emit('test', "yes");
         //board30[boardname] = {Clients: client.id};
-        socket.emit('user connected30', client.id, boardname, board30);
+        client.emit('user connected30', client.id, boardname, board30);
       }
-    if (counter = 0)
-        socket.emit('board errore', boardname)    
+    if (counter = 0){
+        client.emit('test', "yes, errore");
+        client.emit('board errore', boardname)    
   });
   client.on('user done30', function (x, y, color, size, boardname){
     board30[boardname].Clients = {
