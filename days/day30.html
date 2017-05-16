@@ -12,7 +12,7 @@
     <div class="DialogWindow"> 
       <div id="parent">
       	<div class="firstbutton navigate">
-       	 	<button id="create"> Создать доску </button>
+       	    <button id="create"> Создать доску </button>
        	</div>
        	<div class="secondbutton navigate">
             <button id="join"> Присоединиться к доске </button>
@@ -21,6 +21,26 @@
     </div>
     <script >
       var socket = io();
+      var create = document.getElementById('create');
+      var join = document.getElementById('join');
+      create.addEventListener("mouseup", ChangeParent(this));
+      join.addEventListener("mouseup", ChangeParent(this));
+      function ChangeParent(value){
+        console.log(value);
+        RoomInput = document.createElement('input');
+	RoomInput.placeholder = "Enter room number";
+        SubmitButton = document.createElement('button');
+	
+      };
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
       var color;
       var size;
           stage = new createjs.Stage("canvas");
