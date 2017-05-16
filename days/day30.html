@@ -80,8 +80,9 @@
         parent.appendChild(SubmitDiv);
       };
 	
-      socket.on('user connected30', function(UserId, boardname){
-	  Body = document.getElementByTagName('body')[0];
+      socket.on('user connected30', function(UserId, boardname, board30){
+	      console.log(board30);
+	  Body = document.querySelector('body');
 	  Window = document.getElementById('DialogWindow');
 	  Body.removeChild(Window);
           stage = new createjs.Stage("canvas");
