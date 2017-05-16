@@ -41,18 +41,18 @@ io.on('connection', function(client) {
   client.emit('users base', users, users26);
   client.on('board create', function(boardname){
     board30[boardname] = {Clients: client.id};
-    client.emit('user connected30', client.id, boardname, board30, client); 
+    client.emit('user connected30', client.id, boardname, board30); 
   });
   client.on('board join', function(boardname){
       if (boardname in board30){
-        //board30[boardname] = {Clients: client.id};
+        board30[boardname] = {Clients: client.id};
         socket.emit('user connected30', client.id, boardname, board30);
       }
       else {
         socket.emit('board errore', boardname)
       }      
   });
-  /*client.on('user done30', function (x, y, color, size, boardname){
+  client.on('user done30', function (x, y, color, size, boardname){
     board30[boardname].[client.id] = {
       x: x,
       y: y,
@@ -60,7 +60,7 @@ io.on('connection', function(client) {
       size: size
     };
     
-  });*/
+  });
             
             
   client.emit('user connected', client.id);
