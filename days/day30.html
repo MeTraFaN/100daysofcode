@@ -36,25 +36,25 @@
 	RoomInput.placeholder = "Enter room number";
         var SubmitButton = document.createElement('button');
 	if (value == "create") {
-	  RoomInput.Id = "InputCreate";
-	  SubmitButton.Id = "SubmitCreate";
+	  RoomInput.id = "InputCreate";
+	  SubmitButton.id = "SubmitCreate";
           SubmitButton.addEventListener("submit", function(evt){
              evt.preventDefault();
              socket.emit("board create", RoomInput.value);
 	  });
 	}
         else {
-	  RoomInput.Id = "InputJoin";
-	  SubmitButton.Id = "SubmitJoin";
+	  RoomInput.id = "InputJoin";
+	  SubmitButton.id = "SubmitJoin";
           SubmitButton.addEventListener("submit", function(evt){
              evt.preventDefault();
              socket.emit("board create", RoomInput.value);
 	  });
 	}
         InputDiv = document.createElement('div');
-        InputDiv.ClassName = "navigate";
+        InputDiv.className = "navigate";
         SubmitDiv = document.createElement('div');
-	SubmitDiv.ClassName = "navigate";
+	SubmitDiv.className = "navigate";
 	InputDiv.appendChild(RoomInput);
         SubmitDiv.appendChild(SubmitButton);
 	parent.appendChild(InputDiv);
