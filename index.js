@@ -40,23 +40,22 @@ var board30 = {};
 io.on('connection', function(client) {
   client.emit('users base', users, users26);
   client.on('board create', function(boardname){
-    client.join(boardname);
+    if (boardname in board30){
+      client.emit('board errore', boardname, " уже занята"
+    else{
+      client.join(boardname);
     //board30[boardname] = {Clients: client.id};
     //board30[boardname] = {[client.id]:  ""};
-    board30[boardname] =  { [client.id]: {x:"", y:"", color:"",size:""}};
-    client.emit('user connected30', client.id, boardname, board30); 
+    //board30[boardname] =  { [client.id]: {x:"", y:"", color:"",size:""}};
+      client.emit('user connected30', client.id, boardname);}
   });
   client.on('board join', function(boardname){
-    counter = 0;
     if (boardname in board30){
-        counter +=1;
         client.join(boardname);
-
-        board30[boardname] = {[client.id]: ""};
-        client.emit('user connected30', client.id, boardname,  board30);
+        client.emit('user connected30', client.id, boardname);
       }
-    if (counter == 0){
-        client.emit('board errore', boardname) 
+    else{
+        client.emit('board errore', boardname, " не создана") 
     }   
   });
   client.on('user done30', function (x, y, color, size, boardname){
