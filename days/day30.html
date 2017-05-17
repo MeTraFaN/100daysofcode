@@ -80,7 +80,6 @@
       };
 	
       socket.on('user connected30', function(UserId, boardname, board30){
-	  console.log(board30);
 	  DialogWindow = document.getElementsByClassName('DialogWindow')[0];
 	  Body.removeChild(DialogWindow);
           stage = new createjs.Stage("canvas");
@@ -115,8 +114,8 @@
 
 	socket.on('test', function(qwe){console.log(qwe);});    
 	    
-      socket.on('board errore', function(boardname){
-        ShowErrore(boardname, " не создана");
+      socket.on('board errore', function(boardname, massage){
+        ShowErrore(boardname, massage);
       }); 
 	    
       function ShowErrore(first, second){
