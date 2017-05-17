@@ -1,4 +1,4 @@
-body {overflow: hidden;}
+body {padding:0px; margin:0px; overflow: hidden;}
 #wrapper {background-color: lightblue; width: 1300px; height: 600px;}
 .circle{position: absolute;border-radius:50%;}
 .circle .circle {position:fixed; opacity: 1;}
