@@ -41,8 +41,8 @@
 	RoomInput.placeholder = "Enter room number";
         var SubmitButton = document.createElement('button');
 	if (value == "create") {
-          create.setAttribute("disabled");
-          join.setAttribute("enabled");
+          create.setAttribute("disabled",true);
+          join.setAttribute("enabled",true);
 	  RoomInput.id = "InputCreate";
 	  SubmitButton.id = "SubmitCreate";
           SubmitButton.innerText = "Создать";
@@ -54,8 +54,8 @@
 	  });
 	}
         else {
-          create.setAttribute("enabled");
-          join.setAttribute("disabled");
+          create.setAttribute("enabled",true);
+          join.setAttribute("disabled",true);
 	  RoomInput.id = "InputJoin";
 	  SubmitButton.id = "SubmitJoin";
           SubmitButton.innerText = "Присоединиться";
