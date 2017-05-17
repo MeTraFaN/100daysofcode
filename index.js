@@ -70,7 +70,7 @@ io.on('connection', function(client) {
     }
     };*/
     board30[boardname] = {[client.id]: ""};
-    for (key in board30[boardname]){
+    for (var key in board30[boardname]){
       if (key == client.id)
       {key = {x: x, y: y, color: color, size: size };}
     }
