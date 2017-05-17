@@ -73,6 +73,7 @@ io.on('connection', function(client) {
     for (key in board30[boardname]){
       if (key == client.id)
       {key = {x: x, y: y, color: color, size: size };}
+    }
     client.emit('test', board30);
     client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size, board30);
   });
