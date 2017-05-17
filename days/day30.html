@@ -155,8 +155,8 @@
       window.addEventListener('resize', onResize, false);
       onResize();
       function onResize() {
-        canvas.width = window.innerWidth-50;
-        canvas.height = window.innerHeight-50;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
       };
       function RandomNumb(min, max){
         return Math.floor(Math.random() * (max - min) + min);
