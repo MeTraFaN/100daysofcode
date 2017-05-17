@@ -41,7 +41,7 @@ io.on('connection', function(client) {
   client.emit('users base', users, users26);
   client.on('board create', function(boardname){
     if (boardname in board30){
-      client.emit('board errore', boardname, " уже занята"
+      client.emit('board errore', boardname, " уже занята");
     }
     else{
       client.join(boardname);
