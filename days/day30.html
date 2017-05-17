@@ -86,8 +86,8 @@
           canvas = document.querySelector('canvas');
 	  canvas.style.visibility = "visible";
           createjs.Touch.enable(stage);
-          canvas.width = window.innerWidth-50;
-          canvas.height = window.innerHeight-50;
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
             ID = UserId;
             color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
             size = RandomNumb(10,30);
@@ -95,16 +95,17 @@
             window[UserId].graphics.beginFill(color).drawCircle(0, 0, size);       
             window[UserId].x = RandomNumb(20,canvas.width-140);
             window[UserId].y = RandomNumb(20,canvas.height-140);
-            currentx = window[UserId].x;
-            currenty = window[UserId].y;
-            stage.addChild(window[UserId]);
+            text = new createjs.Text(boardname, "30px Arial","#000");
+            text.x = 20;
+            text.y = 20;
+            stage.addChild(window[UserId], text);
             createjs.Ticker.addEventListener("tick", onTickHandler);
             socket.emit('user done30',  window[UserId].x,  window[UserId].y, color, size, boardname); 
             window[UserId].on("pressmove", function(evt) {
               CreateTail(evt.stageX, evt.stageY, color, size); 
               evt.target.x = evt.stageX;
               evt.target.y = evt.stageY;   
-              //socket.emit('move done', {x: window[UserId].x, y: window[UserId].y}, ID);
+              socket.emit('move done30', {x: window[UserId].x, y: window[UserId].y}, ID, boardname, color, size);
             });
           });
       socket.on('user done30', function(X, Y, ID, color, size, board30){
@@ -112,11 +113,22 @@
         CreateSprite(X,Y, color, size, ID);
       });
 
-	socket.on('test', function(qwe){console.log(qwe);});    
+  socket.on('sprite change coord30', function(obj, color, size, UserId){ 
+        window[UserId].x = obj.x;
+        window[UserId].y = obj.y;
+        CreateTail(obj.x, obj.y, color, size);    
+      });
+
+  socket.on('users base30', function(boards, boardname){
+    for(user in boards[boardname]){
+        CreateSprite(boards[boardname][user].x, boards[boardname][user].y, boards[boardname][user].color, boards[boardname][user].size, user);
+    }       
+  });
+  
 	    
-      socket.on('board errore', function(boardname, massage){
-        ShowErrore(boardname, massage);
-      }); 
+  socket.on('board errore', function(boardname, massage){
+    ShowErrore(boardname, massage);
+  }); 
 	    
       function ShowErrore(first, second){
         ErroreWindow = document.createElement('div');
@@ -128,26 +140,11 @@
       function deleteElement(Element){
         setTimeout(function(){ Body.removeChild(Element)},5000);
       };
-	    /*
-      
-      socket.on('sprite change coord25', function(obj, color, size){ 
-        CreateTail(obj.x, obj.y, color, size);    
-      });
-      socket.on('sprite change coord', function(UserId, obj){
-        window[UserId].x = obj.x;
-        window[UserId].y = obj.y;
-      }); 
-      
-      socket.on('users base', function(users){
-          for(user in users){
-              CreateSprite(users[user].x, users[user].y, users[user].color, users[user].size, user);
-          }       
-      });
-      
-      socket.on('user disconnected', function(UserId){
+	    
+      socket.on('user disconnected30', function(UserId){
         stage.removeChild(window[UserId]);
       });
-      */
+      
       function onTickHandler(evt) {   
           stage.update();
         };
