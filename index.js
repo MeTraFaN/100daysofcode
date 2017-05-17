@@ -45,6 +45,7 @@ io.on('connection', function(client) {
     }
     else{
       client.join(boardname);
+       //board30[boardname] = {[client.id]:  ""};
     //board30[boardname] = {Clients: client.id};
     //board30[boardname] = {[client.id]:  ""};
     //board30[boardname] =  { [client.id]: {x:"", y:"", color:"",size:""}};
@@ -68,7 +69,10 @@ io.on('connection', function(client) {
       size: size 
     }
     };*/
-    board30 = {[boardname] : { [client.id]:{x: x, y: y, color: color, size: size}}};
+    board30[boardname] = {[client.id]: ""};
+    for (key in board30[boardname]){
+      if (key == client.id)
+      {key = {x: x, y: y, color: color, size: size };}
     client.emit('test', board30);
     client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size, board30);
   });
