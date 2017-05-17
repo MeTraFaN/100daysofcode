@@ -56,13 +56,13 @@ io.on('connection', function(client) {
       else {client.emit('board errore', boardname, " уже занята");}
   });
   client.on('board join', function(boardname){
-    if (boardname in board30){
+   // if (boardname in board30){
         client.join(boardname);
         client.emit('user connected30', client.id, boardname);
-      }
-    else{
-        client.emit('board errore', boardname, " не создана") 
-    }   
+     // }
+    //else{
+       // client.emit('board errore', boardname, " не создана") 
+    //}   
   });
   client.on('user done30', function (x, y, color, size, boardname){
     /*board30[boardname] = {
