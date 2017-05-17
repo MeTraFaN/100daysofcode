@@ -42,7 +42,7 @@
         var SubmitButton = document.createElement('button');
 	if (value == "create") {
           create.setAttribute("disabled",true);
-          join.deleteAttribute('disabled',true); 
+          join.removeAttribute('disabled',true); 
 	  RoomInput.id = "InputCreate";
 	  SubmitButton.id = "SubmitCreate";
           SubmitButton.innerText = "Создать";
@@ -54,7 +54,7 @@
 	  });
 	}
         else {
-          create.deleteAttribute("disabled",true);
+          create.removeAttribute("disabled",true);
           join.setAttribute("disabled",true);
 	  RoomInput.id = "InputJoin";
 	  SubmitButton.id = "SubmitJoin";
