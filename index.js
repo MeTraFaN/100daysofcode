@@ -40,7 +40,7 @@ var board30 = {};
 io.on('connection', function(client) {
   client.emit('users base', users, users26);
   client.on('board create', function(boardname){
-    if (boardname in board30){
+    for (boardname in board30) if (board30.hasOwnPrperty(boardname)){
       client.emit('board errore', boardname, " уже занята");
     }
     else{
