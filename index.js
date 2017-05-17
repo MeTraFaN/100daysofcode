@@ -69,7 +69,13 @@ io.on('connection', function(client) {
                     size: size
       }
     };*/
-    board30 = {[boardname]: { [client.id]: {x:x, y:y, color: color, size:size}}};
+    board30[client.id] = {
+      color: color,
+      size: size,
+      x: x,
+      y: y,
+      boardname: boardname
+    }
     client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size, board30);
   });
             
