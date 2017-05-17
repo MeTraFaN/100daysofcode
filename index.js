@@ -40,16 +40,20 @@ var board30 = {};
 io.on('connection', function(client) {
   client.emit('users base', users, users26);
   client.on('board create', function(boardname){
-    for (boardname in board30) if (board30.hasOwnPrperty(boardname)){
-      client.emit('board errore', boardname, " уже занята");
+    counter = 0;
+    for(var key in board30){
+      if (boardname in key) {
+       counter +=1;
+      }     
     }
-    else{
+    if (counter == 0){
       client.join(boardname);
     //board30[boardname] = {Clients: client.id};
     //board30[boardname] = {[client.id]:  ""};
     //board30[boardname] =  { [client.id]: {x:"", y:"", color:"",size:""}};
       client.emit('user connected30', client.id, boardname);
     }
+      else {client.emit('board errore', boardname, " уже занята");}
   });
   client.on('board join', function(boardname){
     if (boardname in board30){
