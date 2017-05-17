@@ -42,12 +42,14 @@ io.on('connection', function(client) {
   client.on('board create', function(boardname){
     if (boardname in board30){
       client.emit('board errore', boardname, " уже занята"
+    }
     else{
       client.join(boardname);
     //board30[boardname] = {Clients: client.id};
     //board30[boardname] = {[client.id]:  ""};
     //board30[boardname] =  { [client.id]: {x:"", y:"", color:"",size:""}};
-      client.emit('user connected30', client.id, boardname);}
+      client.emit('user connected30', client.id, boardname);
+    }
   });
   client.on('board join', function(boardname){
     if (boardname in board30){
