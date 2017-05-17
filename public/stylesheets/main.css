@@ -28,7 +28,7 @@ body {padding:0px; margin:0px; overflow: hidden;}
     background-color: lightblue}
 #parent {margin: 30px;  background-color: yellow; height: 70%;}
 .navigate {	height: 25%;  margin: auto;}
-.firstbutton {width: 105px; height: 35px;}
+.firstbutton {width: 120px; height: 35px;}
 .secondbutton{width: 118px;}
 .inputdiv {width:119px}
 .submitdiv {width:119px}
