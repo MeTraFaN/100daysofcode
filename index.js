@@ -61,14 +61,20 @@ io.on('connection', function(client) {
     }   
   });
   client.on('user done30', function (x, y, color, size, boardname){
-    board30[boardname] = {
+    /*board30[boardname] = {
       [client.id]: {
                     x: x, 
                     y: y,
                     color: color,
                     size: size
       }
-    };
+    };*/
+    board30[boardname][client.id]= {
+                    x: x, 
+                    y: y,
+                    color: color,
+                    size: size
+      };
     client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size, board30);
   });
             
