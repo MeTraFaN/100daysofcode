@@ -53,6 +53,7 @@ io.on('connection', function(client) {
     if (boardname in board30){
         client.join(boardname);
         client.emit('user connected30', client.id, boardname);
+        client.emit('users base30', board30, boardname);
       }
     else{
         client.emit('board errore', boardname, " не создана") 
@@ -66,7 +67,13 @@ io.on('connection', function(client) {
       size: size 
     };
     client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size, board30);
-  });          
+  });
+   
+  client.on('move done30', function(obj, ID, boardname, color, size){
+    client.broadcast.to(boardname).emit('sprite change coord30', obj, color, size, ID);
+    board30[boardname][ID].x = obj.x;
+    board30[boardname][ID].y = obj.y;
+  });         
             
   client.emit('user connected', client.id);
   client.on('user done26', function(color, size, x, y){
@@ -99,6 +106,14 @@ io.on('connection', function(client) {
     //users26[client.id].y =  obj.y;}
   });
   client.on('disconnect', function(){
+    for(boardname in board30){
+      for(user in board30[boardname]){
+        if (client.id == user){
+          client.broadcast.to(boardname).emit('user disconnected30', client.id);
+          delete board30[boardname][client.id];
+        }
+      }
+    }
     client.broadcast.emit('user disconnected', client.id);
     delete users26[client.id];
     delete users[client.id];
