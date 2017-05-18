@@ -93,7 +93,8 @@
           canvas.width = window.innerWidth;
           canvas.height = window.innerHeight;
             ID = UserId;
-            color = '#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
+            color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+		    //'#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
             size = RandomNumb(10,30);
             window[UserId] = new createjs.Shape();
             window[UserId].graphics.beginFill(color).drawCircle(0, 0, size);       
