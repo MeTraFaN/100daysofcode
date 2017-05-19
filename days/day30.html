@@ -85,7 +85,7 @@
 	
       socket.on('user connected30', function(UserId, boardname, board30){
 	  DialogWindow = document.getElementsByClassName('DialogWindow')[0];
-	  if( typeof DialogWindow != 'indefined'){
+	  if( typeof DialogWindow != 'undefined'){
 	    Body.removeChild(DialogWindow);
 	  }
           stage = new createjs.Stage("canvas");
