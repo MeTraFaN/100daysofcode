@@ -94,7 +94,6 @@
           canvas.height = window.innerHeight;
             ID = UserId;
             color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-		    //'#'+ RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16) + RandomNumb(0,255).toString(16);
             size = RandomNumb(10,30);
             window[UserId] = new createjs.Shape();
             window[UserId].graphics.beginFill(color).drawCircle(0, 0, size);       
@@ -106,10 +105,10 @@
             stage.addChild(window[UserId], text);
             createjs.Ticker.addEventListener("tick", onTickHandler);
             socket.emit('user done30',  window[UserId].x,  window[UserId].y, color, size, boardname); 
-            window[UserId].on("pressmove", function(evt) {
+            stage.on("stagemousemove", function(evt) {
               CreateTail(evt.stageX, evt.stageY, color, size); 
-              evt.target.x = evt.stageX;
-              evt.target.y = evt.stageY;   
+              window[UserId].x = evt.stageX;
+              window[UserId].y = evt.stageY;    
               socket.emit('move done30', {x: window[UserId].x, y: window[UserId].y}, ID, boardname, color, size);
             });
           });
