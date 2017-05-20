@@ -94,6 +94,9 @@
           createjs.Touch.enable(stage);
           canvas.width = window.innerWidth;
           canvas.height = window.innerHeight;
+	    firstline = new createjs.Shape();
+	    secondline = new createjs.Shepe();
+	    firstline.graphics.beginFill('#fff').drawReactangle(canvas.width/2-3, 0, 5, canvas.height);  
             ID = UserId;
             color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
             size = RandomNumb(10,30);
@@ -104,7 +107,7 @@
             text = new createjs.Text(boardname, "30px Arial","#000");
             text.x = 20;
             text.y = 20;
-            stage.addChild(window[UserId], text);
+            stage.addChild(window[UserId], text, firstline);
             createjs.Ticker.addEventListener("tick", onTickHandler);
             socket.emit('user done30',  window[UserId].x,  window[UserId].y, color, size, boardname); 
             stage.on("stagemousemove", function(evt) {
