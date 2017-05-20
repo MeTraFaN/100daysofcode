@@ -30,6 +30,9 @@ app.get('/day28', function(req, res){
 app.get('/day30', function(req, res){
   res.sendFile(__dirname + '/days/day30.html');
 });
+app.get('/day34', function(req, res){
+  res.sendFile(__dirname + '/days/day34.html');
+});
 app.get('/main.css', function(req, res){
   res.sendFile(__dirname + '/public/stylesheets/main.css');
 });
