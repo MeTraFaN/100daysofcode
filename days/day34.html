@@ -12,10 +12,10 @@
     <canvas id="canvas" style="visibility:hidden"></canvas>
     <div class="DialogWindow"> 
       <div id="parent">
-      	<div class="firstbutton navigate">
-       	    <button id="create"> Создать доску </button>
-       	</div>
-       	<div class="secondbutton navigate">
+        <div class="firstbutton navigate">
+            <button id="create"> Создать доску </button>
+        </div>
+        <div class="secondbutton navigate">
             <button id="join"> Присоединиться </button>
         </div>
       </div>
@@ -38,66 +38,163 @@
       });
       function ChangeParent(value){
         var RoomInput = document.createElement('input');
-	RoomInput.placeholder = "Enter room number";
+  RoomInput.placeholder = "Enter room number";
         var SubmitButton = document.createElement('button');
-	if (value == "create") {
+  if (value == "create") {
           create.setAttribute("disabled",true);
           join.removeAttribute('disabled',true); 
-	  RoomInput.id = "InputCreate";
-	  SubmitButton.id = "SubmitCreate";
+    RoomInput.id = "InputCreate";
+    SubmitButton.id = "SubmitCreate";
           SubmitButton.innerText = "Создать";
           SubmitButton.addEventListener("mousedown", function(evt){
              if (RoomInput.value == "")
-	        ShowErrore("Введите название доски","");
+          ShowErrore("Введите название доски","");
              else 
              socket.emit("board create", RoomInput.value);
-	  });
-	}
+    });
+  }
         else {
           create.removeAttribute("disabled",true);
           join.setAttribute("disabled",true);
-	  RoomInput.id = "InputJoin";
-	  SubmitButton.id = "SubmitJoin";
+    RoomInput.id = "InputJoin";
+    SubmitButton.id = "SubmitJoin";
           SubmitButton.innerText = "Присоединиться";
           SubmitButton.addEventListener("mousedown", function(evt){
              if (RoomInput.value == "")
-	        ShowErrore("Введите название доски","");
+          ShowErrore("Введите название доски","");
              else 
-		socket.emit("board join", RoomInput.value);
-	  });
-	}
+    socket.emit("board join", RoomInput.value);
+    });
+  }
         RoomInput.style.width = "115px";
-	SubmitButton.style.width = "119px";     
+  SubmitButton.style.width = "119px";     
         if (InputDiv != null){
           parent.removeChild(InputDiv);
           parent.removeChild(SubmitDiv);
-	}
+  }
         InputDiv = document.createElement('div');
         InputDiv.className = "inputdiv navigate";
         SubmitDiv = document.createElement('div');
-	SubmitDiv.className = "submitdiv navigate";
+  SubmitDiv.className = "submitdiv navigate";
         
-	InputDiv.appendChild(RoomInput);
+  InputDiv.appendChild(RoomInput);
         SubmitDiv.appendChild(SubmitButton);
-	parent.appendChild(InputDiv);
+  parent.appendChild(InputDiv);
         parent.appendChild(SubmitDiv);
       };
-	
+  
       socket.on('user connected30', function(UserId, boardname, board30){
-	  DialogWindow = document.getElementsByClassName('DialogWindow')[0];
-	  if( typeof DialogWindow != 'undefined'){
-	    Body.removeChild(DialogWindow);
-	  }
+    DialogWindow = document.getElementsByClassName('DialogWindow')[0];
+    if( typeof DialogWindow != 'undefined'){
+      Body.removeChild(DialogWindow);
+    }
           stage = new createjs.Stage("canvas");
           canvas = document.querySelector('canvas');
-	  canvas.style.visibility = "visible";
+    canvas.style.visibility = "visible";
           createjs.Touch.enable(stage);
           canvas.width = window.innerWidth;
           canvas.height = window.innerHeight;
-	  firstline = new createjs.Shape();
-          secondline = new createjs.Shape();
-          firstline.graphics.beginFill('#000').drawRect(canvas.width/2-7, 0, 15, canvas.height);
-          secondline.graphics.beginFill('#fff').drawRect(canvas.width/2-6, 0, 13, canvas.height);  
+      firstline = new createjs.Shape();
+      secondline = new createjs.Shape();
+      shadow = new createjs.Shape();
+      sea = new createjs.Shape();
+
+
+      (createjs.Graphics.Polygon = function(x, y, points) { //для определения createjsPolygon
+    this.x = x;
+    this.y = y;
+    this.points = points;
+}).prototype.exec = function(ctx) {
+    var start = this.points[0];
+    ctx.moveTo(start.x, start.y);
+    this.points.slice(1).forEach(function(point) {
+        ctx.lineTo(point.x, point.y);
+    });
+    ctx.lineTo(start.x, start.y);
+}
+createjs.Graphics.prototype.drawPolygon = function(x, y, args) {
+    var points = [];
+    if (Array.isArray(args)) {
+        args.forEach(function(point) {
+            point = Array.isArray(point) ? {x:point[0], y:point[1]} : point;
+            points.push(point);
+        });
+    } else {
+        args = Array.prototype.slice.call(arguments).slice(2);
+        var x = null;
+        args.forEach(function(val) {
+            if (x == null) {
+                x = val;
+            } else {
+                points.push({x: x, y: val});
+                x = null;
+            }
+        });
+    }
+    return this.append(new createjs.Graphics.Polygon(x, y, points));
+}
+
+      sea.graphics.beginFill("#7A93E7").drawPolygon(
+        0,0,
+        canvas.width,0,
+        canvas.width,canvas.height/2,
+        canvas.width-90, canvas.height/2-20,
+        canvas.width-320, canvas.height/2-30,
+        canvas.width-600, canvas.height/2-20,
+        canvas.width/2-120, canvas.height/2-10,
+        canvas.width/2-200, canvas.height/2+10,
+        100, canvas.height/2+10,
+        0,canvas.height/2+25,
+         0,0);
+      firstline.graphics.beginFill('#000').drawRoundRectComplex(canvas.width/2-7, canvas.height/2-50, 15, canvas.height/2+50, 7.5, 7.5,0,0);
+      secondline.graphics.beginFill('#fff').drawRoundRectComplex(canvas.width/2-6, canvas.height/2-49, 13, canvas.height/2+50, 6.5, 6.5,0,0);
+      shadow.graphics.beginStroke("#2A2507").setStrokeStyle(1)
+      .mt(canvas.width/2+7.5,canvas.height-220).lt(canvas.width/2+60,canvas.height-228)
+      .beginFill("#2A2507")
+      .mt(canvas.width/2+52,canvas.height-226).lt(canvas.width/2+117,canvas.height-30)
+      .lt(canvas.width/2+113,canvas.height-30).lt(canvas.width/2+50,canvas.height-226)
+      .lt(canvas.width/2+52,canvas.height-226)
+      .endFill()
+      .mt(canvas.width/2+47,canvas.height-225).lt(canvas.width/2+106,canvas.height-30)
+      .mt(canvas.width/2+42,canvas.height-225).lt(canvas.width/2+94,canvas.height-27)
+      .mt(canvas.width/2+37,canvas.height-224).lt(canvas.width/2+82,canvas.height-23)
+      .mt(canvas.width/2+32,canvas.height-224).lt(canvas.width/2+70,canvas.height-18)
+      .mt(canvas.width/2+27,canvas.height-223).lt(canvas.width/2+58,canvas.height-15)
+      .mt(canvas.width/2+22,canvas.height-223).lt(canvas.width/2+46,canvas.height-12)
+      .beginFill("#2A2507")
+      .mt(canvas.width/2+7.5,canvas.height).lt(canvas.width/2+40,canvas.height)
+      .lt(canvas.width/2+140,canvas.height-29).lt(canvas.width/2+135,canvas.height-33)
+      .lt(canvas.width/2+130,canvas.height-35).lt(canvas.width/2+120,canvas.height-35)
+      .lt(canvas.width/2+7.5,canvas.height)
+      .endFill()
+      .mt(canvas.width/2+110,canvas.height-42).lt(canvas.width/2+45,canvas.height-22)
+      .mt(canvas.width/2+108,canvas.height-55).lt(canvas.width/2+43,canvas.height-35)
+      .mt(canvas.width/2+104,canvas.height-68).lt(canvas.width/2+41,canvas.height-48)
+      .mt(canvas.width/2+100,canvas.height-80).lt(canvas.width/2+40,canvas.height-61)
+      .mt(canvas.width/2+96,canvas.height-91).lt(canvas.width/2+39,canvas.height-74)
+      .mt(canvas.width/2+92,canvas.height-102).lt(canvas.width/2+37,canvas.height-87)
+      .mt(canvas.width/2+88,canvas.height-114).lt(canvas.width/2+36,canvas.height-100)
+      .mt(canvas.width/2+84,canvas.height-125).lt(canvas.width/2+35,canvas.height-112)
+      .mt(canvas.width/2+80,canvas.height-136).lt(canvas.width/2+34,canvas.height-124)
+      .mt(canvas.width/2+76,canvas.height-147).lt(canvas.width/2+33,canvas.height-135)
+      .mt(canvas.width/2+72,canvas.height-157).lt(canvas.width/2+32,canvas.height-146)
+      .mt(canvas.width/2+69,canvas.height-167).lt(canvas.width/2+30,canvas.height-156)
+      .mt(canvas.width/2+66,canvas.height-176).lt(canvas.width/2+29,canvas.height-167)
+      .mt(canvas.width/2+63,canvas.height-185).lt(canvas.width/2+28,canvas.height-177)
+      .mt(canvas.width/2+60,canvas.height-193).lt(canvas.width/2+27,canvas.height-187)
+      .mt(canvas.width/2+58,canvas.height-201).lt(canvas.width/2+26,canvas.height-195)
+      .mt(canvas.width/2+56,canvas.height-208).lt(canvas.width/2+25,canvas.height-203)
+      .mt(canvas.width/2+54,canvas.height-215).lt(canvas.width/2+24,canvas.height-210)
+      .mt(canvas.width/2+52,canvas.height-222).lt(canvas.width/2+23,canvas.height-217)
+      ;
+
+
+
+      var ball = new createjs.Bitmap("https://img-android.lisisoft.com/imgmic/9/0/2809-i-com.a1786511733506cf6d55beeb9a.a04485462a.jpg");
+      ball.x = canvas.width/2-37;
+      ball.y = canvas.height/2-150;
+      ball.scaleX=0.65;   
+      ball.scaleY=0.65;
             ID = UserId;
             color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
             size = RandomNumb(10,30);
@@ -108,7 +205,7 @@
             text = new createjs.Text(boardname, "30px Arial","#000");
             text.x = 20;
             text.y = 20;
-            stage.addChild(window[UserId], text, firstline, secondline);
+            stage.addChild(window[UserId], sea, text, firstline, secondline, shadow, ball);
             createjs.Ticker.addEventListener("tick", onTickHandler);
             socket.emit('user done30',  window[UserId].x,  window[UserId].y, color, size, boardname); 
             stage.on("stagemousemove", function(evt) {
@@ -132,22 +229,22 @@
     }       
   });
   
-	    
+      
   socket.on('board errore', function(boardname, massage){
     ShowErrore(boardname, massage);
   }); 
-	    
+      
       function ShowErrore(first, second){
         ErroreWindow = document.createElement('div');
-	ErroreWindow.className = "ErroreWindow";
-	ErroreWindow.innerHTML = first + second;
+  ErroreWindow.className = "ErroreWindow";
+  ErroreWindow.innerHTML = first + second;
         Body.appendChild(ErroreWindow);
-	deleteElement(ErroreWindow);
+  deleteElement(ErroreWindow);
       }
       function deleteElement(Element){
         setTimeout(function(){ Body.removeChild(Element)},5000);
       };
-	     
+       
       socket.on('user disconnected30', function(UserId){
         stage.removeChild(window[UserId]);
       });
@@ -173,7 +270,7 @@
         window[Id].y = Y;
       createjs.Ticker.addEventListener("tick", onTickHandler);
       };
-	    
+      
       function CreateTail(X,Y, color, size){
         circle = new createjs.Shape();
         circle.graphics.beginFill(color).drawCircle(0, 0, size-2);
