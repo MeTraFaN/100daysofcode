@@ -39,8 +39,8 @@ app.get('/day36', function(req, res){
 app.get('/main.css', function(req, res){
   res.sendFile(__dirname + '/public/stylesheets/main.css');
 });
-app.get('/test.js', function(req, res){
-  res.sendFile(__dirname + '/js/test.js');
+app.get('/box2d.js', function(req, res){
+  res.sendFile(__dirname + '/js/box2d.js');
 });
 app.get('/protoclass.js', function(req, res){
   res.sendFile(__dirname + '/js/protoclass.js');
