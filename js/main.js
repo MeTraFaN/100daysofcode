@@ -125,9 +125,9 @@ function onDocumentDoubleClick() {
 
 function onDocumentTouchStart( event ) {
 
+        event.preventDefault();
 	if( event.touches.length == 1 ) {
 
-		event.preventDefault();
 
 		// Faking double click for touch devices
 
@@ -148,10 +148,10 @@ function onDocumentTouchStart( event ) {
 }
 
 function onDocumentTouchMove( event ) {
-
+	event.preventDefault();
 	if ( event.touches.length == 1 ) {
 
-		event.preventDefault();
+
 
 		mouse.x = event.touches[ 0 ].pageX;
 		mouse.y = event.touches[ 0 ].pageY;
