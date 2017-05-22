@@ -33,8 +33,20 @@ app.get('/day30', function(req, res){
 app.get('/day34', function(req, res){
   res.sendFile(__dirname + '/days/day34.html');
 });
+app.get('/day36', function(req, res){
+  res.sendFile(__dirname + '/days/day36.html');
+});
 app.get('/main.css', function(req, res){
   res.sendFile(__dirname + '/public/stylesheets/main.css');
+});
+app.get('/test.js', function(req, res){
+  res.sendFile(__dirname + '/js/test.js');
+});
+app.get('/protoclass.js', function(req, res){
+  res.sendFile(__dirname + '/js/protoclass.js');
+});
+app.get('/main.js', function(req,res){
+  res.sendFile(__dirname + '/js/main.js');
 });
 
 var users = {};
