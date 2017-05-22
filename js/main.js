@@ -129,8 +129,6 @@ function onDocumentTouchStart( event ) {
 	if( event.touches.length == 1 ) {
 
 
-		// Faking double click for touch devices
-
 		var now = new Date().getTime();
 
 		if ( now - timeOfLastTouch  < 250 ) {
@@ -189,7 +187,7 @@ function createWall() {
 	element.style.height = stage[3]/2 + 200 + 'px';	
 	element.style.position = 'absolute';
 	element.style.left = stage[2] / 2 - 10 + 'px';
-	element.style.top = stage[3] / 2 - 54 + 'px';
+	element.style.top = stage[3] / 2 + 13 + 'px';
 	element.style.cursor = "default";
 	element.style.backgroundColor = "#fff";
 	element.style.borderRadius = "10px";
@@ -250,11 +248,6 @@ function createBall() {
 	element.style.position = 'absolute';
 	element.style.left = stage[2] / 2  + 'px';
 	element.style.top = stage[3] / 2 - 100 + 'px';	
-	element.style.WebkitTransform = 'translateZ(0)';
-	element.style.MozTransform = 'translateZ(0)';
-	element.style.OTransform = 'translateZ(0)';
-	element.style.msTransform = 'translateZ(0)';
-	element.style.transform = 'translateZ(0)';
 
 	var graphics = element.getContext("2d");
 		var img = new Image();
@@ -447,7 +440,7 @@ function setWalls() {
 	walls[1] = createBox(world, stage[2] / 2, stage[3] + wall_thickness, stage[2], wall_thickness);
 	walls[2] = createBox(world, - wall_thickness, stage[3] / 2, wall_thickness, stage[3]);
 	walls[3] = createBox(world, stage[2] + wall_thickness, stage[3] / 2, wall_thickness, stage[3]);
-	walls[4] = createBox(world, stage[2] / 2, stage[3] * 0.75, 10, stage[3] / 3)	
+	walls[4] = createBox(world, stage[2] / 2, stage[3] * 0.85, 10, stage[3] / 3)	
 
 	wallsSetted = true;
 
