@@ -225,8 +225,6 @@ function createInstructions() {
 
 	element.appendChild( circle );
 
-
-
 	var b2body = new b2BodyDef();
 
 	var circle = new b2CircleDef();
@@ -279,9 +277,9 @@ function createBall() {
 
 	var circle = new b2CircleDef();
 	circle.radius = size >> 1;
-	circle.density = 1;
+	circle.density = 0.8;
 	circle.friction = 0;
-	circle.restitution = 0.45;
+	circle.restitution = 0.6;
 	b2body.AddShape(circle);
 	b2body.userData = {element: element};
 
