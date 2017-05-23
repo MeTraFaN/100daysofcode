@@ -45,3 +45,23 @@ body {padding:0px; margin:0px; overflow: hidden;}
     padding: 10px;
     background-color: #FA8072;
 }
+#score{
+    position: absolute;
+    width:200px;
+    height: 100px;
+    left:20px;
+    top:20px;
+    border: solid 2px #fff;
+    border-radius: 20px;
+}
+.numbers, .score{
+    position: absolute;
+    margin: 0;
+    font-weight:700;
+    color: #fff;
+    font-size:76px;
+    line-height: normal;
+}
+#left{ left:30px; top: 10px;}
+#right{ right: 30px; top: 10px;}
+.score {left:85px; top: 0;}
