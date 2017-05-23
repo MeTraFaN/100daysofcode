@@ -1,4 +1,6 @@
-var canvas;
+var canvas, LeftScore, RightScore;
+var leftcounter = 0;
+var rightcounter = 0;
 
 var delta = [ 0, 0 ];
 var stage = [ window.screenX, window.screenY, window.innerWidth, window.innerHeight ];
@@ -33,14 +35,17 @@ var gravity = { x: 0, y: 1 };
 var PI2 = Math.PI * 2;
 
 var timeOfLastTouch = 0;
-
+var LeftSide, RightSide;
 init();
 play();
-createWall();
-createBall();
+
+var MainBall = document.getElementById('ball');
 function init() {
 
 	canvas = document.getElementById( 'canvas' );
+	LeftScore = document.getElementById('left');
+	RightScore = document.getElementById('right');
+
 
 	document.onmousedown = onDocumentMouseDown;
 	document.onmouseup = onDocumentMouseUp;
@@ -63,6 +68,8 @@ function init() {
 
 	setWalls();
 	reset();
+
+
 }
 
 
@@ -79,7 +86,7 @@ function reset() {
 
 		for ( i = 0; i < bodies.length; i++ ) {
 
-			var body = bodies[ i ]
+			var body = bodies[ i ];
 			canvas.removeChild( body.GetUserData().element );
 			world.DestroyBody( body );
 			body = null;
@@ -94,6 +101,9 @@ function reset() {
 	elements = [];
 
 	createInstructions();
+	createWall();
+	createBall();
+
 
 
 }
@@ -125,9 +135,11 @@ function onDocumentDoubleClick() {
 
 function onDocumentTouchStart( event ) {
 
-        event.preventDefault();
 	if( event.touches.length == 1 ) {
 
+		event.preventDefault();
+
+		// Faking double click for touch devices
 
 		var now = new Date().getTime();
 
@@ -146,10 +158,10 @@ function onDocumentTouchStart( event ) {
 }
 
 function onDocumentTouchMove( event ) {
-	event.preventDefault();
+
 	if ( event.touches.length == 1 ) {
 
-
+		event.preventDefault();
 
 		mouse.x = event.touches[ 0 ].pageX;
 		mouse.y = event.touches[ 0 ].pageY;
@@ -223,6 +235,8 @@ function createInstructions() {
 
 	element.appendChild( circle );
 
+
+
 	var b2body = new b2BodyDef();
 
 	var circle = new b2CircleDef();
@@ -233,8 +247,7 @@ function createInstructions() {
 	b2body.AddShape(circle);
 	b2body.userData = {element: element};
 
-	b2body.position.Set( Math.random() * stage[2], Math.random() * -200 );
-	b2body.linearVelocity.Set( Math.random() * 400 - 200, Math.random() * 400 - 200 );
+	b2body.position.Set( stage[2] * 0.25, stage[3] - 150);
 	bodies.push( world.CreateBody(b2body) );	
 }
 
@@ -248,6 +261,7 @@ function createBall() {
 	element.style.position = 'absolute';
 	element.style.left = stage[2] / 2  + 'px';
 	element.style.top = stage[3] / 2 - 100 + 'px';	
+	element.id = "ball";
 
 	var graphics = element.getContext("2d");
 		var img = new Image();
@@ -270,20 +284,44 @@ function createBall() {
 
 	var circle = new b2CircleDef();
 	circle.radius = size >> 1;
-	circle.density = 0.8;
+	circle.density = 1;
 	circle.friction = 0;
-	circle.restitution = 0.6;
+	circle.restitution = 0.45;
 	b2body.AddShape(circle);
 	b2body.userData = {element: element};
 
-	b2body.position.Set( stage[2] / 2 , stage[3] / 2 - 100 );
-	b2body.linearVelocity.Set( Math.random() * 400 - 200, Math.random() * 400 - 200 );
+	if (LeftSide == true){b2body.position.Set( stage[2] * 0.3 , stage[3] / 2 - 100 );}
+	else if(RightSide == true) {b2body.position.Set( stage[2] * 0.7 , stage[3] / 2 - 100 );}
+		else {
+			b2body.position.Set( stage[2] / 2 , stage[3] * 0.1 );
+			};
+	//b2body.linearVelocity.Set( Math.random() * 400 - 200, Math.random() * 400 - 200 );
 	bodies.push( world.CreateBody(b2body) );
 }
 
 //
 
 function loop() {
+	if(MainBall){
+		if(parseInt(MainBall.style.top,10) > stage[3]-85 ){
+			if(parseInt(MainBall.style.left,10) < stage[2]/2){
+				LeftSide = false;
+				RightSide = true;
+				Score('rigth');
+			}
+			else {
+				LeftSide = true;
+				RightSide = false;
+				Score('left');
+			}
+			MainBall.style.top = stage[3] * 0.1 + 'px';
+			reset();
+			walls[6] = createBox(world, stage[2] * 0.3, stage[3] / 2 - 15, 20, 20);
+			walls[7] = createBox(world, stage[2] * 0.7, stage[3] / 2 - 15, 20, 20);		
+		}
+
+	}
+
 
 	if (getBrowserDimensions()) {
 
@@ -312,7 +350,17 @@ function loop() {
 
 }
 
+function Score(value){
+	if( value == 'left'){
+		leftcounter += 1;
+		LeftScore.innerHTML = leftcounter;
+	}
+	else {
+		rightcounter += 1;
+		RightScore.innerHTML = rightcounter;
+	}
 
+}
 // .. BOX2D UTILS
 
 function createBox(world, x, y, width, height, fixed) {
@@ -350,6 +398,9 @@ function mouseDrag()
 
 		if (body) {
 
+			world.DestroyBody(walls[5]);
+			world.DestroyBody(walls[6]);
+			world.DestroyBody(walls[7]);
 			var md = new b2MouseJointDef();
 			md.body1 = world.m_groundBody;
 			md.body2 = body;
@@ -414,9 +465,13 @@ function getBodyAtMouse() {
 
 				body = shapes[i].m_body;
 				break;
+
 			}
+
 		}
+
 	}
+
 	return body;
 
 }
@@ -429,18 +484,27 @@ function setWalls() {
 		world.DestroyBody(walls[1]);
 		world.DestroyBody(walls[2]);
 		world.DestroyBody(walls[3]);
+		world.DestroyBody(walls[4]);
+
 
 		walls[0] = null; 
 		walls[1] = null;
 		walls[2] = null;
 		walls[3] = null;
+		walls[4] = null;
+		walls[5] = null;
+		walls[6] = null;
+		walls[7] = null;
 	}
 
 	walls[0] = createBox(world, stage[2] / 2, - wall_thickness, stage[2], wall_thickness);
 	walls[1] = createBox(world, stage[2] / 2, stage[3] + wall_thickness, stage[2], wall_thickness);
 	walls[2] = createBox(world, - wall_thickness, stage[3] / 2, wall_thickness, stage[3]);
 	walls[3] = createBox(world, stage[2] + wall_thickness, stage[3] / 2, wall_thickness, stage[3]);
-	walls[4] = createBox(world, stage[2] / 2, stage[3] * 0.85, 10, stage[3] / 3)	
+	walls[4] = createBox(world, stage[2] / 2, stage[3] * 0.85, 10, stage[3] / 3);
+	walls[5] = createBox(world, stage[2] / 2, stage[3] * 0.25, 20, 20);
+	walls[6] = createBox(world, stage[2] * 0.3, stage[3] / 2 - 15, 20, 20);
+	walls[7] = createBox(world, stage[2] * 0.7, stage[3] / 2 - 15, 20, 20);			
 
 	wallsSetted = true;
 
