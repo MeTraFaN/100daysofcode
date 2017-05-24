@@ -12,7 +12,8 @@ body {padding:0px; margin:0px; overflow: hidden;}
     100% {opacity: 0;
     visibility: hidden;}
 }
-  
+ 
+
 .DialogWindow {
     position: absolute;
     width: 290px;
@@ -27,14 +28,14 @@ body {padding:0px; margin:0px; overflow: hidden;}
     overflow: auto; 
     background-color: lightblue}
 #parent {margin: 30px;  background-color: yellow; height: 70%;}
-.navigate {	height: 25%;  margin: auto;}
-.firstbutton {width: 120px; height: 35px;}
+.navigate { height: 25%;  margin: auto;}
+.firstbutton {width: 105px; height: 35px;}
 .secondbutton{width: 118px;}
 .inputdiv {width:119px}
 .submitdiv {width:119px}
 .navigate > * { margin: 7px 0px;}
-#create {margin: 7px 7px;}
-#canvas {border: solid 1px black; background-color:  #A1954B;}
+.create {margin: 7px 7px; height: 21px;}
+#canvas {border: solid 1px black; background-color: #A1954B;}
 .ErroreWindow  {position: absolute;
     width: 170px;
     left: 50%;
@@ -65,3 +66,13 @@ body {padding:0px; margin:0px; overflow: hidden;}
 #left{ left:30px; top: 10px;}
 #right{ right: 30px; top: 10px;}
 .score {left:85px; top: 0;}
+.RoomName {
+    position: absolute;
+    background-color: #fff;
+    right:30px;
+    top:10px;
+    width:100px;
+    height: 15px;
+    border: 2px solid blue;
+    text-align: center;
+}
