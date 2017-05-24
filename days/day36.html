@@ -9,11 +9,21 @@
     <title>Disappearing Tail</title>
   </head> 
   <body>
-    <div id="canvas">
+        <div id="canvas" style="visibility:hidden">
       <div id="score">
         <p class="numbers" id="left"> 0 </p>
         <p class="numbers score"> : </p>
         <p class="numbers" id="right"> 0 </p>
+      </div>
+    </div>
+    <div class="DialogWindow"> 
+      <div id="parent">
+        <div class="firstbutton navigate">
+            <button id="create"> Создать доску </button>
+        </div>
+        <div class="secondbutton navigate">
+            <button id="join"> Присоединиться </button>
+        </div>
       </div>
     </div>
     <script src="/protoclass.js"> </script>
