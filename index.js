@@ -2,7 +2,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
-    
+  
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/days/day22.html');
 });
@@ -30,17 +30,17 @@ app.get('/day28', function(req, res){
 app.get('/day30', function(req, res){
   res.sendFile(__dirname + '/days/day30.html');
 });
-app.get('/day34', function(req, res){
-  res.sendFile(__dirname + '/days/day34.html');
-});
 app.get('/day36', function(req, res){
   res.sendFile(__dirname + '/days/day36.html');
+});
+app.get('/day36test', function(req, res){
+  res.sendFile(__dirname + '/days/day36test.html');
 });
 app.get('/main.css', function(req, res){
   res.sendFile(__dirname + '/public/stylesheets/main.css');
 });
-app.get('/box2d.js', function(req, res){
-  res.sendFile(__dirname + '/js/box2d.js');
+app.get('/test.js', function(req, res){
+  res.sendFile(__dirname + '/js/test.js');
 });
 app.get('/protoclass.js', function(req, res){
   res.sendFile(__dirname + '/js/protoclass.js');
@@ -48,12 +48,87 @@ app.get('/protoclass.js', function(req, res){
 app.get('/main.js', function(req,res){
   res.sendFile(__dirname + '/js/main.js');
 });
+app.get('/stat', function(req, res){
+  res.sendFile(__dirname + '/days/stat.html');
+});
+
 
 var users = {};
 var users26 = {};
 var board30 = {};
+var board37 = {};
+var score = {};
 io.on('connection', function(client) {
+  client.on('final score', function(left, right, boardname){
+    score[boardname] = {};
+    score[boardname] = {
+      left: left,
+      right: right
+    }
+  })
+  client.emit('final score', score);
+
   client.emit('users base', users, users26);
+
+  client.on('board create37', function(boardname){
+    if (boardname in board37){
+      client.emit('board errore', boardname, " уже занята");
+    }
+    else{
+      client.join(boardname);
+      board37[boardname] = {};
+      //if(board37[boardname].length =)
+      client.emit('user connected37', client.id, boardname, board37, "FPlayer");
+    }
+  });  
+
+  client.on('board join37', function(boardname){
+    if (boardname in board37){
+        var counter = 0;
+        for(key in board37[boardname]){ counter++; }
+          if(counter >= 2){
+              client.emit('board errore', boardname, " заполнена");
+            }
+          else if(counter == 1) {// если есть один участник
+              client.join(boardname);
+              client.emit('user connected37', client.id, boardname, board37, "SPlayer");
+              for(key in board37[boardname]){
+                if (key != client.id){
+                  client.emit('users base37', key, boardname);
+                }
+              }  
+              
+          }
+          else{// если никого нет
+            client.emit('user connected37', client.id, boardname, board37, "FPlayer");
+          }     
+        
+    }
+    else{
+        client.emit('board errore', boardname, " не создана") 
+    }   
+  });
+
+  client.on('user done37', function (x, y,  boardname){
+    board37[boardname][client.id] = { 
+      x: x,  
+      y: y, 
+    };
+    client.broadcast.to(boardname).emit('user done37', "SPlayer", client.id, boardname);
+  });
+  
+  client.on('move done37', function(x, y, boardname){   
+    for(key in board37[boardname]){
+      if (key != client.id){
+        client.broadcast.to(boardname).emit('user change coord37', x, y, key);
+        board37[boardname][key].x = x;
+        board37[boardname][key].y = y;
+      }
+    }
+  }); 
+
+
+
   client.on('board create', function(boardname){
     if (boardname in board30){
       client.emit('board errore', boardname, " уже занята");
@@ -64,6 +139,8 @@ io.on('connection', function(client) {
       client.emit('user connected30', client.id, boardname);
     }
   });
+
+
   client.on('board join', function(boardname){
     if (boardname in board30){
         client.join(boardname);
@@ -74,6 +151,7 @@ io.on('connection', function(client) {
         client.emit('board errore', boardname, " не создана") 
     }   
   });
+
   client.on('user done30', function (x, y, color, size, boardname){
     board30[boardname][client.id] = { 
       x: x,  
@@ -81,8 +159,10 @@ io.on('connection', function(client) {
       color: color, 
       size: size 
     };
-    client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size);
+    client.broadcast.to(boardname).emit('user done30', x, y, client.id ,color, size, board30);
   });
+
+
    
   client.on('move done30', function(obj, ID, boardname, color, size){
     client.broadcast.to(boardname).emit('sprite change coord30', obj, color, size, ID);
@@ -126,6 +206,14 @@ io.on('connection', function(client) {
         if (client.id == user){
           client.broadcast.to(boardname).emit('user disconnected30', client.id);
           delete board30[boardname][client.id];
+        }
+      }
+    }
+    for(boardname in board37){
+      for(user in board37[boardname]){
+        if (client.id == user){
+          client.broadcast.to(boardname).emit('user disconnected37', client.id, boardname);
+          delete board37[boardname][client.id];
         }
       }
     }
