@@ -1,7 +1,7 @@
-var canvas, LeftScore, RightScore;
+var canvas, LeftScore, RightScore, FPlayer, SPlayer;
 var leftcounter = 0;
 var rightcounter = 0;
-
+var BName;
 var delta = [ 0, 0 ];
 var stage = [ window.screenX, window.screenY, window.innerWidth, window.innerHeight ];
 getBrowserDimensions();
@@ -22,7 +22,12 @@ var walls = [];
 var wall_thickness = 200;
 var wallsSetted = false;
 
-var bodies, elements, text;
+var bodies = [];
+var elements = []; 
+var ball = [];
+var BallArr = [];
+var  text, MainBall;
+
 
 var createMode = false;
 var destroyMode = false;
@@ -36,13 +41,121 @@ var PI2 = Math.PI * 2;
 
 var timeOfLastTouch = 0;
 var LeftSide, RightSide;
-init();
-play();
+var socket = io();
+//окно приветствия
+      var create = document.getElementById('create');
+      var join = document.getElementById('join');
+      //
+      var parent = document.getElementById('parent');
+      var InputDiv;
+      var SubmitDiv;
+      var color;
+      var size;
+      create.addEventListener("mousedown", function(){
+        ChangeParent("create")
+      });
+      join.addEventListener("mousedown", function(){
+        ChangeParent("join")
+      });
+      function ChangeParent(value){
+        var RoomInput = document.createElement('input');
+  RoomInput.placeholder = "Enter room number";
+        var SubmitButton = document.createElement('button');
+  if (value == "create") {
+          create.setAttribute("disabled",true);
+          join.removeAttribute('disabled',true); 
+    RoomInput.id = "InputCreate";
+    SubmitButton.id = "SubmitCreate";
+          SubmitButton.innerText = "Создать";
+          SubmitButton.addEventListener("mousedown", function(evt){
+             if (RoomInput.value == "")
+          ShowErrore("Введите название доски","");
+             else 
+             socket.emit("board create37", RoomInput.value);
+    });
+  }
+        else {
+          create.removeAttribute("disabled",true);
+          join.setAttribute("disabled",true);
+    RoomInput.id = "InputJoin";
+    SubmitButton.id = "SubmitJoin";
+          SubmitButton.innerText = "Присоединиться";
+          SubmitButton.addEventListener("mousedown", function(evt){
+             if (RoomInput.value == "")
+          ShowErrore("Введите название доски","");
+             else 
+    socket.emit("board join37", RoomInput.value);
+    });
+  }
+        RoomInput.style.width = "115px";
+  SubmitButton.style.width = "119px";     
+        if (InputDiv != null){
+          parent.removeChild(InputDiv);
+          parent.removeChild(SubmitDiv);
+  }
+        InputDiv = document.createElement('div');
+        InputDiv.className = "inputdiv navigate";
+        SubmitDiv = document.createElement('div');
+  SubmitDiv.className = "submitdiv navigate";
+        
+  		InputDiv.appendChild(RoomInput);
+        SubmitDiv.appendChild(SubmitButton);
+  		parent.appendChild(InputDiv);
+        parent.appendChild(SubmitDiv);
+      };
 
-var MainBall = document.getElementById('ball');
+socket.on('user connected37', function(UserId, boardname, board37, PlayerNumb){
+	BName = boardname;
+	var RoomName = document.createElement('div');
+	RoomName.className = "RoomName";
+	RoomName.innerHTML = BName;
+	DialogWindow = document.getElementsByClassName('DialogWindow')[0];
+    if( typeof DialogWindow != 'undefined'){
+      document.body.removeChild(DialogWindow);
+    }
+    init();
+    MainBall = document.getElementById('ball');
+	play();
+ 	canvas.appendChild(RoomName);
+    canvas.style.visibility = "visible";
+    createInstructions(PlayerNumb, UserId, boardname);
+    socket.emit('user done37', bodies[0].m_position.x, bodies[0].m_position.y, boardname);
+});
+	
+socket.on('user done37', function(PlayerNumb, UserId, boardname){
+	createInstructions(PlayerNumb, UserId, boardname);
+});
+
+socket.on('users base37', function(UserId, boardname){
+	createInstructions("FPlayer", UserId, boardname);      
+});
+
+socket.on('user disconnected37', function(UserId, boardname){
+  console.log(boardname);
+  canvas.removeChild(document.getElementById(UserId));
+  socket.emit('final score', LeftScore.innerHTML, RightScore.innerHTML, boardname);
+  LeftScore.innerHTML = "0";
+  RightScore.innerHTML = "0"; 
+  ball[0].m_position.x = stage[2] * 0.5;
+  ball[0].m_position.y = stage[3] * 0.1;
+  MainBall.style.left = stage[2] * 0.5 + 'px';
+  MainBall.style.top = stage[3] * 0.1 + 'px';
+  walls[5] = createBox(world, stage[2] / 2, stage[3] * 0.25, 20, 20);
+});
+
+/*socket.on('user change coord37', function(x,y, ID){
+  MoovedObject = document.getElementById(ID);
+  bodies[0].m_position.x = x;
+  bodies[0].m_position.y = y;
+  MoovedObject.style.left = x - 60+ 'px';
+  MoovedObject.style.top = y -60 + 'px';
+});*/
+
+
+
 function init() {
 
-	canvas = document.getElementById( 'canvas' );
+	canvas = document.getElementById('canvas');
 	LeftScore = document.getElementById('left');
 	RightScore = document.getElementById('right');
 
@@ -50,7 +163,7 @@ function init() {
 	document.onmousedown = onDocumentMouseDown;
 	document.onmouseup = onDocumentMouseUp;
 	document.onmousemove = onDocumentMouseMove;
-	document.ondblclick = onDocumentDoubleClick;
+	//document.ondblclick = onDocumentDoubleClick;
 
 	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
 	document.addEventListener( 'touchmove', onDocumentTouchMove, false );
@@ -67,7 +180,10 @@ function init() {
 	world = new b2World( worldAABB, new b2Vec2( 0, 0 ), true );
 
 	setWalls();
+    createWall();
+    createBall();
 	reset();
+
 
 
 }
@@ -82,31 +198,35 @@ function reset() {
 
 	var i;
 
-	if ( bodies ) {
 
-		for ( i = 0; i < bodies.length; i++ ) {
-
-			var body = bodies[ i ];
-			canvas.removeChild( body.GetUserData().element );
-			world.DestroyBody( body );
-			body = null;
-		}
-	}
+	//if ( ball.length != 0 ) {
+		//console.log[ball];
+	//	canvas.removeChild( ball[0].GetUserData().element );
+		//world.DestroyBody( ball[0] );
+	//}
 
 	// color theme
 	theme = themes[ Math.random() * themes.length >> 0 ];
 	document.body.style[ 'backgroundColor' ] = theme[ 0 ];
 
-	bodies = [];
-	elements = [];
-
-	createInstructions();
-	createWall();
-	createBall();
-
 
 
 }
+
+socket.on('board errore', function(boardname, massage){
+   ShowErrore(boardname, massage);
+ }); 
+
+function ShowErrore(first, second){
+        ErroreWindow = document.createElement('div');
+  ErroreWindow.className = "ErroreWindow";
+  ErroreWindow.innerHTML = first + second;
+        document.body.appendChild(ErroreWindow);
+  deleteElement(ErroreWindow);
+}
+function deleteElement(Element){
+  setTimeout(function(){ document.body.removeChild(Element)},5000);
+};
 
 //
 
@@ -206,20 +326,22 @@ function createWall() {
 	canvas.appendChild(element);
 }
 
-function createInstructions() {
+function createInstructions(value, Id, boardname) {
 
 	var size = 120;
 
-	var element = document.createElement( 'div' );
-	element.width = size;
-	element.height = size;	
-	element.style.position = 'absolute';
-	element.style.left = -200 + 'px';
-	element.style.top = -200 + 'px';
-	element.style.cursor = "default";
+	window[value] = document.createElement( 'div' );
+	window[value].width = size;
+	window[value].height = size;	
+	window[value].style.position = 'absolute';
+	window[value].style.left = -200 + 'px';
+	window[value].style.top = -200 + 'px';
+	window[value].style.cursor = "default";
+	window[value].id= Id;
 
-	canvas.appendChild(element);
-	elements.push( element );
+	console.log(canvas);
+	canvas.appendChild(window[value]);
+	elements.push( window[value] );
 
 	var circle = document.createElement( 'canvas' );
 	circle.width = size;
@@ -233,8 +355,7 @@ function createInstructions() {
 	graphics.closePath();
 	graphics.fill();
 
-	element.appendChild( circle );
-
+	window[value].appendChild( circle );
 
 
 	var b2body = new b2BodyDef();
@@ -245,10 +366,12 @@ function createInstructions() {
 	circle.friction = 0;
 	circle.restitution = 0.3;
 	b2body.AddShape(circle);
-	b2body.userData = {element: element};
+	b2body.userData = {element: window[value]};
+	if (value == "FPlayer") {b2body.position.Set( stage[2] * 0.25, stage[3] - 150);}
+	else if (value == "SPlayer"){ b2body.position.Set( stage[2] * 0.75, stage[3] - 150);}
 
-	b2body.position.Set( stage[2] * 0.25, stage[3] - 150);
 	bodies.push( world.CreateBody(b2body) );	
+
 }
 
 function createBall() {
@@ -278,7 +401,7 @@ function createBall() {
 	canvas.appendChild(element);
 
 	
-	elements.push( element );
+	BallArr.push( element );
 
 	var b2body = new b2BodyDef();
 
@@ -290,38 +413,49 @@ function createBall() {
 	b2body.AddShape(circle);
 	b2body.userData = {element: element};
 
-	if (LeftSide == true){b2body.position.Set( stage[2] * 0.3 , stage[3] / 2 - 100 );}
-	else if(RightSide == true) {b2body.position.Set( stage[2] * 0.7 , stage[3] / 2 - 100 );}
-		else {
-			b2body.position.Set( stage[2] / 2 , stage[3] * 0.1 );
-			};
+	b2body.position.Set( stage[2] / 2 , stage[3] * 0.1 );
 	//b2body.linearVelocity.Set( Math.random() * 400 - 200, Math.random() * 400 - 200 );
-	bodies.push( world.CreateBody(b2body) );
+	ball.push( world.CreateBody(b2body) );
 }
 
 //
 
-function loop() {
-	if(MainBall){
+function loop() {	
+
 		if(parseInt(MainBall.style.top,10) > stage[3]-85 ){
 			if(parseInt(MainBall.style.left,10) < stage[2]/2){
 				LeftSide = false;
 				RightSide = true;
 				Score('rigth');
+				ball[0].m_position0.x = stage[2] * 0.7 ;
+				ball[0].m_position.x = stage[2] * 0.7 ;
+				ball[0].m_position0.y = stage[3] / 2 - 100;
+				ball[0].m_position.y = stage[3] / 2 - 100;
+				MainBall.style.left = stage[2] * 0.7 + 'px';
+				MainBall.style.top = stage[3] / 2 - 100 + 'px';				
+				if (walls[7]) {
+					walls[7] = createBox(world, stage[2] * 0.7, stage[3] / 2 - 15, 20, 20);
+				}
 			}
 			else {
 				LeftSide = true;
 				RightSide = false;
 				Score('left');
+				ball[0].m_position0.x = stage[2] * 0.3 ;
+				ball[0].m_position.x = stage[2] * 0.3 ;
+				ball[0].m_position0.y = stage[3] / 2 - 100;
+				ball[0].m_position.y = stage[3] / 2 - 100;
+				MainBall.style.left = stage[2] * 0.3 + 'px';
+				MainBall.style.top = stage[3] / 2 - 100 + 'px';
+				if (walls[6]) {
+					walls[6] = createBox(world, stage[2] * 0.3, stage[3] / 2 - 15, 20, 20);
+				}
+			
+						
 			}
-			MainBall.style.top = stage[3] * 0.1 + 'px';
-			reset();
-			walls[6] = createBox(world, stage[2] * 0.3, stage[3] / 2 - 15, 20, 20);
-			walls[7] = createBox(world, stage[2] * 0.7, stage[3] / 2 - 15, 20, 20);		
+			ball[0].m_linearVelocity.x = 0;
+			ball[0].m_linearVelocity.y = 0;					
 		}
-
-	}
-
 
 	if (getBrowserDimensions()) {
 
@@ -337,7 +471,7 @@ function loop() {
 
 	mouseDrag();
 	world.Step(timeStep, iterations);
-
+	//socket.emit("move done37", bodies[0].m_position.x, bodies[0].m_position.y, BName);
 	for (i = 0; i < bodies.length; i++) {
 
 		var body = bodies[i];
@@ -347,9 +481,11 @@ function loop() {
 		element.style.top = (body.m_position0.y - (element.height >> 1)) + 'px';
 
 	}
+	MainBall.style.left = (ball[0].m_position0.x - (BallArr[0].width >> 1)) + 'px';
+	MainBall.style.top = (ball[0].m_position0.y - (BallArr[0].height >> 1)) + 'px';
 
 }
-
+	
 function Score(value){
 	if( value == 'left'){
 		leftcounter += 1;
@@ -392,7 +528,7 @@ function createBox(world, x, y, width, height, fixed) {
 function mouseDrag()
 {
 	// mouse press
-    if (isMouseDown && !mouseJoint) {
+    if (isMouseDown && !mouseJoint) {    	
 
 		var body = getBodyAtMouse();
 
@@ -435,7 +571,6 @@ function mouseDrag()
 
 	// mouse move
 	if (mouseJoint) {
-
 		var p2 = new b2Vec2(mouse.x, mouse.y);
 		mouseJoint.SetTarget(p2);
 	}
@@ -504,7 +639,7 @@ function setWalls() {
 	walls[4] = createBox(world, stage[2] / 2, stage[3] * 0.85, 10, stage[3] / 3);
 	walls[5] = createBox(world, stage[2] / 2, stage[3] * 0.25, 20, 20);
 	walls[6] = createBox(world, stage[2] * 0.3, stage[3] / 2 - 15, 20, 20);
-	walls[7] = createBox(world, stage[2] * 0.7, stage[3] / 2 - 15, 20, 20);			
+	walls[7] = createBox(world, stage[2] * 0.7, stage[3] / 2 - 15, 20, 20);	
 
 	wallsSetted = true;
 
