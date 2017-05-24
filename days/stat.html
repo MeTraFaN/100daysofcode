@@ -1,0 +1,39 @@
+<!doctype html>
+<html>  
+  <head>  
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"> </script>
+    <link href="/main.css" rel="stylesheet">
+    <meta name="viewport"  content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Disappearing Tail</title>
+    <style> 
+      .OneBoardScore, .BoardScore {border: 1px solid black; min-width: 150px;max-width: 200px;} 
+    </style>
+  </head> 
+  <body>
+    <div id="Score">
+      
+    </div>
+
+    <script> 
+    var socket = io();
+    Score = document.getElementById('Score');
+    NewResult = document.createElement('div');
+    NewResult.className = "OneBoardScore";
+    socket.on('final score', function(score){
+      for(boardname in score){
+        NewBoard = document.createElement('div')
+        NewBoard.className = "BoardScore";
+        NewBoard.innerHTML = "Доска: " + boardname + "| Очки: ";
+        for(keys in score[boardname]){
+          // for(key in score[boardname][keys]){
+            NewBoard.innerHTML +=  score[boardname][keys] + "|";
+          // } 
+        }
+        NewResult.appendChild(NewBoard);
+        console.log(NewBoard);
+      }
+    Score.appendChild(NewResult);
+    });
+    </script>
+  </body>
+</html>
