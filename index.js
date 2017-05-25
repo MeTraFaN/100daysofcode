@@ -51,7 +51,12 @@ app.get('/main.js', function(req,res){
 app.get('/stat', function(req, res){
   res.sendFile(__dirname + '/days/stat.html');
 });
-
+app.get('/second.js', function(req, res){
+  res.sendFile(__dirname + '/js/second.js');
+});
+app.get('/day39', function(req, res){
+  res.sendFile(__dirname + '/days/day39.html');
+});
 
 var users = {};
 var users26 = {};
