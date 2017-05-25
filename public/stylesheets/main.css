@@ -76,3 +76,9 @@ body {padding:0px; margin:0px; overflow: hidden;}
     border: 2px solid blue;
     text-align: center;
 }
+.cell{
+    border:2px solid #fff;
+    border-radius: 50px;
+    margin: 15px;
+    float:left;
+}
