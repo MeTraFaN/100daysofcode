@@ -35,7 +35,7 @@ body {padding:0px; margin:0px; overflow: hidden;}
 .submitdiv {width:119px}
 .navigate > * { margin: 7px 0px;}
 .create {margin: 7px 7px; height: 21px;}
-#canvas {border: solid 1px black; background-color: #A1954B;}
+#canvas {border: solid 1px black; background-color: #A1954B;cursor: default;}
 .ErroreWindow  {position: absolute;
     width: 170px;
     left: 50%;
@@ -81,4 +81,7 @@ body {padding:0px; margin:0px; overflow: hidden;}
     border-radius: 50px;
     margin: 15px;
     float:left;
+}
+.Value {
+    text-align: center;
 }
