@@ -51,7 +51,8 @@ function isitend(id){
 }
 
 function reset(){
-  setTimeout(alert("Игра окончена!"), 3000);
-  location.reload();
-
+  setTimeout(function(){
+	  alert("Игра окончена!");
+	  location.reload();
+  }, 3000);
 }
