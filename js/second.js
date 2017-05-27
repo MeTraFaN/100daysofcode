@@ -26,8 +26,7 @@ function TakeElement(val){
 	}
 	else if(!X){
 		WriteElement("0",true);
-	}
-	if (isitend()) { reset()};
+	}	
 };
 function WriteElement (first, second, id){
 	if (!ThisCell.firstElementChild){
@@ -36,9 +35,9 @@ function WriteElement (first, second, id){
 		Value.style.lineHeight = CellHeight;
 		Value.style.fontSize = parseInt(CellHeight, 10) - 30 + 'px';
 		X = second;
-		return 0;
 		arr[id] = first;
-		console.log(arr);
+		if (isitend()) { reset()};
+		//return 0;
 	}
 }
 function isitend(id){
