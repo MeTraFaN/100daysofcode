@@ -63,7 +63,7 @@ function reset(value){
   setTimeout(function(){
     if(value == 'draw')
 	alert("Игра окончена! Результат: Ничья.");	  
-	else alert("Игра окончена! Результат: Победили ", value);
+	else alert("Игра окончена! Результат: Победили " + value);
     location.reload();
   }, 500);
 }
