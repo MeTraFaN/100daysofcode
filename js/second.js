@@ -53,7 +53,7 @@ function isitend(id){
 }
 
 function reset(){
-  alert("Игра окончена!");
+  setTimeout(alert("Игра окончена!"), 3000);
   location.reload();
 
 }
