@@ -23,7 +23,7 @@ function TakeElement(val){
 		WriteElement("X",false, val);
 	}
 	else if(!X){
-		WriteElement("O",true);
+		WriteElement("O",true, val);
 	}	
 };
 function WriteElement (first, second, id){
