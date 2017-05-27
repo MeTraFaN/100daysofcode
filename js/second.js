@@ -15,7 +15,6 @@ for (var i=0; i < 9; i++){
 	divCell.style.height = CHeight / 3 - 35 + 'px';
 	canvas.appendChild(divCell);
 }
-var Cells = document.getElementsByClassName('cell');
 var X = true;
 console.log(arr);
 function TakeElement(val){
@@ -36,9 +35,8 @@ function WriteElement (first, second, id){
 		Value.style.fontSize = parseInt(CellHeight, 10) - 30 + 'px';
 		X = second;
 		arr[id] = first;
-		if (isitend()) { reset()};
-		//return 0;
 	}
+        if (isitend()) { reset()};
 }
 function isitend(id){
 	if (arr[0]=='X' && arr[1]=='X' && arr[2]=='X' || arr[0]=='0' && arr[1]=='0' && arr[2]=='0')  return true;
@@ -49,7 +47,7 @@ function isitend(id){
   	if (arr[2]=='X' && arr[5]=='X' && arr[8]=='X' || arr[2]=='0' && arr[5]=='0' && arr[8]=='0')  return true;
   	if (arr[0]=='X' && arr[4]=='X' && arr[8]=='X' || arr[0]=='0' && arr[4]=='0' && arr[8]=='0')  return true;
   	if (arr[2]=='X' && arr[4]=='X' && arr[6]=='X' || arr[2]=='0' && arr[4]=='0' && arr[6]=='0')  return true;
-  	if(arr[0] && arr[1] && arr[2] && arr[3] && arr[4] && arr[5] && arr[6] && arr[7] && arr[8]) return true;
+  	if (arr[0] && arr[1] && arr[2] && arr[3] && arr[4] && arr[5] && arr[6] && arr[7] && arr[8]) return true;
 }
 
 function reset(){
