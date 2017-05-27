@@ -15,13 +15,13 @@ for (var i=0; i < 9; i++){
 	canvas.appendChild(divCell);
 }
 var Cells = document.getElementsByClassName('cell');
-var X = true;
+//var X = true;
 Cells.addEventListener('ontouchend', TakeElement(this.id));
 
 function TakeElement(val){
 	ThisCell = document.getElementById(val);
 	CellHeight = ThisCell.style.height;
-	if(X){	console.log(X);
+	if(X){	
 		WriteElement("X",false);
 	}
 	else if(!X){
