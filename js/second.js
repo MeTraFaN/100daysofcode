@@ -16,7 +16,6 @@ for (var i=0; i < 9; i++){
 	canvas.appendChild(divCell);
 }
 var X = true;
-console.log(arr);
 function TakeElement(val){
 	ThisCell = document.getElementById(val);
 	CellHeight = ThisCell.style.height;
@@ -34,8 +33,9 @@ function WriteElement (first, second, id){
 		Value.style.lineHeight = CellHeight;
 		Value.style.fontSize = parseInt(CellHeight, 10) - 30 + 'px';
 		X = second;
+		console.log(id);
 		arr[id] = first;
-		console.log(arr[id]);
+		console.log(arr);
 	}
         if (isitend()) { reset()};
 }
