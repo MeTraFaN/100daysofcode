@@ -28,12 +28,10 @@ function TakeElement(val){
 	}
 };
 function WriteElement (first, second){
-	if (ThisCell.firstElementChild.innerHTML == ""){
 		ThisCell.innerHTML = "<div class='Value'>" + first + "</div>";
 		Value = ThisCell.firstElementChild;
 		Value.style.lineHeight = CellHeight;
 		Value.style.fontSize = parseInt(CellHeight, 10) - 30 + 'px';
 		X = second;
 		return 0;
-	}
 }
