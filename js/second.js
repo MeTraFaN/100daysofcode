@@ -29,7 +29,7 @@ function TakeElement(val){
 	}
 };
 function WriteElement (first, second){
-	if (typeOf(ThisCell.firstElementChild) == "undefined"){
+	if (typeof(ThisCell.firstElementChild) == "undefined"){
 		ThisCell.innerHTML = "<div class='Value'>" + first + "</div>";
 		Value = ThisCell.firstElementChild;
 		Value.style.lineHeight = CellHeight;
