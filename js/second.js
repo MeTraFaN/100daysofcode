@@ -27,7 +27,7 @@ function TakeElement(val){
 	else if(!X){
 		WriteElement("0",true);
 	}
-	isitend() ? reset();
+	if (isitend()) { reset()};
 };
 function WriteElement (first, second, id){
 	if (!ThisCell.firstElementChild){
