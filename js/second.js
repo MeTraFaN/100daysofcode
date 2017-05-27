@@ -38,6 +38,7 @@ function WriteElement (first, second, id){
 		X = second;
 		return 0;
 		arr[i] = first;
+		console.log(arr);
 	}
 }
 function isitend(id){
