@@ -15,6 +15,7 @@ for (var i=0; i < 9; i++){
 }
 var Cells = document.getElementsByClassName('cell');
 var X = true;
+Cells.addEventListener('ontouchend', TakeElement(this.id));
 
 function TakeElement(val){
 	ThisCell = document.getElementById(val);
