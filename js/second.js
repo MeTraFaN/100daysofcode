@@ -54,5 +54,5 @@ function reset(){
   setTimeout(function(){
 	  alert("Игра окончена!");
 	  location.reload();
-  }, 3000);
+  }, 1000);
 }
