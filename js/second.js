@@ -28,7 +28,7 @@ function TakeElement(val){
 	}
 };
 function WriteElement (first, second){
-	if (ThisCell.firstElementChild && ThisCell.firstElementChild.innerHTML == ""){
+	if (!ThisCell.firstElementChild){
 		ThisCell.innerHTML = "<div class='Value'>" + first + "</div>";
 		Value = ThisCell.firstElementChild;
 		Value.style.lineHeight = CellHeight;
