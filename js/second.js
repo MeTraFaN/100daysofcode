@@ -37,8 +37,7 @@ function WriteElement (first, second, id){
 		arr[id] = first;
 		console.log(arr);
 	}
-	console.log(isitend());
-       // if (isitend() ) { reset()};
+        if (typeof(isitend()) != "undefined") { reset(isitend())};
 }
 function isitend(id){
 	if (arr[0]=='X' && arr[1]=='X' && arr[2]=='X' || 
@@ -60,9 +59,11 @@ function isitend(id){
 	if (arr[0] && arr[1] && arr[2] && arr[3] && arr[4] && arr[5] && arr[6] && arr[7] && arr[8]) return 'draw';   	 
 }
 
-function reset(){
+function reset(value){
   setTimeout(function(){
-	  alert("Игра окончена!");
-	  location.reload();
+    if(value == 'draw')
+	alert("Игра окончена! Результат: Ничья.");	  
+	else (alert("Игра окончена! Результат: Победили ", value)
+    location.reload();
   }, 500);
 }
