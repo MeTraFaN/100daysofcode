@@ -17,7 +17,7 @@ for (var i=0; i < 9; i++){
 }
 var Cells = document.getElementsByClassName('cell');
 var X = true;
-
+console.log(arr);
 function TakeElement(val){
 	ThisCell = document.getElementById(val);
 	CellHeight = ThisCell.style.height;
@@ -37,7 +37,7 @@ function WriteElement (first, second, id){
 		Value.style.fontSize = parseInt(CellHeight, 10) - 30 + 'px';
 		X = second;
 		return 0;
-		arr[i] = first;
+		arr[id] = first;
 		console.log(arr);
 	}
 }
