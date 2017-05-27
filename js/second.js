@@ -35,6 +35,7 @@ function WriteElement (first, second, id){
 		Value.style.fontSize = parseInt(CellHeight, 10) - 30 + 'px';
 		X = second;
 		arr[id] = first;
+		console.log(arr[id]);
 	}
         if (isitend()) { reset()};
 }
