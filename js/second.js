@@ -9,7 +9,7 @@ for (var i=0; i < 9; i++){
 	divCell.className = "cell";
 	divCell.id = "cell" + i +"";
 	divCell.setAttribute("onClick", "TakeElement(this.id)");
-	divCell.setAttribute("ontouchstart", "TakeElement(this.id)");
+	divCell.setAttribute("ontouchend", "TakeElement(this.id)");
 	divCell.style.width = CWidth / 3 - 35 + 'px';
 	divCell.style.height = CHeight / 3 - 35 + 'px';
 	canvas.appendChild(divCell);
