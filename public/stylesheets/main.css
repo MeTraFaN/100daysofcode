@@ -85,7 +85,8 @@ body {padding:0px; margin:0px; overflow: hidden;}
 .Value {
     text-align: center;
 }
-#stat {
+#stat div {
     float:left;
-    overflow: scroll;
+    margin: 0 15px;
 }
+
