@@ -64,14 +64,14 @@ function isitend(id){
 }
 
 function reset(value){
-  X = true;
-  arr = []; 
   var Cell = document.getElementsByClassName('cell');
     for (var i = 0; i < 9; i++){
     	if(Cell[i].hasChildNodes()){
     		Cell[i].removeChild(Cell[i].childNodes[0]);
     	}	
     }
+  X = true;
+  arr = []; 
   setTimeout(function(){
 
     if(value == 'draw'){
