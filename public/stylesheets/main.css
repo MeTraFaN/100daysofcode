@@ -85,3 +85,7 @@ body {padding:0px; margin:0px; overflow: hidden;}
 .Value {
     text-align: center;
 }
+#stat {
+    float:left;
+    overflow: scroll;
+}
