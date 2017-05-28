@@ -65,15 +65,13 @@ function isitend(id){
 
 function reset(value){
   var Cell = document.getElementsByClassName('cell');
-    for (var i = 0; i < 9; i++){
-    	if(Cell[i].hasChildNodes()){
-    		Cell[i].removeChild(Cell[i].childNodes[0]);
-    	}	
-    }
-  X = true;
-  arr = []; 
+  for (var i = 0; i < 9; i++){
+  	if(Cell[i].hasChildNodes()){
+           Cell[i].removeChild(Cell[i].childNodes[0]);
+  	}	
+  }
   setTimeout(function(){
-
+    arr = []; 
     if(value == 'draw'){
 		counterDraw += 1;
 		stat.childNodes[5].innerHTML = "Игр с ничьёй: " + counterDraw;
@@ -87,4 +85,5 @@ function reset(value){
 		stat.childNodes[3].innerHTML = "Побед O: " + counterO;
 	}	
   }, 500);
+  X = true;
 }
