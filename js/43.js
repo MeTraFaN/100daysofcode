@@ -1,4 +1,3 @@
-var socket = io();
 var ThisCell, CellHeight;
 var arr = new Array(9);
 var stat = document.getElementById('stat');
