@@ -64,16 +64,16 @@ function isitend(id){
 }
 
 function reset(value){
-  var date = new Date();
+  X = true;
+  arr = []; 
   var Cell = document.getElementsByClassName('cell');
-  setTimeout(function(){
-  	X = true;
-    arr = []; 
     for (var i = 0; i < 9; i++){
     	if(Cell[i].hasChildNodes()){
     		Cell[i].removeChild(Cell[i].childNodes[0]);
     	}	
     }
+  setTimeout(function(){
+
     if(value == 'draw'){
 		counterDraw += 1;
 		stat.childNodes[5].innerHTML = "Игр с ничьёй: " + counterDraw;
