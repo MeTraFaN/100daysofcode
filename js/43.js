@@ -75,17 +75,14 @@ function reset(value){
     	}	
     }
     if(value == 'draw'){
-		alert("Игра окончена! Результат: Ничья.");
 		counterDraw += 1;
 		stat.childNodes[5].innerHTML = "Игр с ничьёй: " + counterDraw;
 	} 
 	else if(value == "X"){
-		alert("Игра окончена! Результат: Победа Х");
 		counterX += 1;
 		stat.childNodes[1].innerHTML = "Побед Х: " + counterX;
 	}
 	else {
-		alert("Игра окончена! Результат: Победа O");
 		counterO += 1;
 		stat.childNodes[3].innerHTML = "Побед O: " + counterO;
 	}	
