@@ -54,11 +54,17 @@ app.get('/stat', function(req, res){
 app.get('/second.js', function(req, res){
   res.sendFile(__dirname + '/js/second.js');
 });
+app.get('/43.js', function(req, res){
+  res.sendFile(__dirname + '/js/43.js');
+});
 app.get('/day39', function(req, res){
   res.sendFile(__dirname + '/days/day39.html');
 });
 app.get('/day42', function(req, res){
   res.sendFile(__dirname + '/days/day42.html');
+});
+app.get('/day43', function(req, res){
+  res.sendFile(__dirname + '/days/day43.html');
 });
 
 var users = {};
