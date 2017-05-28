@@ -1,3 +1,6 @@
+var counterX = 0;
+var counterO = 0;
+var counterDraw = 0;
 var ThisCell, CellHeight;
 var arr = new Array(9);
 var stat = document.getElementById('stat');
@@ -5,9 +8,9 @@ var canvas = document.getElementById('canvas');
 CWidth = window.innerWidth;
 CHeight = window.innerHeight;
 stat.style.width = CWidth + 'px'
-stat.style.height = CHeight * 0.25 + 'px';
+stat.style.height = CHeight * 0.04 + 'px';
 canvas.style.width = CWidth  + 'px';
-canvas.style.height = CHeight * 0.75 + 'px';
+canvas.style.height = CHeight * 0.96 + 'px';
 for (var i=0; i < 9; i++){
 	divCell = document.createElement('div');
 	divCell.className = "cell";
@@ -15,7 +18,7 @@ for (var i=0; i < 9; i++){
 	divCell.setAttribute("onClick", "TakeElement(this.id)");
 	divCell.setAttribute("ontouchend", "TakeElement(this.id)");
 	divCell.style.width = CWidth / 3 - 35 + 'px';
-	divCell.style.height = CHeight * 0.25 - 35 + 'px';
+	divCell.style.height = CHeight * 0.32 - 35 + 'px';
 	canvas.appendChild(divCell);
 }
 var X = true;
@@ -36,9 +39,7 @@ function WriteElement (first, second, id){
 		Value.style.lineHeight = CellHeight;
 		Value.style.fontSize = parseInt(CellHeight, 10) - 30 + 'px';
 		X = second;
-		console.log(id);
 		arr[id] = first;
-		console.log(arr);
 	}
         if (typeof(isitend()) != "undefined") { reset(isitend())};
 }
@@ -63,7 +64,6 @@ function isitend(id){
 }
 
 function reset(value){
-  var statdiv = document.createElement('div');
   var date = new Date();
   var Cell = document.getElementsByClassName('cell');
   setTimeout(function(){
@@ -74,16 +74,20 @@ function reset(value){
     		Cell[i].removeChild(Cell[i].childNodes[0]);
     	}	
     }
-
     if(value == 'draw'){
 		alert("Игра окончена! Результат: Ничья.");
-		statdiv.innerHTML = date.toLocaleString() + " | Результат: Ничья."	 
-		stat.appendChild(statdiv);
+		counterDraw += 1;
+		stat.childNodes[5].innerHTML = "Игр с ничьёй: " + counterDraw;
 	} 
+	else if(value == "X"){
+		alert("Игра окончена! Результат: Победа Х");
+		counterX += 1;
+		stat.childNodes[1].innerHTML = "Побед Х: " + counterX;
+	}
 	else {
-		alert("Игра окончена! Результат: Победили " + value);
-		statdiv.innerHTML = date.toLocaleString() + " | Результат: Победили "	+  value + ".";
-		stat.appendChild(statdiv);
+		alert("Игра окончена! Результат: Победа O");
+		counterO += 1;
+		stat.childNodes[3].innerHTML = "Побед O: " + counterO;
 	}	
   }, 500);
 }
