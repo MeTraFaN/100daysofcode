@@ -19,7 +19,7 @@ function init(value){
 		divCell = document.createElement('div');
 		divCell.className = "cell";
 		divCell.id = i +"";
-		divCell.setAttribute("onClick", "TakeElement(this.id); ClickDone(this.id)");
+		divCell.setAttribute("onClick","ClickDone(this.id); TakeElement(this.id);");
 		divCell.style.width = CWidth / 3 - 35 + 'px';
 		divCell.style.height = CHeight * 0.32 - 35 + 'px';
 		canvas.appendChild(divCell);
