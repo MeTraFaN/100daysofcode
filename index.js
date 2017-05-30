@@ -57,6 +57,9 @@ app.get('/second.js', function(req, res){
 app.get('/43.js', function(req, res){
   res.sendFile(__dirname + '/js/43.js');
 });
+app.get('/44.js', function(req, res){
+  res.sendFile(__dirname + '/js/44.js');
+});
 app.get('/day39', function(req, res){
   res.sendFile(__dirname + '/days/day39.html');
 });
@@ -66,13 +69,33 @@ app.get('/day42', function(req, res){
 app.get('/day43', function(req, res){
   res.sendFile(__dirname + '/days/day43.html');
 });
+app.get('/day44', function(req, res){
+  res.sendFile(__dirname + '/days/day44.html');
+});
 
 var users = {};
 var users26 = {};
 var board30 = {};
 var board37 = {};
 var score = {};
+var board43 = {};
+
 io.on('connection', function(client) {
+  if (Object.keys(board43).length == 0) {
+    board43[client.id] = client.id;
+    client.emit('first user');
+  }
+  else if (Object.keys(board43).length == 1){
+    board43[client.id] = client.id;
+    client.broadcast.emit('second user', "X");
+    client.emit('gamestart', "O");
+  }
+
+  client.on('clickdone', function(value, id){
+    if (value){client.broadcast.emit('enemyclick', "X", id);}
+    else {client.broadcast.emit('enemyclick', "O", id);} 
+  });
+
   client.on('final score', function(left, right, boardname){
     score[boardname] = {};
     score[boardname] = {
