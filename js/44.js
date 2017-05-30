@@ -25,15 +25,18 @@ function init(value){
 		canvas.appendChild(divCell);
 	}
 	if (value == "X"){X = true}
-	else {X = false; ShowErrore("Ход противника <br>", "Ожидайте...")}
+	else {X = false;  EnemyTurn();}
 }
 
 
 function ClickDone(id){
 	socket.emit('clickdone', X, id);
-	ShowErrore("Ход противника <br>", "Ожидайте...")
+	 EnemyTurn();
 }
 
+function EnemyTurn(){
+	ShowErrore("Ход противника <br>", "Ожидайте...")
+}
 
 function TakeElement(id, val){
 	ThisCell = document.getElementById(id);
@@ -56,6 +59,7 @@ function WriteElement (value, id){
     if (typeof(isitend()) != "undefined") { 
     	reset(isitend()); 
     	deleteElement(ErroreWindow);
+	if (!X){EnemyTurn();}
     };
 }
 function isitend(id){
