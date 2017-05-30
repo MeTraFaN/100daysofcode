@@ -1,4 +1,4 @@
-body {padding:0px; margin:0px; overflow: hidden;}
+body {padding:0px; margin:0px; overflow: hidden; }
 #wrapper {background-color: lightblue; width: 1300px; height: 600px;}
 .circle{position: absolute;border-radius:50%;}
 .circle .circle {position:fixed; opacity: 1;}
@@ -35,8 +35,15 @@ body {padding:0px; margin:0px; overflow: hidden;}
 .submitdiv {width:119px}
 .navigate > * { margin: 7px 0px;}
 .create {margin: 7px 7px; height: 21px;}
-#canvas {border: solid 1px black; background-color: #A1954B;cursor: default;}
+#canvas {border: solid 1px black; background-color: #A1954B; cursor: default;}
 .ErroreWindow  {position: absolute;
+    width: 100%;
+    height: 100%;   
+    left: 0;
+    top: 0;
+    background-color: rgba(192, 192, 192, 0.2);
+}
+.ErroreText  {position: absolute;
     width: 170px;
     left: 50%;
     top: 10%;
@@ -45,6 +52,7 @@ body {padding:0px; margin:0px; overflow: hidden;}
     border: solid 1px black;
     padding: 10px;
     background-color: #FA8072;
+    opacity: 1;
 }
 #score{
     position: absolute;
@@ -87,6 +95,8 @@ body {padding:0px; margin:0px; overflow: hidden;}
 }
 #stat div {
     float:left;
-    margin-right: 10px;
+    margin: 0 15px;
 }
-
+#line {
+    position:absolute;
+}
