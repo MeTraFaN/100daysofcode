@@ -85,7 +85,7 @@ io.on('connection', function(client) {
     board43[client.id] = client.id;
     client.emit('first user');
   }
-  else if (Object.keys(board43).length == 1){
+  else if (Object.keys(board43).length != 0){
     board43[client.id] = client.id;
     client.broadcast.emit('second user', "X");
     client.emit('gamestart', "O");
