@@ -84,7 +84,6 @@ function isitend(id){
 
 function reset(value){
   var Cell = document.getElementsByClassName('cell');
-  if (Cell){
   	setTimeout(function(){
 	  	for (var i = 0; i < 9; i++){
 	  	  if(Cell[i].hasChildNodes()){
@@ -105,7 +104,6 @@ function reset(value){
 			stat.childNodes[3].innerHTML = "Побед O: " + counterO;
 		}	
   	}, 500);
-  }
 }
 
 function ShowErrore(first, second){
