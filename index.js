@@ -60,6 +60,9 @@ app.get('/43.js', function(req, res){
 app.get('/44.js', function(req, res){
   res.sendFile(__dirname + '/js/44.js');
 });
+app.get('/45.js', function(req, res){
+  res.sendFile(__dirname + '/js/45.js');
+});
 app.get('/day39', function(req, res){
   res.sendFile(__dirname + '/days/day39.html');
 });
@@ -71,6 +74,9 @@ app.get('/day43', function(req, res){
 });
 app.get('/day44', function(req, res){
   res.sendFile(__dirname + '/days/day44.html');
+});
+app.get('/day45', function(req, res){
+  res.sendFile(__dirname + '/days/day45.html');
 });
 
 var users = {};
