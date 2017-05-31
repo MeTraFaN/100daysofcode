@@ -87,7 +87,7 @@ body {padding:0px; margin:0px; overflow: hidden; }
 .cell{
     border:2px solid #fff;
     border-radius: 50px;
-    margin: 15px;
+    margin: 7.5px;
     float:left;
 }
 .Value {
