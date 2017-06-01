@@ -81,14 +81,15 @@ function isitend(value, id){
 	if (arr1[row][cell - 1] == value || 
 		arr1[row][cell + 1] == value){ // элемент Л или П.
 		i = 1;
-		while (arr1[row][cell - i] != value){
+		while (arr1[row][cell - i] == value){
 			winner += 1;
 			i++;
 			 if (typeof(arr1[row]) == "undefined") {
 			 	break;
 			 }
 		}
-		while (arr1[row][cell + i] != value){
+		if (winner >= 5) {winner = 0; return value}
+		while (arr1[row][cell + i] == value){
 			winner += 1;
 			i++;
 			// if (typeof(arr1[row]) == "undefined") {
@@ -102,14 +103,15 @@ function isitend(value, id){
 	if (arr1[row - 1][cell] == value ||
 		arr1[row + 1][cell] == value){// элемент В или Н.
 		i = 1;
-		while (arr1[row - i][cell] != value){
+		while (arr1[row - i][cell] == value){
 			winner += 1;
 			i++;
 			if (typeof(arr1[row - i]) == "undefined") {
 				break;
 			}
 		}
-		while (arr1[row + i][cell] != value){
+		if (winner >= 5) {winner = 0; return value}
+		while (arr1[row + i][cell] == value){
 			winner += 1;
 			i++;
 			if (typeof(arr1[row + i]) == "undefined") {
@@ -123,14 +125,15 @@ function isitend(value, id){
 	if (arr1[row - 1][cell - 1] == value ||
 		arr1[row + 1][cell + 1] == value){// элемент ЛВ или ПН.
 		i = 1;
-		while (arr1[row - i][cell - i] != value){
+		while (arr1[row - i][cell - i] == value){
 			winner += 1;
 			i++;
 			if (typeof(arr1[row - i]) == "undefined") {
 				break;
 			}
 		}
-		while (arr1[row + i][cell + i] != value){
+		if (winner >= 5) {winner = 0; return value}
+		while (arr1[row + i][cell + i] == value){
 			winner += 1;
 			i++;
 			if (typeof(arr1[row + i]) == "undefined") {
@@ -145,14 +148,15 @@ function isitend(value, id){
 	if (arr1[row - 1][cell + 1] == value ||
 		arr1[row + 1][cell - 1] == value){// элемент ПВ или ЛН
 		i = 1;
-		while (arr1[row - i][cell + i] != value){
+		while (arr1[row - i][cell + i] == value){
 			winner += 1;
 			i++;
 			if (typeof(arr1[row - i]) == "undefined") {
 				break;
 			}
 		}
-		while (arr1[row + i][cell - i] != value){
+		if (winner >= 5) {winner = 0; return value}
+		while (arr1[row + i][cell - i] == value){
 			winner += 1;
 			i++;
 			if (typeof(arr1[row + i]) == "undefined") {
