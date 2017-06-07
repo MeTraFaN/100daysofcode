@@ -2,7 +2,7 @@
 
 This is the source code for a very simple chat example used for
 the [Getting Started](http://socket.io/get-started/chat/) guide
-of the Socket.IO website.
+of the Socket.IO website. ава вава ва ва в ав ав в в ав в в ав в
 
 Please refer to it to learn how to run this application.
 
